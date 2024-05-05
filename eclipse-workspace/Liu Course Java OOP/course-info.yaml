@@ -1,0 +1,22 @@
+type: marketplace
+title: Liu Course Java OOP
+language: Chinese
+summary: |-
+  This is the first series of courses on JetBrains Marketplace for Chinese learners.
+  This course provides a new way for you to learn Java easily.
+  In this course, you will learn, - The concepts of object, constructor, attribute and method, etc. - How to understand OOP's content properly
+  If you have any questions, mail to 692000925@qq.com.
+  Have fun and good luck!
+  ——————
+  这是JetBrain上首个面向中文学习者的系列课程，本课程旨在用通俗易懂的语言带你走进Java世界的大门，让零基础的你也能轻松愉快地学习编程，并掌握Java语言的核心。
+  众所周知Java是一门体系很广的编程语言，本课程把Java拆解为多个易于学习的模块。通过本课程你将学到
+  - 对象三部曲：对象、构造、属性和方法 - 面向对象三部曲：封装、继承与多态性，重载和重写、Java Bean等
+  希望你收获满满！
+  关注全网ID：@老刘大数据
+  更多课程资源：692000925@qq.com
+programming_language: Java
+content:
+  - Java OOP Section
+mode: Study
+vendor:
+  name: Matthew Liu

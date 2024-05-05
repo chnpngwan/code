@@ -1,0 +1,13 @@
+type: edu
+custom_name: Summary of Interfaces 总结
+files:
+- name: src/Task.java
+  visible: true
+  encrypted_text: WEJEkhpCAL5HUFSlR3wpP2CaOB7TIMB42A3rM9YWqpddxZJc8v3L9oQSwn7ScXDA
+  learner_created: false
+- name: test/Tests.java
+  visible: false
+  encrypted_text: ITs8Nv8EH6QWJG5nufD7nL+5+4bhYoXDvmVthWtIgQ65QGrosPwl8pWa8Roz0DaOzyNHGqghbkq1kO1chMNERKIVtu6Wa2mQTUeXLeRxui7TjdtuSYfXVcmhig1a0OyQag34ZWvVDShnVaRsY+QfwPtYECaNDhSv96u1oIoBDY8cZ9Q6X3W2IXzPQ9dMjCEl8NHjiG5I5swvblOdA9UL1yVA+1LNgJykaCp+qTrehcvX8+iUgkqc53I+YldQs3p6IDFWvCrBfJ9pTAw78Iaa+Q==
+  learner_created: false
+status: Unchecked
+record: -1

@@ -1,0 +1,12 @@
+type: edu
+files:
+- name: src/Task.java
+  visible: true
+  encrypted_text: WEJEkhpCAL5HUFSlR3wpP4igZ1HxD+Qs0r4diGAq1C6DMiNtnSxPcxp0mSmh4VWMvQBdyFoOPvh5CXrEVSzLj5nOm3yBgZqYCkC80ItxPnwHviNQeZW0xcLPp4272kithZalIh4TdcDTqMb27/y2oPw76xjtamZ2R1laQNEEM/dExiM+Eqa9CmEPhMlpAU2zr0AoCPcUtGSl3FzY/LtJ5NYXbpNGwVr9utEDQeTCFWRovzo/ZYKoL3yj8tnx0+7nGgbgqhBxMmHK/ixrIRJIK/GbygTMPPobE5res+t8iRnP8z3u+vi3dKYxzLe6KHRo
+  learner_created: false
+- name: test/Tests.java
+  visible: false
+  encrypted_text: ITs8Nv8EH6QWJG5nufD7nL+5+4bhYoXDvmVthWtIgQ65QGrosPwl8pWa8Roz0DaOw/RmeK6jy1Cqw2VKjxi65HCjN3Gm+4QoqMZXqoMX9FXKPQ2LK148uPd3MKpWWYeZdjgpjwmDsOK17titfpReG3+Oh8XwMMKqWqSj/F4sjhQYAjbm0VeTKTS01FLVhxhVNRZ8zLA0y50Rsc+mInd98e9GIKkQeqSIKZOLFVtNc5mnCqmGGFi6x21/u7DmiElPwgI1UFJM59wqDEs/0JYmEqby8ZiimyTgl3vHMHpipbw=
+  learner_created: false
+status: Unchecked
+record: -1

@@ -1,0 +1,5 @@
+custom_name: Interface & Implements 接口与实现
+content:
+- interface 接口定义
+- default 接口默认方法
+- implements 接口实现

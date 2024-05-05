@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.house.mapper.HouseMapper">
+
+	<!--自动映射器-->
+	<resultMap type="HouseInfo" id="houseMap">
+        <result property="id" column="id"/>
+        <result property="location" column="location"/>
+        <result property="area" column="area"/>
+        <result property="address" column="address"/>
+        <result property="type" column="type"/>
+        <result property="mobile" column="mobile"/>
+        <result property="registerTime" column="register_time"/>
+    </resultMap>
+	
+	 <!--查询全部数据-->
+    <select id="queryHouses" resultMap="houseMap">
+        select * from tb_house
+        <where>
+            <if test="location!=null and location!=''">
+                location like concat('%',#{location},'%')
+            </if>
+            <if test="min!=0 and max!=0">
+                and area between #{min} and #{max}
+            </if>
+        </where>
+        order by register_time desc
+    </select>
+	
+	<!-- 删除 -->
+	<delete id="deteleHouseById">
+		delete from tb_house where id=#{id}
+	</delete>
+</mapper>

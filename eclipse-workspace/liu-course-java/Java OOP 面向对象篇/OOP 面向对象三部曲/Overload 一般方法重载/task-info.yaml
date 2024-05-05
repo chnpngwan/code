@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: (1)
+  is_correct: true
+- text: (2)
+  is_correct: true
+- text: (3)
+  is_correct: false
+- text: (4)
+  is_correct: false
+- text: (5)
+  is_correct: false
+files:
+- name: src/Person.java
+  visible: true
+  encrypted_text: wnPwlKRnrvZG5xYgiXjPTOEq5dw3+SfUjyaGNV23D6GiOUd/KDBL1yW1/Gwm5r/B8tdi+ISUa/C7EPidaGPD9vUkJrAN1FjxMmrjiaSulQ+N13IT4r537ryOi9V6DXHTi6bozpMbWjgweI1iDzbLov1wKFpUkhhkMy29X+YXEvzPhasJDL8WgIhhfBjEkiOYHExE7MIrXQCIL2zJSARjLkwI+U/5cUo4/GJJrOL7eng72qbjmAjNRUuj+M6iPl5oHYB+JYrNCf3gceZ9e3m/DjXeF3L6knrDlmOKwiBMXg+roX5KuLlfOiOfz4x8K9yn3L/49skYLc0874djdvjY4ohLTKs8o6u6pdiCEqpCJirMpAtjihpMhICaz1llSn2YtRpfNNhGa3od7B4w23wlkA9EaN7Y9jBRaSMhyJ/DQ3+9OgL3tOBSwyTRvPM18c83EMTx8wbR41bEuMLd4pD6wlO0Uwsyua4IV5zCt4kWRTwpOsVlVMenRwBrwNAaWFgRGC6DSgTmUafJsnKTCixK4Kbu8LE1f1zMuqKpduvpFTNCd4jDvHbpdq2WHXardlm/P6na8XQEK9Aa4s8Lyd90W3CtkoDyy8SqXWvsiluF3yte+fZIW3Ibl+SxvZplo8inEsf/kI5A76/rLiIVYiX19hrBLQgApFWxM2+yrL5hWhnamNXFxIowz/hAoDGm2G4oS6UFuZbwrWjcTe+2Od+Y0VXuQ/5RUsdj+H57G3YelW2wmeH9A0b80aZODDYzBapEGpwMnwCrVyiFaTBrLNmIUbvBu3D/bQlHyDEbQ4fr9+NTIXX2ftD8q/BYgv2fhuT4xWOTNeT3u6HPHp01BAu2AaHV1cYWzaxgJ/2qIXs783ALa7O1ml8RGVJBL/DpGhV9NypiOC01n+eEcViszsF3MlaMaTa/AKAxAPQE8LwsOPzZi2/myq9mtUh3MYXlAOyeZscEXP/bpNcnyKeFKm9Ky681UGpZJ+825BRRlnmtA1GJiMk5aeWCRjr77/9vTPmYWLYhlaM3/Nn+jUNlfQrCJPUT3S7qYNyrBIPpV18Xu3Uyjsv85ZO020gDdWUXrDHo
+  learner_created: false
+status: Unchecked
+record: -1
+local_check: true

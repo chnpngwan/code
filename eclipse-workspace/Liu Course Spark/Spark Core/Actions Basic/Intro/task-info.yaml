@@ -1,0 +1,9 @@
+type: theory
+files:
+  - name: src/Main.scala
+    visible: true
+    encrypted_text: 4UJb+LgJCdIDaKG3Nwqs1Tlz2RpLTMWAWWe542iJGxU+fXCnuYLRXWv+d/xBT/1reVifA43RtVVwxVWPzbHR9hQ1BsamYvuHJN93/XGg+hXP9gGQwVjVoyJFvirUObRS/64lmLL1jrSj9viQOC137kdrddwnekfl9VANcExy48jsUrc9VPfmbITe9STvUmG7sFnRLTnk9cE2QZSdFW+58Wbi8zG3p9RT5YRoR17vvO4vGqAS+DkQr/6SzTSDuyx+6V77qSvsa2Gob0fFYDV78kYcNBWrthGOxfrIoe07Iu1w3v9y71L8nUMosJEwpvNl0NU+Usx+cvSy7NullsSf8ayxGzREUHjAjwWTgErKbwRZ1c6tTRzK9d51bADrpEob/LsbpOWMRZyy1uey1M3okmb1A1tqBN9haSHyvvZnUiM6FZ+1VJ3lxCVmybJeZRlP
+    learner_created: false
+status: Unchecked
+record: -1
+post_submission_on_open: true

@@ -1,0 +1,18 @@
+type: choice
+is_multiple_choice: false
+options:
+- text: 这个.java文件名不正确
+  is_correct: false
+- text: 这个类缺失main方法
+  is_correct: false
+- text: 这个类名不正确
+  is_correct: true
+files:
+- name: src/Person.java
+  visible: true
+  encrypted_text: vxx2HKwecHdb6pNRqZvIl4TudXmyZExYy+DHI1Amf69XjCPmuIXxCkjYTHRx6RYq6wx/rkka/PRwn5Bm5WxKo7J0dySvq15/b4soERn/HIMFArlVMFOjxh89RwNkDNN7MPQw/I/yHWW99bRs2RKFeFUsC1stzwKupj053HHoUgO3Y1jAWz44Ez8CnxXsL9LiDBRBup+EK5EJ0vBoqSgnhPCcaRIsRNAWDkLEOaNbDIhgcnia5zSDYzqKbQkF66R7
+  learner_created: false
+status: Unchecked
+record: -1
+custom_name: Class & Object 类与对象
+local_check: true

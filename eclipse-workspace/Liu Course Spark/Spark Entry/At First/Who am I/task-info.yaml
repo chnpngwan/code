@@ -1,0 +1,9 @@
+type: theory
+files:
+  - name: src/Main.scala
+    visible: true
+    encrypted_text: qzdDf7dyD7OpkeNAuPnaSSB6x7ybRtffSs7/acc0c4sTXhND95vAkWjbNf5gHk94gevht7dITTjBRMSflF8dxwmNrXLcLklBw8lDeALYpgv6dVbenLxi8y1tlQrOGo+AkIQ24Mt97f/n/nBjLXH2KU8vs89wetidlcMFSt8PcYWhC+Q2ZnSSo65/81n3KPI9oSNUF8JtHlJsUOGKPKwUwEc1s9NQbu5NTGk3PRvxPPKUzZY8/Iztwc+tPWy2H2yQ7/nBNoT68PPbf75GlZtdwbjW4Kklfljwa+/GAkH9IIGWc0nwsMQIWjBlVe9f5kGLpk7s+y9nORWJuLO0upVT90F6WEu/nkTdsa2FmFL7mUnY47mYmIr9cC4RI6D4irUUVdzto7qTa9kDyUnrYrWyMtIKltvsP19344bI84ur08+QI+POgjMYjHqPi5N3tIWdicm++RUpmukZJcFS3ZhvkfBwaQn2ECh/5bSKSPXSLvQ4s399rh0lyh1y3bURl+5x54LB8DaC3oNq8fvLDGKhLA==
+    learner_created: false
+status: Solved
+record: -1
+post_submission_on_open: true

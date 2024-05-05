@@ -1,0 +1,17 @@
+type: theory
+files:
+  - name: src/Student.java
+    visible: true
+    encrypted_text: wnPwlKRnrvZG5xYgiXjPTOEq5dw3+SfUjyaGNV23D6GiOUd/KDBL1yW1/Gwm5r/B8tdi+ISUa/C7EPidaGPD9kAEpWQ13ocT1rkK8QMWuMocSpaxXRhDstEk3Swd5hFXWenPoT2LTjYxLj5WPQQVL+/RaWoqKr/6nfZL8FgD+nFADX6a7B2gGKNRrPqeqiHN4Gsc+DGoXVAyQ4kDxZJqiSXGw9osyBGk/hTcxw7Udj35cFUnu/OsJBfu7bSzs3lUv1ukgo6OXeN9IAtNwIvTAgUaF/a3tUg+GVso9mImLuBv9iCBJD2of5hzs4PLRZBonuPVrKDDoJx0AT/wQz6MaZFvTdY0oAU6rcni94iE5ChiHWDhnLu4FqEQHTQDLM72Cd5l1jfm3vdW0KrZKxN8Iy0V7LsjdhwnFTQp2R/diIEF+049EWyAULezfLLsuuOzF2flex21qSV8DJxDonenrKhqgZ47iaXCl1vOvrowKZHyGBKWcgg3kftQOJCYH51AdSeD2ljQmhj1HU/mxxKlV6wzuhwA9ESaaWwxF3QbAOP7Jf3ZnMts2DAE3gHsPizeQEvg39UaPeUJ/PKwJM30fB+jpk00bRz2BiQe2sSA4lQGFqDv3S1uJTIQmw2lVCwH7jIA74L5UGtZJcAaQJdOxTfvnOum1SbsS/Z+Q7BciDDhPHvge9Y6euiqyZ4HBLSXeAszhKdaG0qNWpr8jeTJMp5ParfGapmSoleIAHBQZ40drece9I4v/rl8HvVomirCLK+yYHSSqENqXv8dTwVTRg==
+    learner_created: false
+  - name: src/Course.java
+    visible: true
+    encrypted_text: wnPwlKRnrvZG5xYgiXjPTOEq5dw3+SfUjyaGNV23D6GiOUd/KDBL1yW1/Gwm5r/B8tdi+ISUa/C7EPidaGPD9kAEpWQ13ocT1rkK8QMWuMocSpaxXRhDstEk3Swd5hFXWenPoT2LTjYxLj5WPQQVL1s7y/hB1548r6B3XrKJBVtNJxJqHE/5aMv8uGISRooyXD4DBU0q1h6tSsI5f8QEU5NfYQEoxdsKXI9a643uHM4=
+    learner_created: false
+  - name: src/CourseSelection.java
+    visible: true
+    encrypted_text: wnPwlKRnrvZG5xYgiXjPTOEq5dw3+SfUjyaGNV23D6GiOUd/KDBL1yW1/Gwm5r/B8tdi+ISUa/C7EPidaGPD9kAEpWQ13ocT1rkK8QMWuMocSpaxXRhDstEk3Swd5hFXWenPoT2LTjYxLj5WPQQVL9WicVe6LIDrvMtyCg7Mc+nT1ajVkfvBZ+JQXUb/6dZLS/cK//B4MnVNMSbBR0xwzrWq9LJlgYEmfV75WNKaFJp6N2M3PMuNA9vH7FY2dlUr
+    learner_created: false
+status: Unchecked
+record: -1
+post_submission_on_open: true

@@ -1,0 +1,16 @@
+type: output
+files:
+- name: test/output.txt
+  visible: false
+  encrypted_text: v3ZkPzTVOIMmYksW8RSPlA==
+  learner_created: false
+- name: test/latest_output.txt
+  visible: false
+  encrypted_text: v3ZkPzTVOIMmYksW8RSPlA==
+  learner_created: false
+- name: src/Main.java
+  visible: true
+  encrypted_text: a3Oc3sOKihNm0o8Cls6Am/vf7p+FFSW3pGKReHMyVxX/1axCPMsMY4PwZglqvo6Sxva9SAOm96LDfED4gYQh8blur2sxLUIUPmmUNvIJH1si6Zn+gz4DvmBsx5h2ndtTR3oBvZCTsfYJNSdMhWGLJw==
+  learner_created: false
+status: Unchecked
+record: -1

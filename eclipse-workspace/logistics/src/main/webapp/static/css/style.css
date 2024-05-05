@@ -1,0 +1,126 @@
+@CHARSET "UTF-8";
+
+body {
+    overflow: scroll;
+}
+
+.toolbar {
+    margin-left: 250px;
+}
+
+.toolbar ul{
+    list-style-type: none;
+
+}
+.toolbar ul li{
+    float:left;
+}
+
+.toolbar ul li a{
+    width: 80px;
+    height: 28px;
+    line-height: 28px;            /*line-height和height值相等，字垂直方向居中*/
+    background: #2accce;
+    color: white;
+    font-size: 18px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+.toolbar ul li a:hover{         /*链接点击的时候样式设置*/
+    width:78px;
+    height:26px;
+    line-height:28px;
+    border:1px solid rgb(156, 156, 156);;
+    color:blue;
+    background:#FFF;
+    boder-radius:10px;
+}
+/* .toolbar ul li a:hover{         链接点击的时候样式设置
+    width:78px;
+    height:26px;
+    line-height:28px;
+    border:1px solid rgb(156, 156, 156);;
+    color:blue;
+    background:#FFF;
+    boder-radius:10px;
+} */
+
+.form {
+    margin-top: 5px;
+    margin-left: 800px;
+}
+
+* {
+    margin: 0;
+    font-family:"Microsoft Yahei";
+    color: #666;
+}
+
+
+div{
+    margin: auto;
+
+}
+
+#container table td{
+    width: 120px;
+    text-align:center;
+    border-bottom: 1px #e3e3e3 solid;
+    padding: 10px;
+    background-color: rgba(128,128,128,0.2);
+}
+
+#header {
+    background-color: rgb(128, 128, 128,0.5);
+    text-align: center;
+    
+}
+
+#container {
+    height: 850px;
+    border: 1px deepskyblue solid;
+    overflow: auto;
+   /*  background-color: violet; */
+ background-image:url(/logistics/src/main/webapp/static/img/wuliu1.png); 
+}
+
+#container table {
+    margin: auto;
+    border: 20px;
+    border-collapse: collapse;
+}
+
+table {
+    width: 70%;
+}
+
+
+
+h1 {
+    font-size: 40px;
+    color: #ffffff;
+    text-align: center;
+}
+
+#footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 30px;
+
+    text-align: center;
+}
+
+
+.wel_word { text-align: center}
+
+#exit {
+    float: right;
+    color: #FFFFFF;
+}
+
+
+

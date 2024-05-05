@@ -1,0 +1,47 @@
+type: output
+files:
+  - name: test/output.txt
+    visible: false
+    encrypted_text: Lo4YuHv7z+X6fZPIAEhQPmG4xkP3g+Dxv4/bXd9mPulpMBS/K0NHtkUkoUZud/HQNjxgQWWYZS/4qw+3kq8nUA==
+    learner_created: false
+  - name: src/Person.java
+    visible: true
+    placeholders:
+      - offset: 286
+        length: 20
+        placeholder_text: /* 补充定义 echo() 方法 */
+        initial_state:
+          length: 20
+          offset: 286
+        initialized_from_dependency: false
+        encrypted_possible_answer: idfa/TYxmt8vNyr2ijImapl3OYN0Wh+Mx6SGK5EtcNw=
+        selected: false
+        status: Unchecked
+      - offset: 675
+        length: 21
+        placeholder_text: /* 补充调用 hello() 方法 */
+        initial_state:
+          length: 21
+          offset: 675
+        initialized_from_dependency: false
+        encrypted_possible_answer: JO2JcfjJLAKKe3Nza5zgaw==
+        selected: false
+        status: Unchecked
+      - offset: 705
+        length: 20
+        placeholder_text: /* 补充调用 echo() 方法 */
+        initial_state:
+          length: 20
+          offset: 705
+        initialized_from_dependency: false
+        encrypted_possible_answer: RLqsD9sDKP1J7RLxXd+K6N+Z7NrI2ZBlvbR0CgzmOJs=
+        selected: false
+        status: Unchecked
+    encrypted_text: wnPwlKRnrvZG5xYgiXjPTOEq5dw3+SfUjyaGNV23D6GiOUd/KDBL1yW1/Gwm5r/B8tdi+ISUa/C7EPidaGPD9kAEpWQ13ocT1rkK8QMWuMocSpaxXRhDstEk3Swd5hFXWenPoT2LTjYxLj5WPQQVLw796c5J2+2BHMh4hhuz4997TrGZeBC5n5XC0VyZlhAf0tIjmFZbRtwjMy4+G+GYdNc5dEaZLiqFvt2AGO38l9EHN5uMPaJVD++agF51CCWYp+IS/x3QbcslMX9P1scmyYm5xnFMqhW84JHYWIKGzH+446p0DOBRGhHggGnH8l6808CcXe2eRwOCoYamQdVNCOAmx8mAiL9O8jWLt2pQSk28X6BlYC1a4RvMWmf63vt+RnztUgUyNWBJ30D+0hGTTD6E7pU0E2fY0MGChEAUTBhf8K+iyrzaarTNm63FxYWMlArgQXEhj94lXpqLrKAFIsS2ZrC/h750DjRaNXCNCWsJQjQaU/ed3cJ+yGNurpeCD26qDU2/MO1J1GXhRrvVEyvy+oEpNL/leAQFTx5hyV/J6ol3Wt2xoh+U559MGEnUOhjn7wX2VVmLtwN2eNjcLDsK1pLkwd6qj8sAOUWzc9gsGfr2HZn59jLex2PrrBDMhvs1RDCSHCjMAvX4V4WRi9QtHKMkRB9PVP32B8zANwclbA9jsc9TUuxA/zhDFHNHLOfaA5pdd905BXal44f9QyaDnHb+CZLNjezcXH30Jqc42rPs/C3MfopZsdoNShfEv8jJAUZaLiBZu2OMM7fE0AqpjDGcYLXXyGT9A4Vh4fBmDsamVlAhwoGjgCvSWUTxI+15U6sTUglrye3/1EmhSr5sEiJWlRHeo2xwlYBrUJczVZcqVXrgpClCOvC7aaDkor4ohdXqMCiwZbG04UmJHFoyWuqUve62QS000ftLQd3Ze0PB4TMRhTcP1HiwlkhdhIzwRMra+WadMVcXEq56izABPuohgzfdXRvM2KySPSI8hOTRODRvDKs9n9adgPBvbtC5pUhbtJ8MQzhvztkYEQqqntvhDM7iikdq6AdbDoK3rhRrhFArNCs/zToqeXmKtyWdJeT509ybq9INNxPAxKLYkkpPOsMJmXX1+dLltGvoIL66D3pNKqId6M2ldihu0VQlnQ7yGOMwtC7+8nD3zAX8nEQSBrGDyxdG+aLEQ8FKUabi3i0qI2UnEsmy/NwZMlBSjmzZj1VLz6wtx9IRnw==
+    learner_created: false
+  - name: test/latest_output.txt
+    visible: false
+    encrypted_text: Lo4YuHv7z+X6fZPIAEhQPmG4xkP3g+Dxv4/bXd9mPulpMBS/K0NHtkUkoUZud/HQNjxgQWWYZS/4qw+3kq8nUA==
+    learner_created: false
+status: Unchecked
+record: -1
