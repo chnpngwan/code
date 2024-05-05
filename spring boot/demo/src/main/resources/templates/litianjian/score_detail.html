@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>分数详情</title>
+    <link href="/layui/css/layui.css" rel="stylesheet">
+</head>
+<body>
+<div class="layui-form" id="scoreHtml">
+    <div id="finalScore"></div>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th colspan="7">考勤记录</th>
+        </tr>
+        <tr>
+            <th>第一次</th>
+            <th>第二次</th>
+            <th>第三次</th>
+            <th>第四次</th>
+            <th>第五次</th>
+            <th>小计</th>
+            <th>考勤成绩</th>
+        </tr>
+        </thead>
+        <tbody id="attendanceScore">
+
+        </tbody>
+    </table>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th colspan="7">实验报告</th>
+        </tr>
+        <tr>
+            <th>第一次</th>
+            <th>第二次</th>
+            <th>第三次</th>
+            <th>第四次</th>
+            <th>第五次</th>
+            <th>小计</th>
+            <th>实验报告成绩</th>
+        </tr>
+        </thead>
+        <tbody id="expScore">
+
+        </tbody>
+    </table>
+
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th colspan="5">项目检查</th>
+        </tr>
+        <tr>
+            <th>第一次</th>
+            <th>第二次</th>
+            <th>第三次</th>
+            <th>小计</th>
+            <th>项目检查成绩</th>
+        </tr>
+        </thead>
+        <tbody id="projectChecksBody">
+        <tr>
+
+        </tr>
+        </tbody>
+    </table>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th colspan="2">期末考察</th>
+        </tr>
+        <tr>
+            <th>期末考察分数</th>
+            <th>期末考察成绩</th>
+        </tr>
+        </thead>
+        <tbody id="finalVisitScoreBody">
+
+        </tbody>
+    </table>
+</div>
+
+<script src="/layui/layui.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/encrypt/crypto-js.min.js"></script>
+<script src="/encrypt/encrypt-key.js"></script>
+
+<script type="text/javascript">
+    let stuId = localStorage.getItem("stuId")
+    $.post("/ltj/getScoreInfoByStuId?stuId=" + stuId, function (res) {
+        let resData = JSON.parse(decryptData(res.data))
+        console.log(resData)
+        const attendanceRecordsScore = resData.attendanceRecordsScore
+        const experimentReportScore = resData.experimentReportScore
+        const projectChecksScore = resData.projectChecksScore
+        const finalVisitScore = resData.finalVisitScore
+
+        let finalScore = ""
+        if (Number(resData.finalScore) < 60) {
+            finalScore += '<h2>&ensp;&ensp;综合得分：<span style="color: red">' + resData.finalScore + '</span></h2>'
+        } else {
+            finalScore += '<h2>&ensp;&ensp;综合得分：' + resData.finalScore + '</h2>'
+        }
+        $("#finalScore").html(finalScore)
+
+        let attendHtml = ""
+
+        attendHtml += '<tr>'
+        attendHtml += '<td>' + attendanceRecordsScore.oneScore + '</td>'
+        attendHtml += '<td>' + attendanceRecordsScore.twoScore + '</td>'
+        attendHtml += '<td>' + attendanceRecordsScore.threeSroce + '</td>'
+        attendHtml += '<td>' + attendanceRecordsScore.fourScore + '</td>'
+        attendHtml += '<td>' + attendanceRecordsScore.fiveScore + '</td>'
+        attendHtml += '<td>' + attendanceRecordsScore.subtotal + '</td>'
+        attendHtml += '<td>' + attendanceRecordsScore.attendanceScores + '</td>'
+        attendHtml += '</tr>'
+
+        $("#attendanceScore").html(attendHtml)
+
+        let expBodyHtml = ""
+
+        expBodyHtml += '<tr>'
+        expBodyHtml += '<td>' + experimentReportScore.oneScore + '</td>'
+        expBodyHtml += '<td>' + experimentReportScore.twoScore + '</td>'
+        expBodyHtml += '<td>' + experimentReportScore.threeSroce + '</td>'
+        expBodyHtml += '<td>' + experimentReportScore.fourScore + '</td>'
+        expBodyHtml += '<td>' + experimentReportScore.fiveScore + '</td>'
+        expBodyHtml += '<td>' + experimentReportScore.subtotal + '</td>'
+        expBodyHtml += '<td>' + experimentReportScore.experimentReportScore + '</td>'
+        expBodyHtml += '</tr>'
+
+        $("#expScore").html(expBodyHtml)
+
+        let projectCheckBodyHtml = ""
+
+        projectCheckBodyHtml += '<tr>'
+        projectCheckBodyHtml += '<td>' + projectChecksScore.oneScore + '</td>'
+        projectCheckBodyHtml += '<td>' + projectChecksScore.twoScore + '</td>'
+        projectCheckBodyHtml += '<th>' + projectChecksScore.threeSroce + '</th>'
+        projectCheckBodyHtml += '<td>' + projectChecksScore.subtotal + '</td>'
+        projectCheckBodyHtml += '<td>' + projectChecksScore.projectChecksScore + '</td>'
+        projectCheckBodyHtml += '</tr>'
+
+        $("#projectChecksBody").html(projectCheckBodyHtml)
+
+        let finalVisitScoreBodyHtml = ""
+        finalVisitScoreBodyHtml += '<tr>'
+        finalVisitScoreBodyHtml += '<td>'+finalVisitScore.score+'</td>'
+        finalVisitScoreBodyHtml += '<td>'+finalVisitScore.finalVisitScore+'</td>'
+        finalVisitScoreBodyHtml += '</tr>'
+
+        $("#finalVisitScoreBody").html(finalVisitScoreBodyHtml)
+
+    })
+</script>
+
+</body>
+</html>

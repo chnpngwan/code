@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>软件工程设计-后台管理中心</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="/layui/css/layui.css" rel="stylesheet">
+		<style type="text/css">
+			input::-webkit-outer-spin-button,  
+				input::-webkit-inner-spin-button{  
+			    	-webkit-appearance: none !important;  
+			    	margin: 0;  
+				}
+				/* 火狐 */
+				input[type="number"]{
+			        -moz-appearance: textfield;
+			    }
+		</style>
+	</head>
+	<body>
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header" th:fragment="topHtml">
+				<div class="layui-logo layui-hide-xs layui-bg-black"><i class="layui-icon layui-icon-flag"></i>软件工程
+				</div>
+				<!-- 头部区域（可配合layui 已有的水平导航） -->
+				<ul class="layui-nav layui-layout-left">
+					<!-- 移动端显示 -->
+					<li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+						<i class="layui-icon layui-icon-spread-left"></i>
+					</li>
+					<li class="layui-nav-item layui-hide-xs"><a href="javascript:;">欢迎来到后台管理中心<i
+								class="layui-icon layui-icon-face-smile-fine"></i></a></li>
+					</li>
+				</ul>
+				<ul class="layui-nav layui-layout-right">
+					<li class="layui-nav-item layui-hide layui-show-sm-inline-block">
+						<a href="javascript:;">
+							<img src="/img/gege.gif" class="layui-nav-img">
+							tester
+						</a>
+						<dl class="layui-nav-child">
+							<dd><a href="javascript:;"><i class="layui-icon layui-icon-logout"></i>退出登录</a></dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<script src="/layui/layui.js"></script>
+	</body>
+</html>
