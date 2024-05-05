@@ -1,0 +1,57 @@
+#About_Soua a{
+	color: black;
+}
+#UmnID:hover{
+	background-color: gainsboro;
+}
+
+/* 解释 */
+#JIEShi{
+    margin-top: 20px;
+    font-size: 16px;
+    color: #666;
+}
+
+#ChakAnXw button{
+    width: 130px;
+    height: 40px;
+    background-color: #3186E0;
+    font-size: 16px;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    transition: 0.2s;	
+	border: 0px;
+}
+/* 查看跟多 */
+#ChakAnXw button:hover{
+	background:orange ;
+}
+#Right dt,dl{
+	color: #666666;
+	font-size: 16px;
+}
+
+#Text:hover{
+	color: #0E90D2;
+	transition: 0.3s;
+   margin-left: 20px;
+}
+/* 联系 */
+#INPUT_LX input{
+    width: 350px;
+    height:55px;
+    font-size: 16px;
+    text-indent: 1rem;	
+}
+#button_1{
+	background-color: gainsboro;
+}
+#button_2{
+	background-color: #0E90D2;
+	color: white;
+}
+#button_Form_Qk button:hover{
+	background-color: orange;
+	color: white;
+}
