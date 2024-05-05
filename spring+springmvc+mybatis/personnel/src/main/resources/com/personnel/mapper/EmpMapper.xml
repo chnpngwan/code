@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.personnel.mapper.EmpMapper">
+    <resultMap id="empMap" type="com.personnel.model.Emp">
+        <id property="empId" column="emp_id"></id>
+        <result property="empName" column="emp_name"></result>
+        <result property="empPosition" column="emp_position"></result>
+        <result property="empInDate" column="emp_in_date"></result>
+        <result property="empSalary" column="emp_salary"></result>
+        <result property="deptId" column="dept_id"></result>
+
+        <association property="dept" javaType="com.personnel.model.Dept" >
+            <id property="deptId" column="dept_id"></id>
+            <result property="deptName" column="dept_name" ></result>
+            <result property="deptAddress" column="dept_address" ></result>
+        </association>
+    </resultMap>
+    <select id="select" resultMap="empMap">
+        select a.emp_id,a.emp_name,a.emp_position,a.emp_in_date,a.emp_salary,b.dept_name,b.dept_address from tb_emp a join tb_dept b on a.dept_id=b.dept_id
+        <where>
+            <if test="empPosition!=null and empPosition!=''">
+                emp_position =#{empPosition}
+            </if>
+            <if test="empName!=null and empName!=''">
+                and emp_name like concat('%',#{empName},'%')
+            </if>
+        </where>
+    </select>
+    <delete id="deleteById">
+        delete from tb_emp where emp_id=#{empId}
+    </delete>
+    <insert id="insert">
+        insert into tb_emp(emp_name,emp_position,emp_in_date,emp_salary,dept_id)
+        values(#{empName},#{empPosition},#{empInDate},#{empSalary},#{deptId})
+    </insert>
+</mapper>

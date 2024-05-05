@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bbs.mapper.CustomerMapper">
+
+    <select id="selectByAccount" resultType="com.bbs.model.Customer">
+        select * from t_cust
+        <where>
+            <if test="account!=null and account!=''">
+                account=#{account}
+            </if>
+            <if test="tel!=null and tel!=''">
+                and tel like concat('%',#{tel},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

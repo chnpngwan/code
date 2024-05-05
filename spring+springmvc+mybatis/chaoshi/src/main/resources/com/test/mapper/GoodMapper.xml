@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.mapper.GoodMapper">
+
+    <!--<resultMap id="goodMap" type="com.test.model.Good">
+        <id property="id" column="id"></id>
+        <result property="card_no" column="card_no"></result>
+        <result property="name" column="name"></result>
+        <result property="sex" column="sex"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="grade" column="grade"></result>
+        <result property="integral" column="integral"></result>
+        <result property="write_time" column="write_time"></result>
+    </resultMap>-->
+    <select id="selectGoods" resultType="com.test.model.Good">
+        select * from tb_member_info
+        <where>
+            <if test="name!=null and name!=''">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
+        order by write_time desc
+    </select>
+    <insert id="insertGoods">
+        insert into tb_member_info(card_no,name,sex,birthday,grade,integral,write_time)
+        values (#{card_no},#{name},#{sex},#{birthday},#{grade},#{integral},#{write_time})
+    </insert>
+    <delete id="deleteGoods">
+        delete from tb_member_info where id=#{id}
+    </delete>
+</mapper>

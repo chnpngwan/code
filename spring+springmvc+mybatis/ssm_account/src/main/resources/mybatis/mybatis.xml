@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!--加载properties文件-->
+	<!--<properties resource="dataSource.properties"/>-->
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+	<!-- 配置实体类包扫描 -->
+	<typeAliases>
+		<package name="com.ssm.model" />
+	</typeAliases>
+
+<!--	环境
+	<environments default="developement">
+		<environment id="developement">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driverClass" value="${db.driverClass}"/>
+				<property name="jdbcUrl" value="${db.jdbcUrl}"/>
+				<property name="user" value="${db.user}"/>
+				<property name="password" value="${db.password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+
+	&lt;!&ndash;加载映射&ndash;&gt;
+	<mappers>
+		<package name="com/ssm/mapper"></package>
+	</mappers>-->
+</configuration>

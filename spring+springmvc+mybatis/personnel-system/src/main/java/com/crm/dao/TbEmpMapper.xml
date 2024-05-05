@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.crm.dao.TbEmpMapper" >
+    <resultMap id="BaseResultMap" type="com.crm.entity.Tb_emp_dept" >
+        <id column="emp_id" property="empId" jdbcType="INTEGER" />
+        <result column="emp_name" property="empName" jdbcType="VARCHAR" />
+        <result column="emp_position" property="empPosition" jdbcType="VARCHAR" />
+        <result column="emp_in_date" property="empInDate" jdbcType="DATE" />
+        <result column="emp_salary" property="empSalary" jdbcType="REAL" />
+        <result column="dept_id" property="deptId" jdbcType="INTEGER" />
+        <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+        <result column="dept_address" property="deptAddress" jdbcType="VARCHAR" />
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from tb_emp
+        where emp_id = #{empId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.crm.entity.TbEmp" >
+        insert into tb_emp (emp_id, emp_name, emp_position,
+                            emp_in_date, emp_salary, dept_id
+        )
+        values (#{empId,jdbcType=INTEGER}, #{empName,jdbcType=VARCHAR}, #{empPosition,jdbcType=VARCHAR},
+                #{empInDate,jdbcType=DATE}, #{empSalary,jdbcType=REAL}, #{deptId,jdbcType=INTEGER}
+               )
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.crm.entity.TbEmp" >
+        update tb_emp
+        set emp_name = #{empName,jdbcType=VARCHAR},
+            emp_position = #{empPosition,jdbcType=VARCHAR},
+            emp_in_date = #{empInDate,jdbcType=DATE},
+            emp_salary = #{empSalary,jdbcType=REAL},
+            dept_id = #{deptId,jdbcType=INTEGER}
+        where emp_id = #{empId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select emp_id, emp_name, emp_position, emp_in_date, emp_salary, dept_id
+        from tb_emp
+        where emp_id = #{empId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select emp_id, emp_name, emp_position, emp_in_date, emp_salary, dept_id
+        from tb_emp
+    </select>
+
+    <select id="selectEmp" resultMap="BaseResultMap" >
+        SELECT emp_id, emp_name, emp_position, emp_in_date, emp_salary,dept_name,
+               dept_address FROM tb_emp e,tb_dept d WHERE e.dept_id=d.dept_id
+    </select>
+
+
+    <select id="selectEmpLike" resultMap="BaseResultMap" >
+        SELECT emp_id, emp_name, emp_position, emp_in_date, emp_salary,dept_name,
+               dept_address FROM tb_emp e LEFT JOIN tb_dept d on e.dept_id=d.dept_id WHERE emp_position LIKE "%"#{empPosition}"%"
+     and emp_name like "%"#{empName}"%"
+
+    </select>
+
+</mapper>
