@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bank.dao.CardDao">
+
+  <select id="queryAllInfo" resultType="Card">
+    select * from tb_card
+  </select>
+
+  <!-- 删除信息 -->
+  <delete id="deleteCardById" parameterType="int">
+  	delete from tb_card where id=#{id}
+  </delete>
+  
+  <!-- 添加信息 -->
+  <insert id="addCardInfo" parameterType="Card">
+  	insert into tb_card(name,sex,cardNo,balance,level) 
+  	values(#{name},#{sex},#{cardNo},#{balance},#{level}) 
+  </insert>
+</mapper>

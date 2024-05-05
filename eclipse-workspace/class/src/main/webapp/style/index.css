@@ -1,0 +1,131 @@
+/* css样式初始化 */
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: .2s linear;
+}
+
+
+html {
+    font-size: 62.5%;
+}
+/* header样式初始化*/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background:lightseagreen;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header .logo {
+    color: white;
+    padding: 0 1rem;
+}
+/* 导航样式 */
+.navbar ul{
+    display: flex;
+}
+
+.navbar ul li{
+    font-weight: bold;
+    width: 128px;
+    list-style: none;
+    text-align:center;
+}
+.navbar ul li a {
+    width: 128px;
+    line-height: 45px;
+    font-size: 1.7rem;
+    color: white;
+}
+.navbar ul li a:hover{
+    color: #009933;
+}
+/* 二级菜单样式 */
+.navbar ul li ul{
+    position: absolute;
+    display: none;
+    width: 128px;
+    line-height: 45px;
+}
+
+.navbar ul li ul li{
+    background-color: #3F3D56;
+}
+/* 悬浮展开二级菜单 */
+.navbar ul li ul li a:hover{
+    color: white;
+}
+.navbar ul li ul li:hover{
+    background-color: #009933;
+}
+
+.navbar ul li:hover ul{
+    display: block;
+}
+/* 网站内容*/
+.content{
+    margin-top:50px;
+}
+
+#max{
+  width: 900px;
+  height: 500px;
+  align-items: center;
+  margin: 5% auto;
+  margin-top: 0%;
+}
+.re{
+  position: relative;
+  height: 400px;
+}
+.re ul{
+  list-style-type:none ;
+}
+.re ul>li{
+  width: 600px;
+  height: 300px;
+  position: absolute;
+
+  transition: 1s;
+  opacity: 0;
+}
+.re ul>li img{
+  width: 900px;
+  height: 500px;
+  border-radius: 10%;
+  border: 15px solid #fffbd6;
+}
+#max ol {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5,75px);
+  grid-template-rows: auto;
+  grid-gap: 1em;gap: 1em;
+  float: right;
+  margin-top: 450px;
+  list-style: none;
+  top:0;left:0;
+}
+#max ol li {
+  width: 25px;
+  height: 10px;
+  font-size: 15px;
+  line-height: 20px;
+  float: left;
+  text-align: center;
+  border-radius: 2em;
+  border: 5px solid #999999;
+}
+

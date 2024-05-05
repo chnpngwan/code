@@ -1,0 +1,130 @@
+#deluheader_div{
+	width: 100%;
+}
+#deluheader_div--div1{
+	margin: 0 auto;
+	width: 1180px;
+	height: 50px;
+	line-height: 100px;
+}
+#deluheader_div--div1 img{
+    overflow: hidden;
+	margin-top: 25px;
+    width: 130px;
+    height: 47px;
+}
+#deluheader_div--div1--p span{
+	margin-left: 600px;
+	font-size:20px;
+	color: #666;
+}
+
+#deluheader_div--div1--p input{
+    background-color: #FFD000;
+    text-decoration: none;
+	font-size:20px;
+	border: 0px;
+	width: 60px;
+	height: 30px;
+	border-radius: 5px;
+}
+/* 以上是头部 */
+/* 表单验证 */
+#deluheader_div--div2{
+	margin: 0 auto;
+	width: 1180px;
+	height: 510px;
+	line-height: 100px;
+	padding-top: 100px;
+}
+/* 图片设计样式 */
+.img1{
+    margin-top: 70px;
+    width: 580px;
+    height: 400px;	
+	border-radius: 50px 30px 50px 30px;
+}
+#form{
+	box-shadow: 5px 5px 10px #000000;
+    line-height: 30px;
+	width:330px;
+	padding-left: 45px;
+	border-radius: 20px;
+	margin-left:-100px;
+	border: #000000 solid 0px;
+}
+/* 账号登录样式 */
+.zhaghao{
+	font-size: 16px;
+	color: #999;
+}
+/* 登录方式的样式 */
+#zahnghaop1{
+	cursor:pointer;
+}
+#zahnghaop2{
+	display: block;
+	cursor:pointer;
+}
+.zhaghaoxia{
+	font-size: 12px;
+	color: #999;
+}
+#deluheader_div--div2 .input{
+   width: 273px;
+   height: 28px;
+   padding: 5px;
+   border: 1px solid #aaa;
+   line-height: 28px;
+   vertical-align: top;
+}
+/* 完成并登录 */
+#button1{
+     border-radius: 2px;  
+     width: 285px;
+	 height: 40px;
+	 background-color:blue ;
+	 border: 0px;
+	 color: white;
+	 font-weight: 700;
+	 font-size: 18px;
+}
+/* 文字段落 */
+.text{
+	height: 30px;
+	line-height:30px;
+	color: #999;
+	font-size: 14px;
+}
+/* table里面的标签 */
+table a{
+	color:blue;
+	font-size: 14px;
+}
+/* 表单下面的div */
+#deluheader_div--div3{
+	text-align: center;
+	margin: 0 auto;
+	width: 1180px;
+	height:100px;
+	line-height: 100px;	
+}
+#deluheader_div--div3 span a{
+	color: #999;
+}
+#deluheader_div--div3 ul{
+	line-height: 60px;
+}
+#deluheader_div--div3 ul li ul{
+	width: 500px;
+	margin-right:700px;
+}
+#deluheader_div--div3 a,li{
+	color: #999;
+}
+#bj{
+	background: url(../img/home1.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	height:810px;
+}
