@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bank.mapper.AccountMapper">
+    <select id="queryByName" resultType="com.bank.bean.Account">
+        select * from tb_account
+        <where>
+            <if test="NAME!=null and NAME!=''">
+                NAME like concat('%',#{NAME},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>展示</title>
+</head>
+<body>
+    <div>
+        登录用户名：<span>[[${user.name}]]</span>
+        登陆密码：<span>[[${user.passwd}]]</span>
+    </div>
+    <h1>客户列表</h1>
+    <table>
+        <thead>
+        <tr>
+            <td>客户名</td>
+            <td>年龄</td>
+            <td>地址</td>
+            <td>生日</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer:${customerList}">
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.age}"></td>
+            <td th:text="${customer.address}"></td>
+            <td th:text="${customer.birthDate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

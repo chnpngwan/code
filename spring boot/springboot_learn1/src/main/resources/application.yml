@@ -1,0 +1,52 @@
+#server:
+#  port: 80
+animal:
+  name: 小李
+  age: 12
+  color: red
+---
+zoo:
+  zoo-name: 大江动物园
+  zoo-list:
+    - movkey
+    - tiger
+    - lion
+    - deer
+---
+customer:
+  customer-id: ${random.uuid}
+  customer-name: 小米
+  customer-age: ${random.int[12,30]}
+  customer-description: 你好
+---
+spring:
+  profiles:
+    active: prod
+---
+server:
+  port: 8100
+  servlet:
+    context-path: /test
+spring:
+  profiles: test
+---
+server:
+  port: 8200
+  servlet:
+    context-path: /test1
+spring:
+  profiles: test1
+---
+server:
+  port: 8300
+  servlet:
+    context-path: /product
+spring:
+  profiles: prod
+---
+spring:
+  datasource:
+    driverClassName: com.mysql.cj,jdbc,Driver
+    url: jdbc:mysql://localhost:3306/db_task
+    username: root
+    password: 123456
