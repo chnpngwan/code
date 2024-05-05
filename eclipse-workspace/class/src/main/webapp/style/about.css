@@ -1,0 +1,112 @@
+.box03{
+	width:888px; 
+	height:823px; 
+	margin:0 auto; 
+	border:#c6c4c5 2px solid; 
+	border-top:none; 
+	border-bottom:#c6c4c5 10px solid;
+	margin-top:80px;
+}
+
+.box03 .bx1{ 
+	width:886px; 
+	height:330px; 
+	margin-top:20px;
+}
+
+.box03 .bx1 img{ 
+	width:445px; 
+	height:325px; 
+	float:left; 
+	margin-left:60px; 
+	margin-right:110px;
+}
+
+.box03 .bx1 .right{ 
+	width:215px; 
+	height:330px; 
+	float:left; 
+	text-align:center
+}
+
+.box03 .bx1 .right h1 {
+font-size: 20px;
+width: 30px;
+height: 235px;
+float: right;
+line-height: 25px;
+padding-left: 10px;
+margin-top: -15px;
+}
+
+.box03 .bx1 .right h1 span{ 
+	background:#F00; 
+	padding:2px; 
+	font-size:12px;
+}
+
+.box03 .bx1 .right h2 {
+font-size: 20px;
+width: 30px;
+float: right;
+line-height: 25px;
+padding: 10px 0px;
+margin-left: 10px;
+	 
+}
+
+.box03 .bx1 .right p {
+color: #5e5e5e;
+width: 26px;
+float: right;
+font-size: 14px;
+line-height: 15px;
+border-right: #333 1px solid;
+padding: 0px 2px;
+}
+
+.box03 .bx2{
+	width: 50px;
+	height: 78px;
+	margin: 0 auto;
+    margin-left: auto;
+	background: url(../images/03.jpg) no-repeat;
+	margin-left: 470px;
+}
+
+.box03 .bx2 p {
+color: #5e5e5e;
+width: 25px;
+float: right;
+font-size: 14px;
+line-height: 15px;
+padding: 0px 18px;
+height: 50px;
+}
+.box03 .bx2 .padd0{ 
+	padding:0px !important;
+}
+.marl60{
+	margin-left: 60px;
+}
+.mar0{
+	margin-right: 0px!important;
+}
+.box03 .bx3{ width: 25px;
+
+height: 80px;
+
+border: #e70012 1px solid;
+
+float: left;
+
+text-align: center;
+
+line-height: 20px;
+
+font-weight: bold;
+
+margin-left: 20px;
+
+margin-top: 260px;
+}
