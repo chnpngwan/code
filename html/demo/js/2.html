@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>买卖汽车</title>
+		<style>
+				/* 设置轮播图容器的样式 */
+				.slideshow-container {
+					max-width: 1000px;
+					position: relative;
+					margin: auto;
+				}
+		
+				/* 设置轮播图的样式 */
+				.mySlides {
+					display: none;
+				}
+		
+				/* 设置轮播图上方的标题 */
+				.text {
+					color: #f2f2f2;
+					font-size: 30px;
+					padding: 8px 12px;
+					position: absolute;
+					bottom: 8px;
+					width: 100%;
+					text-align: center;
+				}
+		
+				/* 设置轮播图的左右箭头样式 */
+				.prev, .next {
+					cursor: pointer;
+					position: absolute;
+					top: 50%;
+					width: auto;
+					margin-top: -22px;
+					padding: 16px;
+					color: white;
+					font-weight: bold;
+					font-size: 18px;
+					transition: 0.6s ease;
+					border-radius: 0 3px 3px 0;
+					user-select: none;
+				}
+		
+				/* 设置向右箭头的位置和背景颜色 */
+				.next {
+					right: 0;
+					border-radius: 3px 0 0 3px;
+					background-color: #f44336;
+				}
+		
+				/* 设置向左箭头的位置和背景颜色 */
+				.prev {
+					left: 0;
+					background-color: #f44336;
+				}
+		
+				/* 鼠标悬停在箭头上时改变背景颜色 */
+				.prev:hover, .next:hover {
+					background-color: rgba(0,0,0,0.8);
+				}
+		
+				/* 设置轮播图下方的小圆点 */
+				.dot-container {
+					text-align: center;
+					padding: 20px;
+					background-color: #f2f2f2;
+				}
+		
+				.dot {
+					cursor: pointer;
+					height: 15px;
+					width: 15px;
+					margin: 0 2px;
+					background-color: #bbb;
+					border-radius: 50%;
+					display: inline-block;
+					transition: background-color 0.6s ease;
+				}
+		
+				.active, .dot:hover {
+					background-color: #717171;
+				}
+		
+				/* 设置汽车列表的样式 */
+				.car-list {
+					max-width: 1000px;
+					margin: 20px auto;
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
+				}
+		
+				.car {
+					width: 300px;
+					margin: 20px;
+					background-color: #f2f2f2;
+					border-radius: 5px;
+					box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+					overflow: hidden;
+				}
+		
+				.car img {
+					width: 100%;
+					height: 200px;
+					object-fit: cover;
+				}
+		
+				.car-info {
+					padding: 10px;
+					text-align: center;
+				}
+		
+				.car-name {
+					font-weight: bold;
+					font-size: 20px;
+					margin: 10px 0;
+				}
+		
+				.car-price {
+					font-size: 18px;
+					color: #f44336;
+					margin: 10px 0;
+				}
+		
+				.car-description {
+					font-size: 16px;
+					margin: 10px 0;
+				}
+				
+				img{
+					height: 650px;
+				}
+				
+				#char{
+					text-align: center;
+					
+				}
+				
+				.charts{
+					margin: 20px;
+					display: inline-block;
+					font-size: 20px;
+				}
+				
+			</style>
+	</head>
+	<body>
+		<div id="char">
+			<div class="charts">
+				<span><a href="">首页</a></span>
+				<span><a href="">买卖汽车</a></span>
+				<span><a href="">联系我们</a></span>
+			</div>
+		</div>	
+		<!-- 轮播图容器 -->
+			<div class="slideshow-container">
+		
+				<!-- 轮播图图片 -->
+				<div class="mySlides">
+					<img src="../img/OIP-C.jpg" style="width:100%">
+					<div class="text">2019 Toyota Camry</div>
+				</div>
+		
+				<div class="mySlides">
+					<img src="../img/pexels-jovana-nesic-593655.jpg" style="width:100%">
+					<div class="text">2020 Honda Civic</div>
+				</div>
+		
+				<div class="mySlides">
+					<img src="../img/pexels-irina-iriser-1122626.jpg" style="width:100%">
+					<div class="text">2021 Ford Mustang</div>
+				</div>
+				
+				<div class="mySlides">
+					<img src="../img/pexels-irina-iriser-1831489.jpg" style="width:100%">
+					<div class="text">2022 Ford Mustang</div>
+				</div>
+				
+				<div class="mySlides">
+					<img src="../img/pexels-eberhard-grossgasteiger-2310713.jpg" style="width:100%">
+					<div class="text">2023 Mustang</div>
+				</div>
+		
+				<!-- 左右箭头 -->
+				<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+				<a class="next" onclick="plusSlides(1)">&#10095;</a>
+			</div>
+		
+			<!-- 小圆点 -->
+			<div class="dot-container" style="text-align:center">
+				<span class="dot" onclick="currentSlide(1)"></span>
+				<span class="dot" onclick="currentSlide(2)"></span>
+				<span class="dot" onclick="currentSlide(3)"></span>
+			</div>
+		
+			<!-- 汽车列表 -->
+			<div class="car-list">
+				<div class="car">
+					<img src="../img/OIP-C.jpg">
+					<div class="car-info">
+						<div class="car-name">2018 BMW X5</div>
+						<div class="car-price">$35,000</div>
+						<div class="car-description">This 2018 BMW X5 is in excellent condition with low mileage. It comes fully loaded with features such as leather seats, navigation, and a panoramic sunroof.</div>
+					</div>
+				</div>
+		
+				<div class="car">
+					<img src="../img/pexels-jovana-nesic-593655.jpg">
+					<div class="car-info">
+						<div class="car-name">2017 Mercedes-Benz E-Class</div>
+						<div class="car-price">$28,000</div>
+						<div class="car-description">This 2017 Mercedes-Benz E-Class is a luxury sedan that offers a comfortable ride and impressive performance. It features a spacious interior, advanced safety features, and a premium sound system.</div>
+					</div>
+				</div>
+				
+				<div class="car">
+					<img src="../img/pexels-irina-iriser-1122626.jpg">
+					<div class="car-info">
+						<div class="car-name">2017 Mercedes-Benz E-Class</div>
+						<div class="car-price">$28,000</div>
+						<div class="car-description">This 2017 Mercedes-Benz E-Class is a luxury sedan that offers a comfortable ride and impressive performance. It features a spacious interior, advanced safety features, and a premium sound system.</div>
+					</div>
+				</div>
+				
+				<div class="car">
+					<img src="../img/pexels-irina-iriser-1831489.jpg">
+					<div class="car-info">
+						<div class="car-name">2017 Mercedes-Benz E-Class</div>
+						<div class="car-price">$28,000</div>
+						<div class="car-description">This 2017 Mercedes-Benz E-Class is a luxury sedan that offers a comfortable ride and impressive performance. It features a spacious interior, advanced safety features, and a premium sound system.</div>
+					</div>
+				</div>
+				
+				<div class="car">
+					<img src="../img/pexels-eberhard-grossgasteiger-2310713.jpg">
+					<div class="car-info">
+						<div class="car-name">2022 Tesla Model S</div>
+						<div class="car-price">$80,000</div>
+						<div class="car-description">The 2022 Tesla Model S is an all-electric luxury sedan with impressive acceleration and a spacious interior. It features the latest safety and technology features, including autopilot and a massive touch screen display.</div>
+					</div>
+				</div>
+			</div>
+		
+			<!-- 轮播图JavaScript代码 -->
+			<script>
+				var slideIndex = 1;
+				showSlides(slideIndex);
+		
+				function plusSlides(n) {
+					showSlides(slideIndex += n);
+				}
+		
+				function currentSlide(n) {
+					showSlides(slideIndex = n);
+				}
+		
+				function showSlides(n) {
+					var i;
+					var slides = document.getElementsByClassName("mySlides");
+					var dots = document.getElementsByClassName("dot");
+					if (n > slides.length) {slideIndex = 1}
+					if (n < 1) {slideIndex = slides.length}
+					for (i = 0; i < slides.length; i++) {
+						slides[i].style.display = "none";
+					}
+					for (i = 0; i < dots.length; i++) {
+						dots[i].className = dots[i].className.replace(" active", "");
+					}
+					slides[slideIndex-1].style.display = "block";
+					dots[slideIndex-1].className += " active";
+				}
+			</script>
+	</body>
+</html>

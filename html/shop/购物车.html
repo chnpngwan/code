@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	</head>
+	<body>
+		<table class="table">
+			<tr>
+				<th>选择</th>
+				<th>商品名称</th>
+				<th>商品单价</th>
+				<th>数量</th>
+				<th>小计</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="all"></td>
+				<td>电脑</td>
+				<td>8599</td>
+				<td>
+					<button type="button" class="btn btn-primary jian">-</button>
+					<span>1</span>
+					<button type="button" class="btn btn-primary jia">+</button>
+				</td>
+				<td class="xiao">8599</td>
+				<td><button type="button" class="btn btn-danger del">删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="all"></td>
+				<td>手机</td>
+				<td>5499</td>
+				<td>
+					<button type="button" class="btn btn-primary jian">-</button>
+					<span>1</span>
+					<button type="button" class="btn btn-primary jia">+</button>
+				</td>
+				<td class="xiao">5499</td>
+				<td><button type="button" class="btn btn-danger del">删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="all"></td>
+				<td>平板</td>
+				<td>7599</td>
+				<td>
+					<button type="button" class="btn btn-primary jian">-</button>
+					<span>1</span>
+					<button type="button" class="btn btn-primary jia">+</button>
+				</td>
+				<td class="xiao">7599</td>
+				<td><button type="button" class="btn btn-danger del">删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="all"></td>
+				<td>键盘</td>
+				<td>1299</td>
+				<td>
+					<button type="button" class="btn btn-primary jian">-</button>
+					<span>1</span>
+					<button type="button" class="btn btn-primary jia">+</button>
+				</td>
+				<td class="xiao">1299</td>
+				<td><button type="button" class="btn btn-danger del">删除</button></td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" name="all"></td>
+				<td>鼠标</td>
+				<td>1099</td>
+				<td>
+					<button type="button" class="btn btn-primary jian">-</button>
+					<span>1</span>
+					<button type="button" class="btn btn-primary jia">+</button>
+				</td>
+				<td class="xiao">1099</td>
+				<td><button type="button" class="btn btn-danger del">删除</button></td>
+			</tr>
+		</table>
+		<p>总数量：<span id="shu" style="color: red; font-weight: bold; font-size: 25px;">0</span>个，总价格：￥<span id="yuan" style="color: red; font-weight: bold; font-size: 25px;">0</span>元</p>
+		<button type="button" class="btn btn-primary quanxuan">全选</button>
+		<button type="button" class="btn btn-primary quanno">全不选</button>
+		<button type="button" class="btn btn-primary fanxuan">反选</button>
+		<button type="button" class="btn btn-danger piliang">批量删除</button>
+	</body>
+</html>
+<script>
+	
+	//加号
+	$(".jia").click(function(){
+		
+		//增加数量
+		var num=$(this).prev().text();
+		var last_num=Number(num)+1;
+		$(this).prev().text(last_num);
+		
+		//更改小计价格
+		var danjia=$(this).parent().prev().text();
+		var xiaoji=last_num*Number(danjia);
+		$(this).parent().next().text(xiaoji);
+		
+		tong();
+	})
+	
+	//减号
+	$(".jian").click(function(){
+		
+		//减少数量
+		var num=$(this).next().text();
+		var last_num=Number(num)-1<=1?1:Number(num)-1;
+		$(this).next().text(last_num);
+		
+		//更改小计价格
+		var danjia=$(this).parent().prev().text();
+		var xiaoji=last_num*Number(danjia);
+		$(this).parent().next().text(xiaoji);
+		
+		tong();
+	})
+	
+	//行删除
+	$(".del").click(function(){
+		var str=confirm('确认删除么？');
+		if(str)
+		{
+			$(this).parents('tr').remove();
+		}
+		
+		tong();
+	})
+	
+	//全选
+	$(".quanxuan").click(function(){
+		var str=$(":checkbox[name=all]");
+		$(str).each(function(k,v){
+			v.checked=true;
+		})
+		
+		tong()
+	})
+	
+	//全不选
+	$(".quanno").click(function(){
+		var str=$(":checkbox[name=all]");
+		$(str).each(function(k,v){
+			v.checked=false;
+		})
+		
+		tong()
+	})
+	
+	//反选
+	$(".fanxuan").click(function(){
+		var str=$(":checkbox[name=all]");
+		$(str).each(function(k,v){
+			if(v.checked==true)
+			{
+				v.checked=false;
+			}
+			else
+			{
+				v.checked=true;
+			}
+		})
+		
+		tong()
+	})
+	
+	//批量删除
+	$(".piliang").click(function(){
+		var str=$(":checkbox[name=all]");
+		if(confirm('确定都删除么？'))
+		{
+			$(str).each(function(k,v){
+			if(v.checked==true)
+				{
+					v.parentNode.parentNode.remove();
+				}
+			})
+		}
+		
+		tong();
+	})
+	
+	//统计和总价
+	function tong(){
+		var str=$(":checkbox[name=all]:checked");
+		$("#shu").text(str.length);
+		var sum=0;
+		for(var i=0;i<str.length;i++)
+		{
+			var n=$(str[i]).parents('tr').find('.xiao').text();
+			sum+=Number(n)
+		}
+		$("#yuan").text(sum);
+	}
+	
+	//单击选择框
+	$(":checkbox[name=all]").click(function(){
+		tong()
+	})
+</script>

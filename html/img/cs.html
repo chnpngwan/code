@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>公文统计</title>
+    <script src="img/jquery-3.5.1.js"></script>
+</head>
+<body>
+<script>
+    $(document).ready(function () {
+        $('li').mouseover(function () {
+            $(this).css('background-color', '#ebf8ff');
+        }).mouseout(function () {
+            $(this).css('background-color', '');
+        });
+
+    });
+</script>
+
+<ul class="Element_DateNew pl-2 pt-2">
+    <li class="hover:bg-blue-100" onclick="window.open('/spa/cube/index.html#/main/cube/search?customid=290')">
+        <img src="img/发文管理.png">
+        <h3>发文</h3>
+        <div>
+            <h5 id="mfw">0</h5>
+            <p>本月发文总数</p>
+        </div>
+        <div>
+            <h5 id="dfw">0</h5>
+            <p>今日发文总数</p>
+        </div>
+    </li>
+    <li class="hover:bg-blue-100" onclick="window.open('/spa/cube/index.html#/main/cube/search?customid=320')">
+        <img src="img/收文管理.png">
+        <h3>收文</h3>
+        <div>
+            <h5 id="msw">0</h5>
+            <p>本月收文总数</p>
+        </div>
+        <div>
+            <h5 id="dsw">0</h5>
+            <p>今日收文总数</p>
+        </div>
+    </li>
+    <style jsx="true">
+        .Element_DateNew,
+        .Element_DateNew li {
+            position: relative;
+            border-bottom: 1px solid #E7F1F8;
+            overflow: hidden;
+
+        }
+
+        .Element_DateNew li {
+            padding: 10px 0 10px 80px;
+        }
+
+        .Element_DateNew li.
+        .Element_DateNew li div h5 {
+            margin: 3px 0 2px;
+        }
+
+        .Element_DateNew li h3 {
+            font-size: 12px;
+            color: #2B4BAB;
+            font-weight: normal;
+        }
+
+        .Element_DateNew li div {
+            width: 45%;
+            display: inline-block;
+        }
+
+        .Element_DateNew li div h5 {
+            font-size: 14px;
+            color: #333;
+            font-weight: normal;
+        }
+
+        .Element_DateNew li div p {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .Element_DateNew li img {
+            width: 35px;
+            position: absolute;
+            left: 20px;
+            top: 25px;
+        }
+
+    </style>
+</ul>
+</body>
+</html>

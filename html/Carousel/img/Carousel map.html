@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="slideshow-container">
+    <div class="slide">
+      <img src="a.png" alt="Image 1">
+    </div>
+    <div class="slide">
+      <img src="b.png" alt="Image 2">
+    </div>
+    <div class="slide">
+      <img src="c.png" alt="Image 3">
+    </div>
+  </div>
+
+  <script>
+    var slides = document.getElementsByClassName("slide");
+    var currentSlide = 0;
+
+    function showSlide(n) {
+      slides[currentSlide].style.display = "none";
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].style.display = "block";
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function previousSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    setInterval(nextSlide, 3000);  // 自动切换时间间隔，单位为毫秒
+  </script>
+</body>
+</html>
+
+
+在上面的示例中，轮播图的图片使用<img>标签加载，
+你可以根据实际情况修改src属性和alt属性来指定图片路径和替代文本。
+CSS 部分定义了轮播图容器的样式，使其具有固定高度和隐藏溢出部分的特性。
+JavaScript 部分实现了轮播图的切换功能，通过控制display属性来显示或隐藏每张幻灯片。
+setInterval函数用于定时切换幻灯片，你可以根据需要调整切换的时间间隔。
+
+如果你想要添加前进和后退按钮，可以在 HTML 中取消注释相关代码，
+并在按钮上绑定对应的 JavaScript 函数。这样，用户就可以通过点击按钮手动切换幻灯片。

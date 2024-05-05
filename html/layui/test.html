@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+<body>
+<div class="layui-carousel" id="ID-carousel-demo-image">
+    <div carousel-item>
+        <div><img src="https://unpkg.com/outeres/demo/carousel/720x360-1.jpg"></div>
+        <div><img src="https://unpkg.com/outeres/demo/carousel/720x360-2.jpg"></div>
+        <div><img src="https://unpkg.com/outeres/demo/carousel/720x360-3.jpg"></div>
+        <div><img src="https://unpkg.com/outeres/demo/carousel/720x360-4.jpg"></div>
+        <div><img src="https://unpkg.com/outeres/demo/carousel/720x360-5.jpg"></div>
+    </div>
+</div>
+
+<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
+<script src="layui/layui.js"></script>
+<script>
+    layui.use(function () {
+        var carousel = layui.carousel;
+        // 渲染 - 图片轮播
+        carousel.render({
+            elem: '#ID-carousel-demo-image',
+            width: '720px',
+            height: '360px',
+            interval: 3000
+        });
+    });
+</script>
+</body>
+</html>
