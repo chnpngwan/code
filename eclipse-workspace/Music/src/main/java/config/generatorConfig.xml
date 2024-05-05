@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="MySQLContext"   targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 不生成注释 -->
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+			<property name="addRemarkComments" value="true" />
+		</commentGenerator>
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/music?characterEncoding=utf-8" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
+    <javaTypeResolver>
+    	<property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+    
+    <javaModelGenerator targetPackage="com.model" targetProject="Music" >
+    	<property name="enableSubPackages" value="false"/>
+    	<property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+    
+    <sqlMapGenerator targetPackage="com.mapper" targetProject="Music" >
+    	<property name="enableSubPackages" value="false"/>
+    </sqlMapGenerator>
+    
+    <javaClientGenerator targetPackage="com.dao" targetProject="Music" type="XMLMAPPER" >
+    <property name="enableSubPackages" value="false"/>
+    </javaClientGenerator>
+    
+    <table tableName="%user_music%">
+      <generatedKey column="id" sqlStatement="MySQL" identity="true" />
+    </table>
+  </context>
+</generatorConfiguration>

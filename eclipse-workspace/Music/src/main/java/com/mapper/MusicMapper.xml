@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.MusicMapper">
+  <resultMap id="BaseResultMap" type="com.model.Music">
+    <id column="music_id" jdbcType="INTEGER" property="musicId" />
+    <result column="music_name" jdbcType="VARCHAR" property="musicName" />
+    <result column="music_img" jdbcType="VARCHAR" property="musicImg" />
+    <result column="music_src" jdbcType="VARCHAR" property="musicSrc" />
+    <result column="music_lyric" jdbcType="VARCHAR" property="musicLyric" />
+    <result column="music_people" jdbcType="VARCHAR" property="musicPeople" />
+    <result column="music_video" property="musicVideo" />
+  </resultMap>
+  <select id="selectMusicBysongID" resultMap="BaseResultMap">
+ 	SELECT
+		* 
+	FROM
+		music m,
+		song_music sm 
+	WHERE
+		m.music_id = sm.music_id 
+		AND sm.song_id =#{id}
+  </select>
+  
+  <select id="selectMusicById" resultMap="BaseResultMap">
+  	SELECT
+		* 
+	FROM
+		music
+	where
+		music_id=#{id}
+  </select>
+  
+  <select id="selectMusicListByuId" resultMap="BaseResultMap">
+  SELECT * FROM music m JOIN user_music um on m.music_id=um.music_id WHERE um.user_id=#{id}
+  </select>
+  
+  <select id="selectlike" resultMap="BaseResultMap">
+  	SELECT * FROM music WHERE music_name LIKE CONCAT('%',#{text},'%') OR music_people LIKE CONCAT('%',#{text},'%')
+  </select>
+</mapper>

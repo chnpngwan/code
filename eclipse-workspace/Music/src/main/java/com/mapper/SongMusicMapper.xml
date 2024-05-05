@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.SongMusicMapper">
+  <resultMap id="BaseResultMap" type="com.model.SongMusic">
+    <id column="song_id" jdbcType="INTEGER" property="songId" />
+    <result column="music_id" jdbcType="INTEGER" property="musicId" />
+  </resultMap>
+
+</mapper>

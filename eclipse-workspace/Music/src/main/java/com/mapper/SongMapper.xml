@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.SongMapper">
+  <resultMap id="BaseResultMap" type="com.model.Song">
+    <id column="song_id" jdbcType="INTEGER" property="songId" />
+    <result column="song_title" jdbcType="VARCHAR" property="songTitle" />
+    <result column="song_img" jdbcType="VARCHAR" property="songImg" />
+    <result column="song_info" jdbcType="VARCHAR" property="songInfo" />
+    <result column="song_bfl" property="songBfl"/>
+  </resultMap>
+  <select id="selectSongAll" resultMap="BaseResultMap">
+  select * from song
+  </select>
+	<select id="selectSongById" resultMap="BaseResultMap">
+		SELECT * FROM song WHERE song_id=#{id}
+	</select>
+</mapper>
