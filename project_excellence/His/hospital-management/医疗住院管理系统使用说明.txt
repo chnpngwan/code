@@ -1,0 +1,13 @@
+1.在MySQL中新建数据库hospital,字符集编码utf-8mb4
+2.运行hospital-admin-system.sql脚本,导入数据表
+3.用idea导入项目,所有文件utf-8编码
+4.修改配置文件application.properties,数据库环境设置为自己的MySQL
+5.等待idea将所有jar包导入完成,可用阿里云镜像加快依赖导入速度
+6.启动后访问地址 localhost:8080
+超级管理员用户：admin密码：123456
+门诊部账号mz  门诊部密码123456
+jdk安装1.8的
+
+添加的新用户密码默认：123456
+
+druid阿里数据监控平台账号admin  密码123456

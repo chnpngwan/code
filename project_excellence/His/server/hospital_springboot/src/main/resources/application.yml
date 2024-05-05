@@ -1,0 +1,33 @@
+ip: localhost
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${ip}:3307/db_hospital
+    username: root
+    password: 123456
+  main:
+    banner-mode: off
+  servlet:
+    multipart:
+      # 设置上传文件上限
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 日志标准输出
+  mapper-locations: com/dyuloon/mapper/xml/*.xml
+  global-config:
+    banner: off
+    db-config:
+      id-type: auto # 数据库自增策略
+server:
+  port: 8080
+
+alipay:
+  appId: 9021000124602851
+  appPrivateKey: MIIEwAIBADANBgkqhkiG9w0BAQEFAASCBKowggSmAgEAAoIBAQDP7kNmDC12iAjCCMzaMj9UOcCe90jgqoefhcK0VzisAfIryXwWK2S+Wb0won/g8W/fyBOxLryTVRGCeC5LLCBe8IWeXLe6P+OsEbJJHdb08B9xfyBQPqDxEp7n2Rl4dyonTCgQAp0F6ujjGem4WoUq9/k7mYrMJNBKoWWC7MbwLP0pXi9QgrfZI1xzX73YjxoXLwDxppaEJdAhakCBoaUJrr+g3NYHDHOjSGwF9pZgERexXgRaGZNg4FPv4IE1jFxhVcU5TXrOxX8nSaRPrMcG9krCaJu4bhHlen83nXn5OyVoyZb9j+U+oLGIKo9GxKbi7as+QYizzB3ujMzgaFZ9AgMBAAECggEBALNxXfz9WWbHszcwvQk4/+pCBPerVNt+j5idqRBVjXT0IPik40+Gl2SmsVz9f/qyoeewFT59pQRJD9lWuizpoe4NCGNIhM5ZQLRIeWIcPFwZtikOmuZlhiNF/Jj9hLuvq1NKp/BZMQXgWqdSv573j6Era42BzoSq6I7fhmlcybqOqnPJIZDBFiBSphXGzNB7hsggka+sZdXG2oMG7f8/N9T8iXkyoRT4C7vZGbYSN4cQzcA5JBcQ7m8nDyHrBwEkJXkkUG/g2HM4eRKsQXNvS0XSZ/4ZFdBmMgqmAGuXZmpNwU3ji5TpM0HeRumUEB7AQ/fKUlilWbTDuUgKPxg130ECgYEA7Uan7N5sYjZKQ/UP6G4/DsyP++Xd2qbT3FTwka3DBHTe4mbkODK/kc7iCf3UGsBRaz4fTNBSRl3VAJjV6CQg9IlEBGCCK7gkFkCkeIRhgoG0tpYzBP1J0LFp2js7MoHNcVaz05jnq50XKJdFGQYsYkF/n1Kpy2cXYLRHDY+m20UCgYEA4FbJdpJEN+s/Zdr/esiKSs51OXW1doU5wyjL/CnkOdnRlQO+y8OoDFm5QL+5DGgHNDntuK/bwMbfoIlfmSFyVAD6sGW2BlBWRXtWjFeSELUHSiNHTiPfKbCX101n7ZDiQhJ6v31Lf36a6+oQ88XSKmVPVI3tIazIzwa17oXhpdkCgYEAv/RoR9WNQ0r+e8nW68e81eEiHrxQ5eIPBXHmCUTUv1c5NVneCaTsnC4Nad3iaR3rAGKKed8SoICqoEgEzT/lNU+TKiNVS7812pbDOAiIxkbehtQuRDwRKndM1lMSygJ+zNFCu804pvp4UMtICD2ZTIgGkkMSwE4PeJl/3fW4HC0CgYEAyQVbbzEvib/1xipPxVEPgmqv5fYQzYwhrzvOVT2gcSo6P8HkZKgE3FRFyLxDb9eDpQvHdTe3vW03E54lGI086gMan5f0XIH+XDJh4k3R58CfMJKeIWnJXY0M8nM9DkZGSBhQ/2ehkDP9VCogWJ/JbA3t4QFwHD28jq4ftgUnpjkCgYEAr73nseW0BtTezZm/AiCURf/LvzyJvaC/CwstePHVnbv2P1lPX4kDustiG6V8xLlG4ApPCVftz1FaBplHSa0pd9gqHe0Jlp0Zadhw8fzVd2qTyO2g+0gE+uvM4MNSkHAREMYAJLENQvc9rbPf/f2c2O/28vsqHLhrBF/sKyWimDs=
+  alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAse+R60W5UGGLyp8ZvarEdq/wHFxNhMdJnw2p5+Bfxk9m1tFL2ZgF657oarAmd2SATwD6MRvMckxMyem3lKVA6cPeR+u51qia1kn7JeWQP9hDbmgN0liFzHxkvb/wAVM818GnuY6o0Oy0U0XpuBISFczEq2lBYY0s+YgxAKqKAd5xArXdKAp50YmJLVbzxRZH1+Z1pwx4U/rKF+xl+Qk+JPQut5OYnDbAfbyrI+gcA/Oq9i5j+xkWA+wnEMDWuHq/XOB7Whj2j8KWeKTxfhN1BqdvhqJrlTFBIAjDjRjKkQq1BIoByS5Dq+mWfR1fpeV8fcj/GT6ziY+UepQeOrezAwIDAQAB
+  notifyUrl: http://j9vptg.natappfree.cc/alipay/notify
+  returnUrl: http://localhost:5173/paymentInformation

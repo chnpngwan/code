@@ -1,0 +1,29 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hospital.mapper.WarehuoseMapper">
+    <select id="findAllWarehuose" resultType="com.hospital.entity.Warehuose">
+        select *from warehuose
+        <where>
+            <if test="supplierName!=null and supplierName!=''">
+                supplierName like concat('%',concat(#{supplierName},'%'))
+            </if>
+        </where>
+    </select>
+    <insert id="addWarehuose" parameterType="com.hospital.entity.Warehuose">
+        insert into warehuose(supplierName)
+        values (#{supplierName})
+    </insert>
+    <delete id="deleteWarehuose" parameterType="Integer">
+        delete
+        from warehuose
+        where warehouseId = #{warehouseId}
+    </delete>
+    <select id="count" resultType="int">
+        select count(*)
+        from warehuose
+        where supplierName = #{supplierName}
+
+    </select>
+</mapper>

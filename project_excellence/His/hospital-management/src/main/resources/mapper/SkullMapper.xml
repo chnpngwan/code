@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hospital.mapper.SkullMapper">
+ <select id="findAllSkull" resultType="Skull">
+     select *from skull
+     <where>
+         <if test="skullName!=null and skullName!=''">
+             skullName like concat('%',concat(#{skullName},'%'))
+         </if>
+     </where>
+ </select>
+    <insert id="addSkull" parameterType="Skull">
+        insert into skull(skullName)
+        values (#{skullName})
+    </insert>
+    <update id="editSkull" parameterType="Skull">
+        update skull
+        set skullName=#{skullName}
+        where skullId = #{skullId}
+    </update>
+    <delete id="deleteSkull" parameterType="Integer">
+        delete
+        from skull
+        where skullId = #{skullId}
+    </delete>
+</mapper>
