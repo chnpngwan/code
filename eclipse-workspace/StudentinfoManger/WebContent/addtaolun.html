@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="css/showMsg.css" type="text/css" rel="stylesheet"/>
+		<script src="js/showMsg.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.dataBody {
+				margin-top: 0;
+				border-top: solid 1px #F2F2F2;
+			}
+
+			.dataBody_topic {
+				padding: 20px 30px 10px;
+			}
+
+			.dataBody_td {
+				position: relative;
+				float: none;
+				min-height: 54px;
+				padding: 9px 30px;
+				font-size: 12px;
+				color: #474C59;
+				box-sizing: border-box;
+			}
+
+			.dataBody_check {
+				display: none;
+				position: relative;
+				float: left;
+				width: 18px;
+				height: 18px;
+				top: 9px;
+				margin-right: 14px;
+				line-height: 18px;
+				background: #09f;
+				overflow: hidden;
+				z-index: 3;
+				cursor: pointer;
+			}
+
+			input[name='checkbox'] {
+				display: block;
+				width: 100%;
+				height: 100%;
+				filter: alpha(opacity=0);
+				opacity: 0;
+				cursor: pointer;
+			}
+
+			input,
+			textarea {
+				outline: none;
+				border: none;
+				resize: none;
+			}
+
+			.dataBody_topic .dataBody_file {
+				height: 30px;
+				margin-right: 10px;
+				top: 0;
+			}
+
+			.dataBody_file {
+				position: relative;
+				float: left;
+				height: 30px;
+				top: 3px;
+				margin-right: 14px;
+				z-index: 3;
+			}
+
+			.dataBody_topic .dataBody_file img {
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+			}
+
+
+			.dataBody_topic .dataBody_right {
+				margin-left: 44px;
+			}
+
+			.topicli_head {
+				position: relative;
+				height: 30px;
+				line-height: 30px;
+				margin-bottom: 10px;
+			}
+
+			.topicli_head .author {
+				max-width: 75px;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+
+			.author {
+				display: inline-block;
+				vertical-align: middle;
+				font-size: 14px;
+				color: #8A8B99;
+				margin-right: 6px;
+			}
+
+			.time {
+				display: inline-block;
+				vertical-align: middle;
+				margin-left: 10px;
+				font-size: 12px;
+				color: #8A8B99;
+			}
+
+			.topicli_head .more {
+				right: 0;
+				top: 8px;
+			}
+
+			.more {
+				position: absolute;
+				right: 0;
+				height: 22px;
+			}
+
+			.more .moreIcon {
+				display: block;
+				width: 22px;
+				height: 22px;
+				cursor: pointer;
+			}
+
+			.more .operate_con {
+				right: -14px;
+				left: auto;
+				top: 22px;
+			}
+
+			.operate_con {
+				display: none;
+				/* width: 116px; */
+				padding: 6px 0;
+				font-size: 14px;
+				background: #FFF;
+				border-radius: 6px;
+				position: absolute;
+				left: -20px;
+				top: 30px;
+				z-index: 3;
+				-webkit-box-shadow: 0 2px 12px 0 #b3b3b3;
+				box-shadow: 0 2px 12px 0 #b3b3b3;
+			}
+
+			.operate_con div,
+			.operate_con a {
+				display: block;
+				line-height: 40px;
+				color: #474C59;
+				white-space: nowrap;
+				padding-left: 20px;
+				padding-right: 28px;
+				cursor: pointer;
+			}
+
+			a:visited {
+				color: #131B26 !important;
+			}
+
+			.topicli_link {
+				display: block;
+				color: #131B26;
+			}
+
+			.topicli_title {
+				font-size: 16px;
+				line-height: 22px;
+				color: #131B26;
+				cursor: pointer;
+			}
+
+			.topicli_title .topicli_title_text {
+				display: inline-block;
+				vertical-align: middle;
+				max-width: calc(100% - 330px);
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				margin-right: 10px;
+				color: #131B26;
+			}
+
+			.topicli_content {
+				max-width: calc(100% - 170px);
+				margin-top: 8px;
+				font-size: 14px;
+				line-height: 20px;
+				color: #474C59;
+				cursor: pointer;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+			}
+
+			.topic_interactive {
+				margin-top: 6px;
+				height: 20px;
+				line-height: 20px;
+			}
+
+			.topicli_from {
+				font-size: 12px;
+				color: #8A8B99;
+				margin-top: 8px;
+				display: none;
+			}
+
+			.topic_interactive .like,
+			.topic_interactive .comment,
+			.topic_interactive .price {
+				float: right;
+				min-width: 60px;
+				text-align: right;
+				padding-right: 10px;
+			}
+
+			.topic_interactive .like>i,
+			.topic_interactive .like>span,
+			.topic_interactive .comment>i,
+			.topic_interactive .comment>span,
+			.topic_interactive .price>i,
+			.topic_interactive .price>span {
+				cursor: pointer;
+			}
+
+			.topic_interactive .commentIcon {
+				background-position: 0 -16px;
+			}
+			
+			b,
+			i,
+			strong,
+			em {
+				font-weight: normal;
+				font-style: normal;
+			}
+
+			.topic_interactive .like>i,
+			.topic_interactive .like>span,
+			.topic_interactive .comment>i,
+			.topic_interactive .comment>span,
+			.topic_interactive .price>i,
+			.topic_interactive .price>span {
+				cursor: pointer;
+			}
+
+			.topic_interactive span {
+				display: inline-block;
+				vertical-align: middle;
+				margin: 0 4px;
+				font-size: 14px;
+				color: #8A8B99;
+			}
+
+			.topic_interactive .likeIcon,
+			.topic_interactive .commentIcon {
+				display: inline-block;
+				vertical-align: middle;
+				width: 16px;
+				height: 16px;
+				background: url(images/topic_interactive.png) no-repeat;
+				background-size: 32px auto;
+			}
+
+			.topic_interactive .commentIcon {
+				background: url(images/topic_interactive.png) no-repeat 0 -15px;
+				background-size: 32px auto;
+			}
+
+			.topic_interactive .likeIcon:hover {
+				background: url(images/topic_interactive.png) no-repeat -18px 0;
+				background-size: 32px auto;
+			}
+
+			.topic_interactive .commentIcon:hover {
+				background: url(images/topic_interactive.png) no-repeat -18px -15px;
+				background-size: 32px auto;
+			}
+
+			.centerMain_head {
+				margin-bottom: 20px;
+			}
+
+			.centerMain .dataSearch {
+				margin-right: 30px;
+			}
+
+			.dataSearch {
+				width: 200px;
+				height: 36px;
+				border-radius: 40px;
+				position: relative;
+			}
+
+			.clearfix {
+				zoom: 1;
+			}
+
+			.clearfix:after {
+				content: " ";
+				display: block;
+				height: 0px;
+				clear: both;
+			}
+
+			.ceterMain_total {
+				margin: 22px 0 14px;
+			}
+
+			.fr {
+				float: right;
+			}
+
+			.fl {
+				float: left;
+			}
+
+			.dataSearch_input {
+				height: 34px;
+				font-size: 14px;
+				color: #181E33;
+				border: 1px solid #E5E5E5;
+				background: none;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 2;
+				padding: 0 14px;
+				border-radius: 40px;
+			}
+
+			.dataBody_td:after {
+				content: "";
+				position: absolute;
+				left: 30px;
+				right: 30px;
+				bottom: 0;
+				border-bottom: solid 1px #F2F2F2;
+			}
+
+			.dataSearch_input {
+				width: 100%;
+				box-sizing: border-box;
+				padding-right: 35px;
+			}
+
+			.dataSearch_bnt {
+				width: 18px;
+				height: 18px;
+				background: url(images/search_ico.png) center center / 16px 16px no-repeat;
+				border: 0 none;
+				cursor: pointer;
+				position: absolute;
+				right: 14px;
+				top: 8px;
+				z-index: 3;
+				outline: none;
+			}
+
+			.tabs {
+				height: 46px;
+				padding-right: 30px;
+				box-shadow: inset 0px -1px 0px #f2f2f2;
+				cursor: pointer;
+				margin-bottom: 13px;
+			}
+
+			.tabs {
+				height: 46px;
+				padding-right: 30px;
+				box-shadow: inset 0px -1px 0px #f2f2f2;
+				cursor: pointer;
+				margin-bottom: 13px;
+			}
+
+			ul,
+			ol,
+			li {
+				list-style-type: none;
+			}
+
+			body {
+				font: 12px/1.5 微软雅黑, 黑体, Arial, Helvetica, sans-serif;
+				overflow-x: auto;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			.clear-float::after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			.tabs li.on {
+				font-weight: 600;
+			}
+
+			.tabs li {
+				/* min-width: 116px; */
+				height: 46px;
+				text-align: center;
+				padding: 0 40px;
+				line-height: 46px;
+				white-space: nowrap;
+				font-size: 16px;
+				color: #474C59;
+				position: relative;
+			}
+
+			.tabs .on::after {
+				content: '';
+				width: 32px;
+				height: 4px;
+				background-color: #3A8BFF;
+				border-radius: 2px;
+				position: absolute;
+				left: 50%;
+				margin-left: -16px;
+				right: 0;
+				bottom: 0;
+				/* margin: 0 40px; */
+			}
+
+			.centerMain .bnt_group {
+				padding-left: 30px;
+			}
+
+			.bnt_group {
+				height: 36px;
+			}
+
+			.fs14 {
+				font-size: 14px;
+			}
+
+			.jb_btn,
+			.btnBlue {
+				cursor: pointer;
+			}
+
+			.jb_btn_104 {
+				width: 104px;
+				height: 36px;
+				background: url(images/jb_btn_104.png) no-repeat 0 0;
+			}
+			
+			.jb_btn_104:hover {
+				background: url(images/jb_btn_104.png) no-repeat 0 -48px;
+			}
+
+			.jb_btn {
+				display: inline-block;
+				box-shadow: 0 3px 12px 0 rgb(39 125 255 / 30%);
+				color: #FFFFFF !important;
+				text-align: center;
+				line-height: 36px;
+				border-radius: 20px;
+			}
+
+			.marginRight30 {
+				margin-right: 30px;
+			}
+
+			.PlusIcon {
+				display: inline-block;
+				width: 12px;
+				height: 12px;
+				margin-right: 6px;
+				vertical-align: middle;
+				margin-top: -2px;
+			}
+
+			.PlusIcon img {
+				display: block;
+			}
+
+			img {
+				border: 0;
+			}
+
+			.centerMain,
+			.editContainer {
+				margin-right: 270px;
+				min-width: 730px;
+				min-height: 600px;
+				padding: 30px 0 0;
+				background: #FFFFFF;
+				border-radius: 8px;
+				box-shadow: 0 2px 17px 0 rgb(239 239 239 / 50%);
+				margin-bottom: 16px;
+				box-sizing: border-box;
+			}
+
+			.listTitle {
+				width: 943px;
+				height: 28px;
+				line-height: 28px;
+				border: solid 1px #ddd;
+				border-radius: 3px;
+				font-size: 14px;
+				padding: 0 10px;
+			}
+
+			.listText {
+				margin-top: 15px;
+				border: solid 1px #cbcbcb;
+				width: 943px;
+				height: 96px;
+				padding: 10px;
+				resize: vertical;
+			}
+
+			#addGroupTopicForm{
+				width: 1000px;
+				position: relative;
+				left: 100px;
+				display:none;
+			}
+
+			input,
+			select,
+			textarea {
+				vertical-align: middle;
+				font: 12px/1.5 微软雅黑, 黑体, Arial, Helvetica, sans-serif;
+				color: #000;
+				border: none;
+				border: 0;
+			}
+
+			.qdBtn {
+				display: block;
+				width: 61px;
+				height: 26px;
+				line-height: 26px;
+				text-align: center;
+				color: #fff;
+				background: #7d9e31;
+				border-radius: 3px;
+				font-size: 14px;
+				margin-top: 14px;
+			}
+			ul li:hover {
+				background-color: #F5F7FA;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="centerMain" style="width: 1234px; margin: auto;">
+			<div class="centerMain_head">
+				<div class="dataSearch fr">
+					<input type="text" name class="dataSearch_input fl search_input" placeholder="搜索""><input type="
+						button" name class="dataSearch_bnt fl search_topic">
+					<i class="cancelSearch" style="display : none; "></i>
+				</div>
+				<div class="bnt_group">
+					<a class="jb_btn jb_btn_104 createTopic fl fs14 marginRight30" onclick="changeDivDown()">
+						<i class="PlusIcon"><img src="images/add.png"></i>新建话题</a>
+				</div>
+			</div>
+			<form method="post" id="addGroupTopicForm" action="">
+				<div id="tijiao">
+					<input id="c_title" v-model="d_title" name="title" type="text" class="listTitle" placeholder="新建话题"
+						style="margin-top:20px">
+					<div class="listTop" style="height: 210px; overflow: hidden; margin-top: 0px;">
+						<textarea id="textarea" v-model="d_titl" name="content" class="listText"></textarea>
+					</div>
+					<div class="listBtn" style="min-height:30px;">
+						<a href="javascript:;" class="fr cancel" style="color:#999;margin-left:10px">取消</a>
+						<a href="javascript:;" class="qdBtn fr" style="margin:0" @click="addtaolun()">确定</a>
+					</div>
+				</div>
+			</form>
+			<div class=" ceterMain_total clearfix">
+				<ul class="tabs clear-float">
+					<li class="fl zyTopLable on" id="labelall" onclick="Discuss.allTopicList()">
+						<span>全部</span>
+					</li>
+				</ul>
+			</div>
+			<div class="dataCon" id="app">
+				<div v-for="discuss in t_discuss" @click ="dianji(discuss.s_name, discuss.d_time, discuss.d_title, discuss.d_titl, discuss.d_id)">
+					<ul class="dataBody" style="border-top:0px;">
+						<li class="dataBody_td dataBody_topic" id="topicId_346989100" fold-pid="0" isteacher="false">
+							<div class="dataBody_check"><input type="checkbox" name="checkbox" value=""></div>
+							<div class="dataBody_file"><img
+									src="http://img1.16q.cn/a56626a15a1c2cc92d0b0972e3d086ba?w=100&amp;h=100"></div>
+							<div class="dataBody_right">
+								<div class="dataBody_con">
+									<div class="topicli_head">
+										<p class="topicli_head_left"><span class="author">{{discuss.s_name}}</span>
+											<span class="time">{{discuss.d_time}}</span>
+											<span class="topic_unread"></span>
+										</p>
+										<div class="more"><span class="moreIcon"></span>
+											<div class="operate_con">
+												<div class="forwardBnt">转发</div>
+											</div>
+										</div>
+									</div><a class="topicli_link" style="pointer-events: none;" target="_blank">
+										<div class="topicli_title"><span class="topic_unread"><span
+													class="topicli_title_text">{{discuss.d_title}}</span></span></div>
+										<div class="topicli_content">{{discuss.d_titl}}<br><br></div>
+									</a>
+									<div class="topic_interactive">
+										<div class="comment" onclick="Discuss.openDetail(346989100)"><i
+												class="commentIcon"></i><span>15</span></div>
+										<div class="like">
+											<i class="likeIcon"></i><span>8</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/time.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="js/axios.js"></script>
+		<script type="text/javascript" src="js/qs.js"></script>
+		<script type="text/javascript">
+			function changeDivDown() { //此为向下展开div的方法
+				if($("#addGroupTopicForm").css("display")=="none"){
+					$("#addGroupTopicForm").css("display","block");
+				}else{
+					$("#addGroupTopicForm").css("display","none");
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					t_discuss: [], // 学生回复讨论的信息
+				},
+				mounted: function() {
+					axios.post("mem/Studentdiscu").then(result => {
+						if (result.data.code == 200) {
+							this.t_discuss = result.data.data;
+						}
+					})
+				},
+				methods:{
+					dianji(s_name, d_time, d_title, d_titl, d_id){
+						window.location.href="taolun.html?"+ s_name + '&' + d_time + '&' + d_title + '&' + d_titl  + '&' + d_id;
+					}
+				}
+			});
+
+			var vu = new Vue({
+				el: "#tijiao",
+				data: {
+					d_title: "",
+					d_titl: ""
+				},
+
+				methods: {
+					addtaolun() {
+						if( this.d_title == "" || this.d_titl == ""){
+							showMsg("主题或内容为空！！！","red")
+						}
+						axios.post("mem/addtaolun", qs.stringify({
+							d_title: this.d_title,
+							d_titl: this.d_titl
+						})).then(result => {
+							if (result.data.code == 200) {
+								showMsg("添加成功！！！","green")
+							}else{
+								showMsg("添加失败！！！","red")
+							}
+						})
+						axios.post("mem/Studentdiscu").then(result => {
+							if (result.data.code == 200) {
+								this.t_discuss = result.data.data;
+							}
+						})
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

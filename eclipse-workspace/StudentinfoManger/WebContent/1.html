@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.chapter_unit {
+				float: left;
+				width: 800px;
+			    padding-bottom: 390px;
+				border: solid 1px #e6e6e6;
+				background: #fcfcfa;
+			}
+			.chapter_item {
+			    padding-right: 0;
+			}
+			.chapter_item {
+			    cursor: pointer;
+				position: relative;
+			}
+			.catalog_title {
+			    padding-right: 524px;
+			}
+			.catalog_title, .catalog_title:hover {
+			    background: #F5F7FA;
+			}
+			.catalog_title {
+			    height: auto;
+			    min-height: 24px;
+			    padding-right: 0;
+			}
+			.catalog_title {
+			    height: 40px;
+			    padding: 0 374px 0 20px;
+			    position: relative;
+			    z-index: 1;
+			}
+			.catalog_num {
+			    position: absolute;
+			    left: 30px;
+			    top: 30%;
+			    margin-top: -10px;
+			}
+			.catalog_num {
+			    height: 20px;
+			    padding-left: 14px;
+			    background: #D0D5DB;
+			    border-radius: 10px;
+			    margin: 0px 20px 0 0;
+			}
+			.catalog_num>span {
+			    min-width: 16px;
+			    height: 16px;
+			    padding: 4px;
+			    margin: -2px -4px 0 0;
+			    background: #D0D5DB;
+			    display: block;
+			    border-radius: 20px;
+			}
+			.catalog_num>span>i {
+			    min-width: 12px;
+			    height: 16px;
+			    padding: 0 2px;
+			    line-height: 16px;
+			    background: #FFF;
+			    font-size: 12px;
+			    font-family: Arial;
+			    color: #A8A8B3;
+			    border-radius: 20px;
+			    display: block;
+			    text-align: center;
+			}
+			.chapter_unit>.chapter_item>.catalog_title>.catalog_name {
+			    padding: 13px 20px 13px 0;
+			}
+			input[name='checkbox'] {
+				display: block;
+				width: 100%;
+				height: 100%;
+				filter: alpha(opacity=0);
+				opacity: 0;
+				cursor: pointer;
+			}
+			.catalog_name {
+			    max-height: 48px;
+			    width: 500px;
+			    font-size: 16px;
+			    line-height: 24px;
+			    position: relative;
+			    white-space: normal;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    display: -webkit-box;
+			    -webkit-line-clamp: 2;
+			    -webkit-box-orient: vertical;
+			}
+			.catalog_name, .catalog_name a {
+			    color: #131b26;
+			}
+			.catalog_name {
+			    line-height: 40px;
+			    font-size: 14px;
+			    color: #181E33;
+			    font-weight: 600;
+			    overflow: hidden;
+			    white-space: nowrap;
+			    text-overflow: ellipsis;
+			}
+			ul {
+			    display: block;
+			    list-style-type: disc;
+			    margin-block-start: 1em;
+			    margin-block-end: 1em;
+			    margin-inline-start: 0px;
+			    margin-inline-end: 0px;
+			    padding-inline-start: 40px;
+			}
+			ul li {
+				list-style: none;
+			    margin-top: 6px;
+			}
+			.catalog_level ul li .chapter_item:before {
+			    width: 20px;
+			    left: 46px;
+			    content: '';
+			    display: block;
+			    height: 1px;
+			    border-top: 1px dashed #DADFE6;
+			    position: absolute;
+			    top: 50%;
+			    z-index: 1;
+			}
+			.catalog_level ul li .chapter_item:after {
+			    content: '';
+			    display: block;
+			    width: 270px;
+			    position: absolute;
+			    right: 16px;
+			    top: 0;
+			    bottom: 0;
+			    z-index: 1;
+			}
+			.icon_yiwanc {
+			    width: 24px;
+			    height: 24px;
+			}
+			.inputCheck, .catalog_task{
+				position: absolute;
+				left: 5px;
+				top: 10px;
+			}
+			.catalog_name{
+				position: absolute;
+				left: 40px;
+			}
+			.name span{
+				position: relative;
+				top: -10px;
+				left: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="chapter_unit">
+			<div class="chapter_item">
+				<div class="catalog_title chapter_Thats_bnt">
+					<div class="inputCheck fl firstNode"><input type="checkbox" name="checkbox" value=""></div>
+					<div class="catalog_num fl"><span><i><em style="font-style:normal;">1</em></i></span></div>
+					<div class="catalog_name name"><span title="第一单元">
+						第一单元</span>
+						</div>
+					<span class="catalog_upDown icon-down catalog_upDown_active"></span>
+				</div>
+			</div>
+			<!-- 第二级开始 -->
+				<div class="catalog_level" style="display:block;">
+					<ul>
+						<li>
+							<div class="chapter_item" href="javascript:;" title="第一课时">
+								<div class="catalog_title">
+									<div class="inputCheck fl"><input type="checkbox" name="checkbox" value="131671343"></div>
+									<div class="catalog_name">
+										<span class="catalog_sbar">1.1</span>第一课时
+									</div>
+									<div class="catalog_task">
+										<div class="catalog_state icon_yiwanc catalog_tishi56"><span class="bntHoverTips"><i></i></span></div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="chapter_item" onclick="toOld('202027593', '131671344', '43963564')" href="javascript:;" title="第二课时">
+								<div class="catalog_title">
+									<div class="inputCheck fl"><input type="checkbox" name="checkbox" value="131671344"></div>
+									<div class="catalog_name">
+										<span class="catalog_sbar">1.2</span>第二课时
+									</div>
+									<div class="catalog_task">
+										<div class="catalog_state catalog_tishi56"><span class="bntHoverTips"><i></i></span></div>
+									</div>
+								</div>
+							</div>
+							<!-- 第三级开始 -->
+							<!-- 第三级结束 -->
+						</li>
+						<li>
+							<div class="chapter_item" onclick="toOld('202027593', '131671345', '43963564')" href="javascript:;" title="第三课时">
+								<div class="catalog_title">
+									<div class="inputCheck fl"><input type="checkbox" name="checkbox" value="131671345"></div>
+									<div class="catalog_name">
+										<span class="catalog_sbar">1.3</span>第三课时
+									</div>
+									<div class="catalog_task">
+
+																																	<div class="catalog_state catalog_tishi56"><span class="bntHoverTips"><i></i></span></div>
+
+									</div>
+								</div>
+							</div>
+							<!-- 第三级开始 -->
+							<!-- 第三级结束 -->
+						</li>
+						<li>
+							<div class="chapter_item" onclick="toOld('202027593', '131671346', '43963564')" href="javascript:;" title="第四课时">
+								<div class="catalog_title">
+									<div class="inputCheck fl"><input type="checkbox" name="checkbox" value="131671346"></div>
+									<div class="catalog_name">
+										<span class="catalog_sbar">1.4</span>第四课时
+									</div>
+									<div class="catalog_task">
+
+																																	<div class="catalog_state catalog_tishi56"><span class="bntHoverTips"><i></i></span></div>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="chapter_item" onclick="toOld('202027593', '131671347', '43963564')" href="javascript:;" title="第五课时">
+								<div class="catalog_title">
+									<div class="inputCheck fl"><input type="checkbox" name="checkbox" value="131671347"></div>
+									<div class="catalog_name">
+										<span class="catalog_sbar">1.5</span>第五课时
+									</div>
+									<div class="catalog_task">
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+		</div>
+	</body>
+</html>

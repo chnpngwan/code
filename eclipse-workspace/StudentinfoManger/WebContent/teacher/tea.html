@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="../layui/css/layui.css">
+		<title></title>
+		<style type="text/css">
+			.nav{
+				width: 650px;
+				height: 50px;
+				float: right;
+			}
+			.nav ul li{
+				margin-top: 25px;
+				margin-right: 50px;
+				float: left;
+				font-size: large;
+				height: 50px;
+				text-align: center;
+			}
+			header{
+				width: 1519px;
+				background-color: #000000;
+				height: 80px;
+				position: relative;
+				color: white;
+			}
+			header h1{
+				position: absolute;
+				top: 20px;
+				left: 50px;
+			}
+			.header-info {
+				float: right;
+				height: 40px;
+				margin-top: 20px;
+				margin-right: 5%;
+			}
+			a {
+				font-size: large;
+				text-decoration: none;
+				color: #999999;
+			}
+			
+			a:hover{
+				color: #FB654A !important;
+			}
+			.right{
+				float: right;
+				width: 1519px;
+				height: 650px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<header id="header">
+			<h1>{{classes.name}}</h1>
+			<div class="nav">
+				<ul>
+					<li><a href="../1.html" target="menuFrame">添加章节</a></li>
+					<li><a href="word.html" target="menuFrame">作业</a></li>
+					<li><a href="exam.html" target="menuFrame">考试</a></li>
+					<li><a href="../addtaolun.html" target="menuFrame">讨论</a></li>
+					<li><a href="stugradelist.html" target="menuFrame">学生管理</a></li>
+				</ul>
+			</div>
+		</header>
+				
+		
+		<div class="right">
+			<iframe id="menuFrame" name="menuFrame" src="../1.html" style="overflow:visible;" scrolling="yes"
+			   frameborder="no" width="100%" height="100%" >
+			   <div id="">
+			   	
+			   </div>
+			</iframe>
+		</div>
+		
+			<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+			<script src="../js/qs.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/axios.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			let id;
+			let vm = new Vue({
+				el:"#header",
+				data:{
+					classes: [],
+				},
+				mounted(){
+					id = decodeURI(location.search);
+					console.log(id);
+					if( id == "" || id.indexOf("?") != 0 ){//说明请求地址数据有问题返回首页
+						location.href = "teacher.html";
+						return;
+					}
+					id = id.replace("?", "");
+					axios.post("../class/joinClass", qs.stringify({id : id})).then(result=>{
+						if( result.status == 200 && result.data.code == 200){//请求和响应都是成功
+							this.classes = result.data.data;
+						}	
+					})
+				}
+			})
+		</script>
+	</body>
+</html>

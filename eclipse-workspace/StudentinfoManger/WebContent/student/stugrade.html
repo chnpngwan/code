@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	 <head>
+	  <title></title> 
+	  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>  
+		<style type="text/css">
+			.main:hover{
+				background-color: "#01AAED";
+			}
+			#table tr>th, tr>td{
+				width: 150px;
+			}
+		</style>
+	 </head>
+	 <body>
+		 <header>
+			 <h1>我的所有课程成绩</h1>
+		 </header>
+		 
+		 <div id="grade" style="width:100%;">
+		    <center>
+			    <table border="1"  id="table" style="width:100%;">
+				   <tr bgcolor="#01AAED">
+					<th class="col01">学号</th>
+					<th class="col02">学生姓名</th>
+					<th class="col03">学科</th>
+					<th class="col04">教师姓名</th>
+					<th class="col05">成绩</th>
+				   </tr>
+				   <tr class="main" v-for="grade in grades">
+					<td class="col01">{{grade.s_id}}</td>
+					<td class="col02">{{grade.s_name}}</td>
+					<td class="col03">{{grade.name}}</td>
+					<td class="col04">{{grade.t_name}}</td>
+					<td class="col05">{{grade.degree}}</td>
+				   </tr>
+				<!--在添加按钮上添加点击事件  -->
+				</table>
+		    </center>
+	    </div>
+	    <script src="../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/axios.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="../js/qs.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript">
+		     let vm = new Vue({
+		    	 el:"#grade",
+				 data:{
+					grades:[],
+					baobiao:[],
+				 },
+				 mounted() {
+				 	axios.post("stu/getGrade").then(result=>{
+						if(result.status == 200 && result.data.code == 200){
+							this.grades = result.data.data;
+						}
+					})
+					axios.post("stu/baobiao").then(result=>{
+						if(result.status == 200 && result.data.code == 200){
+							this.baobiao = result.data.data;
+						}
+					})
+				 },
+				 methods:{
+				 }
+			 })
+		</script>
+	</body>
+</html>
+

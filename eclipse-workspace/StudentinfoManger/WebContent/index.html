@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{
+				background:transparent;/*透明的*/
+				border:0;
+				margin:0;
+				padding:0;	
+			}
+			header{
+				width: 1425px;
+				background:rgba(0,0,0,0.7);
+				padding: 1em 3em;
+				position: sticky;
+				top: 0px;
+				z-index: 3;
+			}
+			
+			footer{
+				width: 1519px;
+				border-top:2px solid #DDDDDD;
+				text-align:center;
+				margin: 0;
+				color: #999999;
+				background-color: #000000;
+			}
+			ul{
+				list-style-type:none;
+			}
+			body{
+				width: 1519px;
+				background-color: white;	
+			}
+			img{
+				width: 100%;
+				height: 100%;
+			}
+			h1{
+				text-align: center;
+			}
+			p{
+				text-align: center;
+			}
+			.text{
+				width: 300px;
+				margin: 50px 0 0 200px;
+				text-align: center;
+				box-shadow:5px 5px 10px gray;
+				height: 250px;
+			}
+			#p0{
+				width: 1100px;
+				position: absolute;
+				top: 60px;
+				left: 200px;
+			}
+			#p1{
+				position: absolute;
+				top: 250px;
+			}
+			#p2{
+				position: absolute;
+				top: 250px;
+				left: 400px;
+			}
+			#p3{
+				position: absolute;
+				top: 250px;
+				left: 800px;
+			}
+			.scroll_mid{
+				background-color:#F2F2F3;/*背景白色*/
+				border-left:1px solid #D6D5D6;/*边框灰色*/	
+				border-right:1px solid #D6D5D6;/*边框灰色*/
+				margin: auto;
+				width: 1519px;
+				height:350px;
+				overflow: hidden;
+				position:relative;/*相对定位*/
+			}
+			.member{
+				width: 300px;
+				height: 150px;
+				margin: 50px 0 0 250px;
+				text-align: center;
+				Font-weight: 1000;
+				line-height: 150px; 
+				background-color: white;
+				box-shadow:5px 5px 10px gray;
+
+			}
+			.member:hover{
+				transform:translateY(-10px);
+				transform:scale(1.1);
+				cursor: pointer;
+
+			}
+			.center{
+				width: 1519px;
+				height: 600px;
+				background-color: #F5F8FC;
+				position: relative;
+				background: url(images/pic_5.jpg);
+			}
+			#img{
+			  width: 9114px;/*不给宽高无法移动*/
+			  height: 100%;
+			  position: absolute;/*不定义absolute，js无法设置left和top*/
+			  z-index: 1;
+			}
+			#img li{
+			  width: 1519px;
+			  height: 100%;
+			  float: left;
+			}
+			#scroll_number{
+				clear:both;
+				padding-right:10px;
+				display:inline;
+			}
+
+			#index{
+				z-index: 2;
+			  position: absolute;
+			  left: 730px;
+			  bottom: 20px;
+			 
+			}
+			#index .on{
+			  background-color: black;
+			}
+			#index li{
+			  width:8px;
+			  height: 8px;
+			  border: solid 1px gray;
+			  border-radius: 100%;
+			  background-color: #eee;
+			  display: inline-block;
+				
+			}
+			
+			#main{
+				background-color: #88BED8;
+				position: relative;
+				height: 250px;
+			}
+			#student{
+				background: url(images/10.jpg) no-repeat;
+				background-size: 100% 100%;
+				position: absolute;
+				top: 0px;
+			}
+			#teacher{
+				background: url(images/11.jpg) no-repeat;
+				background-size: 100% 100%;
+				position: absolute;
+				top: 0px;
+				left: 350px;
+			}
+			#admin{
+				background: url(images/12.jpg) no-repeat;
+				background-size: 100% 100%;
+				position: absolute;
+				top: 0px;
+				left: 700px;
+			}
+			.member a{
+				text-decoration: none;
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+			}
+			.top-buttons-agileinfo {
+			    /* float: right; */
+			    text-align: right;
+			    padding: 0.5em 3em;
+			}
+			.top-buttons-agileinfo a {
+			    background: rgba(255, 255, 255, 0.15);
+			    text-decoration: none;
+			    color: #fff;
+			    font-size: 14px;
+			    letter-spacing: 1px;
+			    display: inline-block;
+			    padding: 9px 26px;
+			    border: 1px solid #756d6d;
+			    margin: 0px 15px 0px 0px;
+			    -webkit-transition: 0.3s all;
+			    -moz-transition: 0.3s all;
+			    -o-transition: 0.3s all;
+			    -ms-transition: 0.3s all;
+			    transition: 0.3s all;
+			    border: 1px solid #fff;
+			}
+			.top-buttons-agileinfo span{
+				background-image: url(images/8.jpg);
+				background-size: 100% 100%;
+				display: inline-block;
+				width: 280px;height: 85px; 
+				position: absolute;
+				left: 40px;
+				top: 0px;
+			}
+			.top-buttons-agileinfo a{
+			    border-color: #df5799;
+			    background: #df5799;
+			}
+			.head-left h1{
+				color: #FFFFFF;
+				float: right;
+			}
+			.head-left span{
+				display: inline-block; 
+				background: url(images/7.png) no-repeat; 
+				background-size:100% 100%; 
+				width: 64px;height: 60px; 
+				position: absolute; 
+				top: 15px;
+				left: 600px;
+			}
+				
+			.head-left{
+				width: 60%; 
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="top-buttons-agileinfo clearfix">
+				<span></span>
+				<div class="head-left">
+					<h1>学习一点通&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+					<span></span>
+				</div>
+				<div class="head-right">
+					<a href="#">在线咨询</a><a href="#">关于我们</a>
+				</div>
+			</div>
+		</header>
+		
+		<article>
+			<div class="scroll_mid">
+		    	<ul id="index">
+				    <li class="on"></li>
+				    <li></li>
+	  		 	    <li></li>
+		  		    <li></li>
+				    <li></li>
+					<li></li>
+				</ul>
+		    	<ul id="img">
+		        	<li><img src="images/pic_1.jpg" alt="img1"></li>
+					<li><img src="images/pic_2.jpg" alt="img2"></li>
+					<li><img src="images/pic_3.jpg" alt="img3"></li>
+					<li><img src="images/pic_4.jpg" alt="img4"></li>
+					<li><img src="images/pic_5.jpg" alt="img5"></li>
+					<li><img src="images/pic_6.jpg" alt="img6"></li>
+		        </ul>
+		    </div>
+			<div id="main">
+				<div class="member" id="student">
+					<a href="student/login_student.html">学生入口</a>
+				</div>
+				<div class="member" id="teacher">
+					<a href="teacher/login_teacher.html">教师入口</a>
+				</div>
+				<div class="member" id="admin">
+					<a href="admin/login_admin.html">管理员入口</a>
+				</div>
+			</div>
+			<div class="center">
+				<br>
+				<h1>网站的介绍</h1>
+				<div id="p0"><p>学习网站实质上就是一个基于网络资源的专题研究、协作式学习系统。它通过网络学习环境，向学习者提供足够多的专题学习资源、提供相关的协作学习和交流工具，让学习者自己选择想要研究的课题或项目设计，通过自己收集、分析并筛选有用的信息资料，应用相关知识，去解决实际问题。它强调的是通过学习者自主性的探索、研究、协作来求得问题解决，从而让学习者体验和了解科学探索过程，提高学习者获取信息、分析信息、加工信息的实践能力和培养良好的创新意识与信息素养。
+				</p>
+				</div><br><br><br><br><br><br>
+				<h1>网站的优点</h1><br>
+				<p>学习网站既不同于综合性教育网站，也不同于网络课程，它有自己的一套建设目标。</p>
+				<div class="p">
+					<div class="text" id="p1">1、提供先进的教学资源创作与管理应用平台
+					专题学习网站应以专题为导向，提供结构化的专题知识库。网站集合与专题相关的各个学科的知识点，打破传统的知识结构和顺序，在综合多门学科知识的基础上，重新组建有序的、符合学生认知规律和特点的知识模块。从而达到资源高度整合、增加学习资源的趣味性、可读性的目的。网站应以教师为主要创作者，充分体现教师的教学思想与智慧，同时还应满足学生自主学习与教师备课的双重需要，提高资源的利用率。</div>
+					<div  class="text" id="p2">
+					2、提供良好的网络协作学习工具
+					支持基于网络的研究性学习强调通过学习者主体性的探索、研究、协作来求得问题解决，从而让学习者体验和了解科学探索过程，提高学习者获取信息、分析信息、加工信息的实践能力和培养良好的创新意识与信息素养。
+					</div>
+					<div class="text" id="p3">
+					3、广泛参与、分散开发、集中使用的实施方式
+					让师生广泛参与网站建设;所有专题与实际教学密切相关，它必须有特定的受众群，究竟供哪门学科、哪个层次的教师和学生使用，具有很强的针对性和明确性;网站建设采用资源分散开发，集中使用的实施原则;强调专题网站资源建设与教学试验相结合。
+					</div>
+				</div>
+			</div>
+		</article>
+		
+		<!--尾部版权-->
+		<footer>
+			<p> CopyRight &copy; 2022 <a class="copy" href="http://www.hyycinfo.com" target="_blank">衡阳市源辰信息科技有限公司</a>All Rights Reserved</p>
+			<p>电话：17873475828 &nbsp;&nbsp;&nbsp;&nbsp; QQ：2445222672</p>
+		</footer>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function moveElement(ele,x_final,y_final,interval){//ele为元素对象
+			  var x_pos=ele.offsetLeft;
+			  var y_pos=ele.offsetTop;
+			  var dist=0;
+			  if(ele.movement){//防止悬停
+			    clearTimeout(ele.movement);
+			  }
+			  if(x_pos==x_final&&y_pos==y_final){//先判断是否需要移动
+			    return;
+			  }
+			  dist=Math.ceil(Math.abs(x_final-x_pos)/10);//分10次移动完成
+			  x_pos = x_pos<x_final ? x_pos+dist : x_pos-dist;
+			   
+			  dist=Math.ceil(Math.abs(y_final-y_pos)/10);//分10次移动完成
+			  y_pos = y_pos<y_final ? y_pos+dist : y_pos-dist;
+			   
+			  ele.style.left=x_pos+'px';
+			  ele.style.top=y_pos+'px';
+			  ele.movement=setTimeout(function(){//分10次移动，自调用10次
+			    moveElement(ele,x_final,y_final,interval);
+			  },interval)
+			}
+			function moveIndex(list,num){//移动小圆点
+			  for(var i=0;i<list.length;i++){
+			    if(list[i].className=='on'){//清除li的背景样式
+			      list[i].className='';
+			    }
+			  }
+			  list[num].className='on';
+			}
+			var img=document.getElementById('img');
+			var list=document.getElementById('index').getElementsByTagName('li');
+			var index=0;//这里定义index是变量，不是属性
+			 
+			var nextMove=function(){//一直向右移动，最后一个之后返回
+				index+=1;
+				if(index % 6 == 0){
+				  index = 0;
+				}
+				moveIndex(list,index);
+				moveElement(img,-1519*index,0,20);
+			};
+			
+			var play=function(){
+			  timer=setInterval(function(){
+				nextMove();
+			  },2500);
+			}
+			play();
+			for(var i=0;i<list.length;i++){//鼠标覆盖上哪个小圆圈，图片就移动到哪个小圆圈，并停止
+			  list[i].index=i;//这里是设置index属性，和index变量没有任何联系
+			  list[i].onmouseover= function () {
+				var clickIndex=parseInt(this.index);
+				moveElement(img,-1519*clickIndex,0,20);
+				index=clickIndex;
+				moveIndex(list,index);
+				clearInterval(timer);
+			  };
+			  list[i].onmouseout= function () {//移开后继续轮播
+				play();
+			  };
+			}
+		</script>
+	</body>
+</html>

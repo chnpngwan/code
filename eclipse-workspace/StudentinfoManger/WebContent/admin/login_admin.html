@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>学习一点通登录界面</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ 
+<!-- Custom Theme files -->
+<link rel="stylesheet" type="text/css" href="https://www.jq22.com/jquery/font-awesome.4.6.0.css">
+<link href="../css/snow.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+
+</head>
+<body>
+<div class="snow-container">
+			  <div class="snow foreground"></div>
+			  <div class="snow foreground layered"></div>
+			  <div class="snow middleground"></div>
+			  <div class="snow middleground layered"></div>
+			  <div class="snow background"></div>
+			  <div class="snow background layered"></div>
+			</div>
+
+<div class="top-buttons-agileinfo clearfix">
+	<div class="head-left">
+		<h1>学习一点通&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+		<span></span>
+	</div>
+	<div class="head-right">
+		<a href="javascript:void(0)"  class="active">登录</a><a href="register.html">注册</a>
+	</div>
+</div>
+<div class="main-agileits" id="login_adm">
+<!--form-stars-here-->
+		<div class="form-w3-agile">
+			<h2 class="sub-agileits-w3layouts">管理员登录</h2>
+			<form action="#" method="post">
+				<div class="login clearfix">
+					<input type="email" name="account" placeholder="用户名" required="" 
+						v-model="account" @focus="clearMsg"/>
+					<input type="password" id ="password" name="pwd" placeholder="密码" required="" 
+						v-model="pwd"  @blur="checkInfo(0)"  @focus="clearMsg"/>
+					<div id="passwordeye" class="invisible bgImg"></div>
+					<div class="code1">
+						<input type="text" class="ipt1" class="ipt1" name="code" id="code" placeholder="验证码"
+							v-model="code" @blur="checkInfo(1)" @focus="clearMsg"/>
+					</div>
+					<img class="code" src="../code" onclick="this.src='../code?d=' + new Date()">
+				</div>
+				<span style="color: red;" name="Message">{{info}}</span>
+				<a href="#" class="forgot-w3layouts">忘记密码？</a>
+				<div class="submit-w3l">
+					<input type="button" value="登录" @click="login()">
+				</div>
+				<p class="p-bottom-w3ls"><a href="register.html">这里注册</a>如果你还没有一个账号.</p>
+			</form>
+		</div>
+	</div>
+<!--//form-ends-here-->
+<!-- copyright -->
+    <div class="copyright w3-agile">
+        <p> CopyRight &copy; 2022 <a class="copy" href="http://www.hyycinfo.com" target="_blank">衡阳市源辰信息科技有限公司</a>All Rights Reserved</p>
+    	<p>电话：17873475828  QQ：2445222672</p>
+    </div>
+	<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/axios.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/qs.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		let vm = new Vue({
+			el: "#login_adm",
+			data:{
+				account:"",
+				pwd:"",
+				code:"",
+				info:"",
+				status: [false, false],
+			},
+			mounted() {
+				
+			},
+			methods:{
+				checkInfo(flag){// 数据验证
+					let correct = false;
+					switch(flag){
+						case 0:
+						let reg3 = /^[\w@!%]{6,15}$/; // swit 变量不能重复
+						if(!(reg3.test(this.pwd))){
+							this.info = "密码格式错误，请重新输入！！！";
+							correct = false;
+							return;
+						}else{
+							correct = true;
+						}
+						break;
+						case 1: // 验证验证码
+						let reg4 = /^\w{4}$/;
+						if(!(reg4.test(this.code))){
+							this.info = "验证码格式错误，请重新输入！！！";
+							correct = false;
+							return;
+						}else{
+							correct = true;
+						}
+						break;
+						default:
+						this.info = "验证失败， 请重新输入";
+						return;
+					}
+					// Vue 修改数据
+					Vue.set(this.status, flag, correct);
+				},
+				
+				clearMsg(){ // 清除提示
+					this.info = "";
+				},
+				login(){
+					if($.inArray(false, this.status) > 0){ //只要有一项验证不通过 就无法登录
+						this.info = "您输入的信息有误， 请确认后重新登录";
+						return;
+					}
+					axios.post("../mem/login_adm", qs.stringify({a_user: this.account, a_pwd: this.pwd, a_email: this.code})).then(result=>{
+						if(result.data.code == 200){
+							// 获取来源地址 既是那个页面链接过来  将来登陆成功直接返回该界面
+							let temp = document.referrer;
+							if("" == temp || temp.indexOf("register.html")){
+								location.href = "admin.html";
+								return;
+							}
+							location.href = temp;
+							return;
+						}
+						if(result.data.code == 500){
+							this.info = "账号或密码错误，请确认后重新登录...";
+						}
+						if(result.data.code == 503){
+							this.info = "验证码错误， 请重新输入...";
+							return;
+						}
+					})
+				}
+			}
+		})
+		function switchPwd() {
+		    var passwordeye = $('#passwordeye');
+		    var showPwd = $("#password");
+		    passwordeye.off('click').on('click',function(){
+			    if(passwordeye.hasClass('invisible')){
+				    passwordeye.removeClass('invisible').addClass('visible');//密码可见
+				    showPwd.prop('type','text');
+			    }else{
+				    passwordeye.removeClass('visible').addClass('invisible');//密码不可见
+				    showPwd.prop('type','password');
+			    };
+		    });     
+		}
+		switchPwd();	
+	</script>
+</body>
+</html>

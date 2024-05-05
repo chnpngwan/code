@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.addexam{
+				width: 1519px;
+			}
+			.head{
+				width: 1519px;
+				height: 50px;
+			}
+			.t{
+				margin: 20px 0 0 80px;
+				float: left;
+			}
+			#showexam{
+				width: 1519px;
+				
+			}
+			.examList{
+				width: 1519px;
+				padding: auto;
+			}
+			.examList .title{
+				margin: 20px 0 0 70px;
+			}
+			.examList .title input[type="button"]{
+				margin: 0 0 0 70px;
+			}
+			.examList ul li{
+				list-style: none;
+				float: left;
+				margin: 0 0 0 30px;
+			}
+			.button{
+				width: 300px;
+				margin: auto;
+			}
+			.answer{
+				margin: 0 0 0 70px;
+			}
+			.clearfix{
+				zoom:1;
+			}
+			.clearfix:after{
+				content:"."; 
+				display:block; 
+				vertical-align:top; 
+				height:0; 
+				font-size:0; 
+				line-height:0; 
+				overflow:hidden; 
+				visibility:hidden; 
+				clear:both;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="addexam">
+			<form action="" method="post">
+				<div class="head">
+					<div class="t">
+						<label>考试名称：</label>
+						<input type="text" id="Topic" value="" />
+					</div>
+					<div class="t">
+						<label>开始时间：</label>
+						<input  type="datetime-local" name="starttime" id="starttime" value="" />
+					</div>
+					<div class="t">
+						<label>结束时间：</label>
+						<input  type="datetime-local" name="endtime" id="endtime" value="" />
+					</div>
+					<div class="t">
+						<label>考试时长：</label>
+						<input type="text" id="time" value="" />
+					</div>
+				</div>
+			
+				<h4>单选题</h4>
+				<hr >
+				<div id="showexam">
+					<div class="examList" id="examList">
+						<div class="title"><span>试题1：</span><input name="title_1" /><input class="delExam" type="button"
+							value="删除试题" /></div>
+						<ul class="clearfix">
+							<li>选项1：<input type="text" name="text_1"></li>
+							<li>选项2：<input type="text" name="text_1"></li>
+							<li>选项3：<input type="text" name="text_1"></li>
+							<li>选项4：<input type="text" name="text_1"></li>
+						</ul>
+						<div class="answer">
+							<label>答案：</label>
+							<input type="text" name="answer">
+						</div>
+						<br>
+						<hr >
+					</div>
+				</div>
+				<div class="button">
+					<input type="button" value="添加试题" id="add_exam" />
+					<input type="button" value="提交" id="tijiao" />
+				</div>
+			</form>
+		</div>
+
+		<!-- //copyright -->
+		<script src="../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/time.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="../js/vue.js"></script>
+		<script type="text/javascript" src="../js/axios.js"></script>
+		<script type="text/javascript" src="../js/qs.js"></script>
+
+		<script type="text/javascript">
+			var array = [];
+			$(function() {
+				var tmp = $('.examList').eq(0).clone();
+				var option = $('.examList li').eq(0).clone();
+				$("#add_exam").click(function() { //添加试题
+					$('#showexam').append(tmp.clone());
+					changeName();
+				});
+
+				$("#showexam").on("click", ".delExam", function() { //删除试题
+					$(this).parent().parent().remove();
+					changeName();
+				});
+
+
+
+				$("#tijiao").click(function() { //提交按钮，提交成功提醒
+					tijiao();
+				});
+
+				function changeName() { //修改标题
+					$('.examList').each(function(i, e) {
+						i = i + 1;
+						$(e).attr('id', 'title_' + i);
+						$(e).find('input[name^=title_1]').attr('name', 'title_' + i);
+						$(e).find('span').text('试题' + i + "：");
+						$(e).find('li').each(function(j, e1) {
+							$(e1).find('input[name^=text_1]').attr('name', 'text_' + i);
+						});
+					});
+				}
+				
+				function tijiao(){
+					array = [];
+					$('.examList').each(function(i, e) {
+						var arr = [];
+						i++;
+						if(($(e).find('input[name^=title_'+ i +']').val()) == ""){
+							alert("试题"+ i + "为空");
+							return ;
+						}
+						arr.push(($(e).find('input[name^=title_'+ i +']').val()).replace(/\+/g, '%2B'));
+						$(e).find('li').each(function(j, e1) {
+							arr.push($(e1).find('input[name^=text_'+ i +']').val().replace(/\+/g, '%2B'));
+						});
+						arr.push($(e).find('input[name^=answer]').val().replace(/\+/g, '%2B'));
+						array.push(arr);
+						console.log(array);
+					})
+					var topic = document.getElementById("Topic").value;
+					var starttime = document.getElementById("starttime").value;
+					var endtime = document.getElementById("endtime").value;
+					var time = document.getElementById("time").value;
+					
+					axios.post("../class/addExam", qs.stringify({e_name : topic, endtime : endtime, starttime: starttime, time : time, degree : array.length*5})).then(result=>{
+						if(result.data.code == 200){
+							alert("添加考试成功！");
+						}else{
+							alert("添加考试失败！");
+						}
+					})
+					axios.post("../class/loginl", qs.stringify({arra: array, topic : topic, w_name :""})).then(result=>{
+						if(result.data.code == 200){
+							alert("提交试题成功！");
+							window.close();
+						}else{
+							alert("提交试题失败！");
+						}
+					})
+				}
+			});
+		</script>
+	</body>
+</html>
+
+
+

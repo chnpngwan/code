@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../layui/css/layui.css"/>
+		<link rel="stylesheet" href="../css/showMsg.css">
+	</head>
+	<body>
+		<form class="layui-form layui-form-pane" id="userinfo">
+			<div class="layui-form-item" style="height:100px"></div>
+			<div class="layui-form-item" style="text-align:center">
+				<div class="layui-inline" >
+					<label class="layui-form-label layui-bg-red" style="width:150px">账号：</label>
+					<div class="layui-input-inline">
+						<input type="text" id="editAccount" name="editAccount" lay-verify="required" :value="name" autocomplete="off" class="layui-input" disabled="">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item" style="text-align:center">
+				<div class="layui-inline" style="text-align:center;">
+					<label class="layui-form-label layui-bg-blue" style="width:150px">旧密码：</label>
+					<div class="layui-input-inline">
+						<input type="password" id="editOldPassword" name="editOldPassword" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入旧密码" >
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item" style="text-align:center">
+				<div class="layui-inline">
+					<label class="layui-form-label layui-bg-blue" style="width:150px">新密码：</label>
+					<div class="layui-input-inline">
+						<input type="password" id="editNewPassword1" name="editNewPassword1" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入6-12位新密码">
+					</div>
+	 
+				</div>
+			</div>
+			<div class="layui-form-item" style="text-align:center">
+				<div class="layui-inline">
+					<label class="layui-form-label layui-bg-blue"  style="width:150px">再次输入新密码：</label>
+					<div class="layui-input-inline">
+						<input type="password" id="editNewPassword2" name="editNewPassword2" lay-verify="required" autocomplete="off" class="layui-input" placeholder="请输入6-12位新密码" >
+					</div>
+				</div>
+			</div>
+			<div class="layui-layer-btn-c" style="text-align:center">
+				<button type="button" class="layui-btn layui-btn-normal" id="saveEdit" lay-filter="saveEdit" >保存</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="button" class="layui-btn layui-btn-normal" id="cancelEdit">取消</button>
+			</div>
+		</form>
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/showMsg.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/qs.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/axios.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/checktea.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function () {
+				$("#saveEdit").click(function () {
+					var editAccount = document.getElementById("editAccount").value;
+					var editOldPassword = document.getElementById("editOldPassword").value;
+					var editNewPassword1 = document.getElementById("editNewPassword1").value;
+					var editNewPassword2 = document.getElementById("editNewPassword2").value;
+					//校验成功，则执行修改密码的后台代码
+					if (PasswordCheck1() && PasswordCheck2()) {
+						axios.post("../mem/updateteapwd",qs.stringify({name:editAccount,oldpwd:editOldPassword, newpwd:editNewPassword1})).then(result=>{
+							if(result.status == 200 && result.data.code == 200){
+								showMsg("修改成功！！！","green");
+								return;
+							}else{
+								showMsg("修改失败！！！","red");
+								return;
+							}
+						})
+					}else{
+						showMsg("请输入6-12位新密码！！！","red");
+					}                
+				});
+				//鼠标点击密码输入框之外的地方，焦点执行密码校验函数
+				$("#editNewPassword1").blur(PasswordCheck1);
+				$("#editNewPassword2").blur(PasswordCheck2);
+			});
+			function PasswordCheck1() {
+				var Password = document.getElementById("editNewPassword1").value;
+				//构建正则表达式，规定可输入的密码为6-12位字符
+				var reg_username = /^\w{6,12}$/;
+				//执行正则校验，符合返回true，不符合返回false
+				var flag = reg_username.test(Password);
+				if (flag) {
+					//用户名合法
+					$("#editNewPassword1").css("border", "");
+				} else {
+					//用户名非法,加一个红色边框
+					$("#editNewPassword1").css("border", "1px solid red");
+				}
+				return flag;
+			}
+			function PasswordCheck2() {
+				var Password1 = document.getElementById("editNewPassword1").value;
+				var Password2 = document.getElementById("editNewPassword2").value;
+				if(Password1 == Password2){
+					$("#editNewPassword2").css("border", "");
+					return true;
+				}else{
+					$("#editNewPassword2").css("border", "1px solid red");
+					return false;
+				}
+			}
+		</script>
+	</body>
+</html>

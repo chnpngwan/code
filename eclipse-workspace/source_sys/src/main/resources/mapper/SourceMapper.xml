@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.source.mapper.SourceMapper">
+  <!-- 查询+模糊 -->
+  <select id="queryInfo" resultType="Source">
+    select * from tb_source
+    <where>
+    	<if test="name!=null and name!=''">
+    		name like concat('%',#{name},'%')
+    	</if>
+    </where>
+  </select>
+  <!-- 删除数据 -->
+  <delete id="delSourceById">
+  	delete from tb_source where id=#{id}
+  </delete>
+  <!-- 新增数据 -->
+  <insert id="addSourceInfo" parameterType="Source">
+  	insert into tb_source(name,type,buyDate,price)
+  	values (#{name},#{type},#{buyDate},#{price})
+  </insert>
+  
+  <!-- 分页查询 -->
+  <select id="getSourceLimit" parameterType="map" resultType="source">
+    select * from tb_source limit #{startIndex},#{pageSize};
+  </select>
+	<!-- 查询总记录数 -->
+	<select id="countTotal" resultType="int">
+		select count(*) from tb_source
+	</select>
+</mapper>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	 <head>
+	  <title></title> 
+	  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>  
+	  <link rel="stylesheet" href="../css/showMsg.css">
+		<style type="text/css">
+			.main:hover{
+				background-color: "#01AAED";
+			}
+			#table tr>th, tr>td{
+				width: 150px;
+				text-align: center;
+			}
+			.col06 a{
+				padding: 4px 8px;
+				margin: 4px;
+				border: 1px solid #aaaadd;
+				text-decoration: none;
+				color: #006699;
+				display:inline-block;
+			}
+			
+			.col06 a:hover {
+				border-color:#FF0000;
+				color: #000;
+			}
+		</style>
+	 </head>
+	 <body>
+		 <header>
+		 <h1>学生成绩记录</h1>
+		 </header>
+		 
+		 <div id="gradelist" style="width:100%;">
+		    <table border="1"  id="table" style="width:100%;">
+			   <tr bgcolor="#01AAED">
+				<th class="col01">学号</th>
+				<th class="col02">学生姓名</th>
+				<th class="col03">作业（平均分）</th>
+				<th class="col04">考试（平均分）</th>
+				<th class="col05">学生总成绩</th>
+				<th class="col06">操作</th>
+			   </tr> 
+			   <tr class="main" v-for="list in lists">
+				<td class="col01">{{list.s_id}}</td>
+				<td class="col02">{{list.s_name}}</td>
+				<td class="col03">{{list.wdegree}}</td>
+				<td class="col04">{{list.edegree}}</td>
+				<td class="col05">{{list.totaldegree}}</td>
+				<td class="col06"><a @click="addgrade(list.s_id)">录入成绩</a><a @click="deletestu(list.s_id)">删除</a></td>
+			   </tr>
+			<!--在添加按钮上添加点击事件  -->
+			</table>
+	    </div>
+	    <h1>学生成绩报表</h1>
+	    <div>
+	    	<table style="margin:auto;">
+	           <tr>
+	               <td>
+	                   <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+	                   <div id="main" style="width: 800px;height:600px;"></div>
+	                   <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js" ></script>
+	               </td>
+	           </tr>
+       		</table>
+	    </div>
+	    <script src="../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/axios.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="../js/qs.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="../js/showMsg.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript">
+		     let vm = new Vue({
+		    	 el:"#gradelist",
+				 data:{
+					 lists:[],
+					 exam:[],
+					 word:[],
+				 },
+				 mounted() {
+				 	axios.post("tea/getdegree").then(result=>{
+						if(result.status == 200 && result.data.code == 200){
+							this.lists = result.data.data;
+						}
+					})
+					axios.post("tea/baobiao").then(result=>{
+						if(result.status == 200 && result.data.code == 200){
+							this.exam = result.data.data.exam;
+							this.word = result.data.data.word;
+							// 基于准备好的dom，初始化echarts实例
+				             var myChart = echarts.init(document.getElementById('main'));
+
+				             // 指定图表的配置项和数据
+				             option = {
+								title : {
+									text: '成绩报表',
+									subtext: ''
+								},
+								tooltip : {
+									trigger: 'axis'
+								},
+								legend: {
+									data:['作业平均成绩','考试平均成绩']
+								},
+								toolbox: {
+									show : true,
+									feature : {
+										dataView : {show: true, readOnly: false},
+										magicType : {show: true, type: ['line', 'bar']},
+										restore : {show: true},
+										saveAsImage : {show: true}
+									}
+								},
+								calculable : true,
+								xAxis : [
+									{
+										type : 'category',
+										data : ['60以下','60~69','70~79','80~89','90~100']
+									}
+								],
+								yAxis : [
+									{
+										type : 'value'
+									}
+								],
+								series : [
+									{
+										name:'作业平均成绩',
+										type:'bar',
+										data:[vm.$data.word.e, vm.$data.word.d, vm.$data.word.c, vm.$data.word.b, vm.$data.word.a],
+										markPoint : {
+											data : [
+												{type : 'max', name: '最大值'},
+												{type : 'min', name: '最小值'}
+											]
+										},
+										markLine : {
+											data : [
+												{type : 'average', name: '平均值'}
+											]
+										}
+									},
+									{
+										name:'考试平均成绩',
+										type:'bar',
+										data:[vm.$data.exam.e, vm.$data.exam.d, vm.$data.exam.c, vm.$data.exam.b, vm.$data.exam.a],
+										markPoint : {
+											data : [
+												{name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
+												{name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+											]
+										},
+										markLine : {
+											data : [
+												{type : 'average', name : '平均值'}
+											]
+										}
+									}
+								]
+							};
+					
+				             // 使用刚指定的配置项和数据显示图表。
+				             myChart.setOption(option);
+						}
+					})
+				 },
+				 methods:{
+					 deletestu(id){
+						 var flag = confirm("删除将会删除该学生所有的学习记录，是否要删除该同学");
+						 if(flag){
+							 axios.post("tea/deletestu", qs.stringify({id: id})).then(result=>{
+								if(result.status == 200 && result.data.code == 200){
+									location.reload();
+								}else{
+									showMsg("删除失败!!!","red");
+								}
+							})
+						 }
+					 },
+					 addgrade(id){
+						 var degree = prompt("请输入你录入的分数","");
+						 axios.post("tea/addgrade", qs.stringify({id: id, degree : degree})).then(result=>{
+							if(result.status == 200 && result.data.code == 200){
+								location.reload();
+							}else{
+								showMsg("录入失败!!!","red");
+							}
+						})
+					 }
+				 }
+			 })
+		</script>
+	</body>
+</html>
+

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+	 <head>
+	  <title></title> 
+	  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>  
+	  
+		<style type="text/css">
+
+		</style>
+	 </head>
+	 <body>
+		 <header id = "gradelist">
+			 <h1>学习记录</h1>
+		 </header>
+		 
+	    <div>
+	    	<table style="margin:auto;">
+	           <tr>
+	               <td>
+	                   <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+	                   <div id="main" style="width: 1200px;height:600px;"></div>
+	                   <div id="main1" style="width: 1200px;height:600px;"></div>
+	               </td>
+	           </tr>
+       		</table>
+	    </div>
+	    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js" ></script>
+	    <script src="../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/axios.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="../js/qs.js" type="text/javascript" charset="utf-8"></script>
+	    <script type="text/javascript">
+		     let vm = new Vue({
+		    	 el:"#gradelist",
+				 data:{
+					 lists:[],
+					 ename:[],
+					 totaldegree:[],
+					 degree:[],
+					 wname:[],
+					 degree1:[],
+					 degree2:[],
+				 },
+				 mounted() {
+				 	axios.post("stu/baobiaoexam").then(result=>{
+						if(result.status == 200 && result.data.code == 200){
+							this.lists = result.data.data;
+							for(var i = 0; i < this.lists.length; i++){
+								this.ename[i] = this.lists[i].e_name;
+								this.totaldegree[i] = this.lists[i].degree;
+								this.degree[i] = this.lists[i].degree1;
+							}
+							// 基于准备好的dom，初始化echarts实例
+				             var myChart = echarts.init(document.getElementById('main'));
+
+				             // 指定图表的配置项和数据
+				             option = {
+								title : {
+									text: '考试成绩报表',
+									subtext: ''
+								},
+								tooltip : {
+									trigger: 'axis'
+								},
+								legend: {
+									data:['考试总分','我的分数']
+								},
+								toolbox: {
+									show : true,
+									feature : {
+										dataView : {show: true, readOnly: false},
+										magicType : {show: true, type: ['line', 'bar']},
+										restore : {show: true},
+										saveAsImage : {show: true}
+									}
+								},
+								calculable : true,
+								xAxis : [
+									{
+										type : 'category',
+										data : this.ename
+									}
+								],
+								yAxis : [
+									{
+										type : 'value'
+									}
+								],
+								series : [
+									{
+										name:'作业考试总分',
+										type:'bar',
+										data:this.totaldegree,
+										markPoint : {
+											data : [
+												{type : 'max', name: '最大值'},
+												{type : 'min', name: '最小值'}
+											]
+										},
+										markLine : {
+											data : [
+												{type : 'average', name: '平均值'}
+											]
+										}
+									},
+									{
+										name:'我的分数',
+										type:'bar',
+										data:this.degree,
+										markPoint : {
+											data : [
+												{name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
+												{name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+											]
+										},
+										markLine : {
+											data : [
+												{type : 'average', name : '平均值'}
+											]
+										}
+									}
+								]
+							};
+					
+				             // 使用刚指定的配置项和数据显示图表。
+				             myChart.setOption(option);
+						}
+					})
+					axios.post("stu/baobiaoword").then(result=>{
+						if(result.status == 200 && result.data.code == 200){
+							this.lists = result.data.data;
+							for(var i = 0; i < this.lists.length; i++){
+								this.wname[i] = this.lists[i].w_name;
+								this.degree1[i] = this.lists[i].degree;
+								this.degree2[i] = this.lists[i].degree1;
+							}
+							// 基于准备好的dom，初始化echarts实例
+				             var myChart = echarts.init(document.getElementById('main1'));
+
+				             // 指定图表的配置项和数据
+				             option = {
+								title : {
+									text: '成绩报表',
+									subtext: ''
+								},
+								tooltip : {
+									trigger: 'axis'
+								},
+								legend: {
+									data:['考试总分','我的分数']
+								},
+								toolbox: {
+									show : true,
+									feature : {
+										dataView : {show: true, readOnly: false},
+										magicType : {show: true, type: ['line', 'bar']},
+										restore : {show: true},
+										saveAsImage : {show: true}
+									}
+								},
+								calculable : true,
+								xAxis : [
+									{
+										type : 'category',
+										data : this.wname
+									}
+								],
+								yAxis : [
+									{
+										type : 'value'
+									}
+								],
+								series : [
+									{
+										name:'考试总分',
+										type:'bar',
+										data:this.degree1,
+										markPoint : {
+											data : [
+												{type : 'max', name: '最大值'},
+												{type : 'min', name: '最小值'}
+											]
+										},
+										markLine : {
+											data : [
+												{type : 'average', name: '平均值'}
+											]
+										}
+									},
+									{
+										name:'我的分数',
+										type:'bar',
+										data:this.degree2,
+										markPoint : {
+											data : [
+												{name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
+												{name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+											]
+										},
+										markLine : {
+											data : [
+												{type : 'average', name : '平均值'}
+											]
+										}
+									}
+								]
+							};
+					
+				             // 使用刚指定的配置项和数据显示图表。
+				             myChart.setOption(option);
+						}
+					})
+				 },
+				 methods:{
+				 }
+			 })
+		</script>
+	</body>
+</html>
+

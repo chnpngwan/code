@@ -1,0 +1,195 @@
+
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>课程 信息</title>
+<link href="../css/css.css" type="text/css" rel="stylesheet"/>
+<link href="../css/showMsg.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<style type="text/css">
+	.webuploader-pick{
+		background: url(../images/upload.jpg) no-repeat;
+		padding: 0px;
+		width: 120px;
+		height: 34px;
+		position: relative;
+		display: inline-block;
+		cursor: pointer;
+		text-align: center;
+		border-radius: 3px;
+		overflow: hidden;
+	}
+	.webuploader-pick:hover{
+		background: url(../images/upload.jpg) no-repeat 0 -34px;
+	}
+	
+	.imgForm{
+		inset: 0px auto auto 0px;
+		width: 120px;
+		height: 34px;
+		overflow: hidden;
+		position: absolute !important;
+		border: 0;
+		outline: none;
+		background-color: transparent;
+		text-indent: -9999px;
+		cursor: pointer;
+		position: absolute;
+		right: 0;
+		top: 0;
+		font-size: 88px;
+		opacity: 0;
+	}
+
+</style>
+</head>
+
+<body>
+    <div class="main" id="main">
+    	<div class="wrap inner_main">
+        	<div class="box_createForm" style="width: 600px;">
+				<form method="post" action="" id="saveFactorsForm">
+				<div class="wrap">
+					<h1>新建班级</h1>        
+				</div>
+            	<table cellpadding="0" cellspacing="0">
+                	<tbody>
+                    	<tr>
+                        	<td>课程名称：</td>
+                            <td width="480px">
+                            	<div class="txtForm clearfix" style="float:left;">
+                                    <input class="fl txt" type="text" name="name" id="name" v-model="name"  @keyup="checkCourseName();" @blur="checkCourseName();"/>
+                                </div>
+                                    <span style="color:red;display:none;" id="checkid">*请输入课程名称 </span>
+									<span style="color:red;display:none;" id="checkName">*字数不能超过100!</span>
+                            </td>
+                        </tr>
+                        <tr>
+							<td>开课时间：</td>
+						    <td width="480px">
+						    	<div class="txtForm clearfix" style="float:left;">
+						            <input class="fl txt" type="date" name="date" v-model="starttime" id="date" />
+						        </div>
+						    </td>
+						</tr>
+						<tr>
+							<td>结课时间：</td>
+						    <td width="480px">
+						    	<div class="txtForm clearfix" style="float:left;">
+						            <input class="fl txt" type="date" name="date" v-model="endtime" id="date" value="" />
+						        </div>
+						    </td>
+						</tr>
+						<tr>
+							<td>班级图片：</td>
+							<td>
+								<img id="imgContent" class="fl"  info="false" width="270px" height="169px">
+								<div class="webuploader-pick">
+									<input type="file" name="file" id="imgForm" class="imgForm" multiple="multiple" accept="image/*" onchange="showImg(this)">
+								</div>
+							</td>
+						</tr>
+                    </tbody>
+                </table>
+
+				 </form>
+            </div>
+            <div class="btnForm">
+            	<a class="grenBtn" href="javascript:void(0);" id="saveFactors" @click="addclass()">下一步</a>
+            		<a class="greyBtn" href="javascript:;">返回</a>
+            </div>
+        </div>
+    </div>
+	<script src="../js/axios.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/qs.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../layui/js/ajaxfileupload.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/showMsg.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+        var nameLengthLimit = 100;
+	   let vm = new Vue({
+		   el:"#main",
+		   data:{
+			   name:"",
+			   starttime:"",
+			   endtime:"",
+			   image:"",
+		   },
+		   mounted() {
+				
+		   },
+		   methods:{
+			   checkCourseName(){
+					var courseName = $("#name").val();
+					if(courseName.replace(/\s+/g,"").length<=0){
+						$("#checkid").show();
+					}else{
+						$("#checkid").hide();
+					}
+		   
+					if(courseName.replace(/\s+/g,"").length > nameLengthLimit){
+						$("#checkName").show();
+					}else{
+						$("#checkName").hide();
+					}
+					
+				},
+			    checkTeachers(){
+					var courseName = $("#teachers").val();
+					if(courseName.replace(/\s+/g,"").length>120){
+						$("#checkteachers").show();
+					}else{
+						$("#checkteachers").hide();
+					}
+				},
+			    addclass(){
+			    	if(this.name == "" || this.starttime == "" || this.endtime == "") {
+			    		showMsg("填写不完整！！！", "red");
+						return;
+					}
+			    	const oDate1 = new Date(this.starttime);
+					const oDate2 = new Date(this.endtime);
+					const oDate = Date.now();
+					if(oDate1.getTime() >= oDate2.getTime()){
+						showMsg("开始时间大于或等于结束时间！！！", "red");
+						return;
+					} else if(oDate1.getTime() <= oDate) {
+						showMsg("开始时间小于或等于当前时间！！！", "red");
+						return;
+					}
+				    let image = document.getElementById('imgForm');
+				    if(!image.files[0] || !image.files){
+				    	showMsg("图片为空！！！", "red");
+					    return;
+				    }
+				    
+				    $.ajaxFileUpload({
+						url : '../class/addclass', 
+						secureurl : false,
+						fileElementId : 'imgForm',
+						dataType : 'text',
+						data : { name:this.name, starttime: this.starttime, endtime:this.endtime},
+						success : function( data, status ){
+							data = parseInt($.trim(data));
+							if(data == 200){
+								showMsg("班级添加成功！！！", "green");
+								return;
+							}else{
+								showMsg("班级添加失败！！！", "red");
+								return;
+							}
+						}
+					})
+			    }
+		    }
+	    })
+	   
+	   	function showImg(input) {
+			var file = input.files[0];
+			var url = window.URL.createObjectURL(file);
+			document.getElementById('imgContent').src=url;
+	    }
+	</script>
+</body>
+</html>

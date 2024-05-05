@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>管理员列表</title>
+<link rel="stylesheet" href="../css/list.css" />
+</head>
+<body>
+	<!-- logo区 -->
+	<div class="logo">
+		<a href="#">[退出]</a>
+	</div>
+	<!-- 菜单区 -->
+	<div id="app">
+		<div class="menu">
+			<ul>
+				<li class="index" @click="transfrom(0)">主页</li>
+				<li class="role" @click="transfrom(1)">老师管理</li>
+				<li class="admin" @click="transfrom(2)">学生管理</li>
+			</ul>
+		</div>
+		<!-- 核心区 -->
+		<div class="core">
+			<!-- 渐变条：只需要预留空间即可，不需要单独分区 -->
+			<!-- 内容区 -->
+			<div class="content">
+				<!-- 命令区 -->
+				<div class="btn"></div>
+				<!-- 数据区 -->
+				<div class="data">
+					<table>
+						<thead>
+							<tr>
+								<td id="admin">管理员ID</td>
+								<td>姓名</td>
+								<td>邮箱</td>
+								<td>密码</td>
+							</tr>
+						</thead>
+						<tbody v-for="(order, i) in orders">
+							<tr>
+								<td :id="i">{{order.a_id}}</td>
+								<td>{{order.a_user}}</td>
+								<td>{{order.a_email}}</td>
+								<td>{{order.a_pwd}}</td>
+								<td><input type="button" value="修改" class="update"
+									@click="modify(order)" /> <input type="button" value="删除"
+									class="delete" @click="dele(order)" /></td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- 分页区 -->
+				<div class="page" v-for="" style="padding: 2px;">
+					<ul id="scroll_number">
+						<li id="scroll_0" onclick="show(0)">首页</li>
+						<li id="scroll_1" onclick="show(1)">1</li>
+						<li id="scroll_2" onclick="show(2)">2</li>
+						<li id="scroll_3" onclick="show(3)">3</li>
+						<li id="scroll_4" onclick="show(4)">...</li>
+						<li id="scroll_5" onclick="show(5)">尾页</li>
+					</ul>
+					<select name="" id="sele">
+					</select> <input type="button" name="" id="" @click="tiaozhuan()" value="跳转" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 版权区 -->
+	<div class="copr">
+		<P>版权所有，盗版必究。</P>
+		<p>yc出品，必属精品。</p>
+	</div>
+
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/vue.js"></script>
+	<script type="text/javascript" src="../js/axios.js"></script>
+	<script type="text/javascript" src="../js/qs.js"></script>
+	<script type="text/javascript" src="../js/showg.js"></script>
+	<script type="text/javascript" src="../js/showsg.js"></script>
+
+	<script type="text/javascript" charset="utf-8">
+			let name = "admin";
+			let number = 0; // 当前第几页
+			let numend = 0; // 一共几条数据
+			let unnum = 0; // 第几个li亮了
+			function show(index) {
+				unnum = index;
+				// 清除编号样式
+				$("#scroll_number>li").attr('class', 'scroll_number_out');
+				switch (index) {
+					case 0:
+						number = 1;
+						$("#scroll_number>li").eq(index).attr('class', 'scroll_number_over'); // 点亮
+						$("#scroll_1").html(number);
+						$("#scroll_2").html(number + 1);
+						$("#scroll_3").html(number + 2);
+						break;
+					case 1:
+						number = $("#scroll_1").html() - 1;
+						if($("#scroll_1").html() <= 1){
+							$("#scroll_number>li").eq(index).attr('class', 'scroll_number_over');
+						}else{
+							$("#scroll_number>li").eq(index + 1).attr('class', 'scroll_number_over');
+							$("#scroll_1").html($("#scroll_1").html() - 1);
+							$("#scroll_2").html($("#scroll_2").html() - 1);
+							$("#scroll_3").html($("#scroll_3").html() - 1);
+						}
+						break;
+					case 2:
+						$("#scroll_number>li").eq(index).attr('class', 'scroll_number_over');
+						number = $("#scroll_2").html() - 1;
+						break;
+					case 3:
+						number = $("#scroll_3").html() - 1;
+						if($("#scroll_3").html() >= Math.floor(numend / 1)){
+							$("#scroll_number>li").eq(index).attr('class', 'scroll_number_over');
+						}else{
+							$("#scroll_number>li").eq(index - 1).attr('class', 'scroll_number_over');
+							$("#scroll_1").html($("#scroll_1").html() * 1 + 1);
+							$("#scroll_2").html($("#scroll_2").html() * 1 + 1);
+							$("#scroll_3").html($("#scroll_3").html() * 1 + 1);
+						}
+						break;
+					case 4:
+						break;
+					case 5:
+						number = Math.floor(numend / 1) - 1;
+						$("#scroll_number>li").eq(index).attr('class', 'scroll_number_over');
+						if(number == 1){
+							$("#scroll_1").html(number);
+							$("#scroll_2").html(number + 1);
+							$("#scroll_3").html(number + 2);
+						}else{
+							$("#scroll_1").html(number - 1);
+							$("#scroll_2").html(number);
+							$("#scroll_3").html(number + 1);
+						}
+					
+						break;
+				}
+				app.fasong();
+				
+			}
+			let app = new Vue({
+				el: "#app",
+				data: {
+					orders: [], // 存储查到的信息
+				},
+				mounted: function() {
+					axios.post("../mem/admin", qs.stringify({
+						uname: name,
+						num: number
+					})).then(result => {
+						this.orders = result.data.data;
+						numend = this.orders[0].count;
+						for(var i = 0; i < Math.floor(numend / 1); i ++){
+							var newsele = document.createElement("option");
+							newsele.text= i + 1;
+							newsele.value=i;
+					        document.getElementById("sele").add(newsele);
+						}
+					})
+				},
+				methods: {
+					transfrom(num) {
+						switch (num) {
+							case 0:
+								document.getElementById("admin").innerHTML = "管理员ID";
+								name = "admin";
+								break;
+							case 1:
+								document.getElementById("admin").innerHTML = "老师工号";
+								name = "teacher";
+								break;
+							case 2:
+								document.getElementById("admin").innerHTML = "学号";
+								name = "student";
+								break;
+						}
+						this.fasong();
+						this.xialakuang();
+					},
+					modify(order) {
+						showg(order);
+					},
+					dele(order){
+						let a;
+						a = "是否删除姓名为" + order.a_user + "的账号";
+						showsg(a, "red", order.a_id);
+					},
+					fasong(){
+						axios.post("../mem/admin", qs.stringify({
+							uname: name,
+							num: number
+						})).then(result => {
+							if (result.data.code == 200) {
+								this.orders = result.data.data;
+								numend = this.orders[0].count;
+							}
+						})
+					},
+					tiaozhuan(){
+						$("#scroll_number>li").attr('class', 'scroll_number_out'); // 清除样式
+						number = document.getElementById("sele").value * 1;
+						switch (number) {
+							case 0:
+								number = 0;
+								$("#scroll_number>li").eq(1).attr('class', 'scroll_number_over'); // 点亮
+								$("#scroll_1").html(number + 1);
+								$("#scroll_2").html(number + 2);
+								$("#scroll_3").html(number + 3);
+								break;
+							case Math.floor(numend / 1) - 1:
+								$("#scroll_number>li").eq(3).attr('class', 'scroll_number_over');
+								if(number == 1){
+									$("#scroll_1").html(number);
+									$("#scroll_2").html(number + 1);
+									$("#scroll_3").html(number + 2);
+								}else{
+									$("#scroll_1").html(number - 1);
+									$("#scroll_2").html(number);
+									$("#scroll_3").html(number + 1);
+								}
+								break;
+							default:
+								$("#scroll_number>li").eq(2).attr('class', 'scroll_number_over');
+								$("#scroll_1").html(number);
+								$("#scroll_2").html(number + 1);
+								$("#scroll_3").html(number + 2);
+						}
+						this.fasong();
+					},
+					xialakuang(){
+						document.getElementById("sele").options.length = 0;
+						for(var i = 0; i < Math.floor(numend / 1); i ++){
+							var newsele = document.createElement("option");
+							newsele.text= i + 1;
+							newsele.value=i;
+					        document.getElementById("sele").add(newsele);
+						}
+					}
+				}
+			})
+		</script>
+</body>
+</html>

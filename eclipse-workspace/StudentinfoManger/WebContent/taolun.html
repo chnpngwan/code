@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link href="css/showMsg.css" type="text/css" rel="stylesheet"/>
+	<script src="js/showMsg.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+		.oneDiv {
+			width: 963px;
+			padding: 18px 25px;
+		}
+		
+		.photo18 {
+			width: 42px;
+			height: 42px;
+			border-radius: 42px;
+			overflow: hidden;
+		}
+		
+		.oneRight {
+			width: 850px;
+		}
+		
+		.name {
+			color: #7a9e31;
+			font-size: 14px;
+		}
+		
+		.gray {
+			color: #999;
+		}
+		
+		h3.bt {
+			padding: 5px 0;
+			font-size: 18px;
+		}
+		
+		.bt {
+			font-size: 14px;
+			color: #636679;
+		}
+		
+		.ol {
+			word-wrap: break-word;
+			word-break: keep-all;
+		}
+		
+		.stuFont {
+			color: #666;
+			font-size: 14px;
+		}
+		
+		.fr {
+			float: right;
+		}
+		
+		.fl {
+			float: left;
+		}
+		
+		.clearfix1 {
+			zoom: 1;
+		}
+		
+		.clearfix1:after {
+			content: '';
+			display: block;
+			overflow: hidden;
+			clear: both;
+			font-size: 0;
+			height: 0;
+			line-height: 0;
+		}
+		
+		.borSolid {
+			border-bottom: solid 1px #e2e2e2;
+		}
+		
+		.content1118 {
+			width: 965px;
+			margin: 15px auto;
+			padding-bottom: 80px;
+			border: solid 1px #e6e6e6;
+			background: #fcfcfc;
+		}
+		
+		.SecondDiv {
+			padding: 18px 30px 18px 90px;
+		}
+		
+		.photo18 {
+			width: 42px;
+			height: 42px;
+			border-radius: 42px;
+			overflow: hidden;
+		}
+		
+		.secondRight {
+			width: 780px;
+		}
+		.topic_interactive {
+			width: 780px;
+			margin-top: 6px;
+			height: 20px;
+			line-height: 20px;
+		}
+
+		.topic_interactive .like,
+		.topic_interactive .comment,
+		.topic_interactive .price {
+			float: right;
+			min-width: 60px;
+			text-align: right;
+			padding-right: 10px;
+		}
+
+		.topic_interactive .like>i,
+		.topic_interactive .like>span,
+		.topic_interactive .comment>i,
+		.topic_interactive .comment>span,
+		.topic_interactive .price>i,
+		.topic_interactive .price>span {
+			cursor: pointer;
+		}
+
+		.topic_interactive .commentIcon {
+			background-position: 0 -16px;
+		}
+		.topic_interactive span {
+			display: inline-block;
+			vertical-align: middle;
+			margin: 0 4px;
+			font-size: 14px;
+			color: #8A8B99;
+		}
+
+		.topic_interactive .likeIcon,
+		.topic_interactive .commentIcon {
+			display: inline-block;
+			vertical-align: middle;
+			width: 16px;
+			height: 16px;
+			background: url(images/topic_interactive.png) no-repeat;
+			background-size: 32px auto;
+		}
+
+		.topic_interactive .commentIcon {
+			background: url(images/topic_interactive.png) no-repeat 0 -15px;
+			background-size: 32px auto;
+		}
+
+		.topic_interactive .likeIcon:hover {
+			background: url(images/topic_interactive.png) no-repeat -18px 0;
+			background-size: 32px auto;
+		}
+
+		.topic_interactive .commentIcon:hover {
+			background: url(images/topic_interactive.png) no-repeat -18px -15px;
+			background-size: 32px auto;
+		}
+		#addGroupTopicForm{
+			width: 800px;
+			position: relative;
+			left: 100px;
+			display:none;
+		}
+
+		select,
+		textarea {
+			vertical-align: middle;
+			font: 12px/1.5 微软雅黑, 黑体, Arial, Helvetica, sans-serif;
+			color: #000;
+			border: none;
+			border: 0;
+		}
+
+		.qdBtn {
+			display: block;
+			width: 61px;
+			height: 26px;
+			line-height: 26px;
+			text-align: center;
+			color: #fff;
+			background: #7d9e31;
+			border-radius: 3px;
+			font-size: 14px;
+			margin-top: 14px;
+		}
+		.listText {
+		    margin-top: 15px;
+		    border: solid 1px #cbcbcb;
+		    width: 615px;
+		    height: 96px;
+		    padding: 10px;
+		    resize: vertical;
+		}
+	</style>
+</head>
+<body>
+	<div class="content1118" style="word-wrap: break-word;" id="app" >
+		<div class="oneDiv">
+			<span> <img src="http://img1.16q.cn/a56626a15a1c2cc92d0b0972e3d086ba?w=100&amp;h=100"
+				width="42" height="42">
+			</span> <span class="fl"> </span>
+			<div class="fr oneRight">
+				<div class="oneTop">
+					<p>
+						<span class="name" id="name"></span>
+					</p>
+					<p class="gray" id="time"></p>
+				</div>
+				<h3 class="bt ol">
+					<span style="color: #59657d;" id="title"></span>
+				</h3>
+				<p class="stuFont topicContent" id="topicContent"></p>
+				<p class="clearfix">
+					<a href="#" class="dx fr"></a> <input type="hidden"
+						id="reply_count346989100" value="15"> <a
+						href="javascript:;" id="reply_count_346989100" class="fr tl1"><i></i>
+					</a>
+				</p>
+			</div>
+			<p class="clearfix1">
+				<div class="topic_interactive">
+					<div class="comment" @click="changeDivDown()"><i
+							class="commentIcon"></i><span>0</span></div>
+					<div class="like">
+						<i class="likeIcon" ></i><span>0</span>
+					</div>
+				</div>
+				<form method="post" id="addGroupTopicForm" action="">
+					<div id="tijiao">
+						<div class="listTop" style="height: 210px; overflow: hidden; margin-top: 0px;">
+							<textarea id="textarea" v-model="s_titl" name="content" class="listText" :placeholder="'对' + s_name + '说点什么吧'"></textarea>
+						</div>
+						<div class="listBtn" style="min-height:30px;">
+							<a href="javascript:;" class="fr cancel" style="color:#999;margin-left:10px">取消</a>
+							<a href="javascript:;" class="qdBtn fr" style="margin:0" @click="addtaolun()">确定</a>
+						</div>
+					</div>
+				</form>
+			</p>
+		</div>
+		<div class="" v-for="discuss in s_discuss">
+			<div class="SecondDiv clearfix1" id="plDiv_1198218840">
+				<span class="fl photo18"> <img src="http://img1.16q.cn/a56626a15a1c2cc92d0b0972e3d086ba?w=100&amp;h=100" width="42"
+					height="42">
+				</span> <span class="fl"> </span>
+				<div class="fr secondRight">
+					<div class="oneTop">
+						<p>
+							<span class="name">{{discuss.s_name}}</span>
+						</p>
+						<p class="gray">{{discuss.s_time}}</p>
+					</div>
+					<h3 class="bt" id="replyfirstname_1198218840" name="replyfirstname">
+						{{discuss.s_titl}}</h3>
+				</div>
+				<div class="topic_interactive">
+					<div class="comment"><i
+							class="commentIcon"></i><span>0</span></div>
+					<div class="like">
+						<i class="likeIcon"></i><span>0</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- //copyright -->
+	<script src="js/jquery-2.1.4.min.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="js/time.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript" src="js/axios.js"></script>
+	<script type="text/javascript" src="js/qs.js"></script>
+
+	<script type="text/javascript">
+		var title;
+		var d_time;
+		var d_title;
+		var d_titl;
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				s_name:"",
+				s_discuss: [], // 学生回复讨论的信息
+				d_id:"",
+				s_titl:"",
+			},
+			mounted: function() {
+				title = decodeURI(location.search);
+				if( title == "" || title.indexOf("?") != 0 ){//说明请求地址数据有问题返回首页
+					location.href = "addtaolun.html";
+					return;
+				}
+				title = title.replace("?", "").split("&");
+				this.s_name = title[0];
+				d_time = title[1];
+				d_title = title[2];
+				d_titl = title[3];
+				this.d_id = title[4];
+				$('#name').text(this.s_name);
+				$('#time').text(d_time);
+				$('#title').text(d_title);
+				$('#topicContent').text(d_titl);
+				axios.post("mem/discu", qs.stringify({
+					d_id: this.d_id
+				})).then(result => {
+					if (result.data.code == 200) {
+						this.s_discuss = result.data.data;
+					}
+				})
+			},
+			methods:{
+				changeDivDown() { //此为向下展开div的方法
+					if($("#addGroupTopicForm").css("display")=="none"){
+						$("#addGroupTopicForm").css("display","block");
+					}else{
+						$("#addGroupTopicForm").css("display","none");
+					}
+				},
+				
+				addtaolun() {
+					if(this.s_titl == ""){
+						showMsg("内容为空！！！","red")
+					}
+					axios.post("mem/addpinglun", qs.stringify({
+						d_id: this.d_id,
+						s_titl: this.s_titl
+					})).then(result => {
+						if (result.data.code == 200) {
+							showMsg("添加成功！！！","green")
+							location.reload();
+						}else{
+							showMsg("添加失败！！！","red")
+						}
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>
