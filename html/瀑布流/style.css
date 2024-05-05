@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.box{
+    float: left;
+    padding: 5px;
+}
+
+.box-img{
+    width: 165px;  // 图片的宽度，他会决定一行能放多少张图片
+padding: 5px;
+    border: 1px solid #ccc;
+}
+
+img{
+    width: 100%;
+}

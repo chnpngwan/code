@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>登录页面</title>
+  <style type="text/css">
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    form {
+      background-color: white;
+      border: 1px solid #333;
+      padding: 50px;
+      width: 300px;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+
+    input[type=submit] {
+      background-color: #333;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      width: 120px;
+    }
+
+    .long {
+      width: 500px;
+      padding: 20px;
+      border: 6px solid #f2f2f2;
+      border-radius: 20px;
+      background-color: #f2f2f2;
+    }
+
+    .small {
+      font-size: 1.5px;
+    }
+
+    #login-time {
+      font-size: 14px;
+      color: #888;
+    }
+
+    .timer {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .main {
+      background-color: #333;
+    }
+
+    .name {
+      background-color: #888;
+    }
+  </style>
+</head>
+<body>
+<div class="long">
+  <form style="position: relative; top: 10px;">
+    <div id="main">
+      <div>用户名
+        <input type="text" id="name" name="name" placeholder="用户名不能为空"/>
+      </div>
+
+      <div>邮箱
+        <input type="text" name="email" id="email" placeholder="邮箱必须包含@符号"/>
+      </div>
+
+      <div>密码
+        <input type="password" name="password" id="password" placeholder="密码不允许为空，密码长度为8位数"/>
+      </div>
+
+      <div>确认密码
+        <input type="password" name="confirmPassword" id="confirmPassword" placeholder="确认密码不能为空"/>
+      </div>
+
+      <div>手机号
+        <input type="text" name="phone" id="phone" placeholder="只能是数字，长度为11"/>
+      </div>
+    </div>
+    <div id="long-time">
+      本地时间: <span id="local-time"></span>
+    </div>
+    <button type="button" onclick="validateForm()">注册</button>
+  </form>
+</div>
+<script type="text/javascript">
+  document.getElementById('local-time').textContent = new Date().toLocaleTimeString(); // 获取本地时间并显示在页面上
+  setInterval(function () { // 每秒更新一次时间
+    document.getElementById('local-time').textContent = new Date().toLocaleTimeString();
+  });
+
+  function validateForm() {
+    var username = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("confirmPassword").value;
+    var phone = document.getElementById("phone").value;
+
+    // 用户名不能为空
+    if (username === "") {
+      alert("用户名不能为空");
+      return;
+    }
+
+    // 邮箱必须包含@符号
+    if (email.indexOf("@") === -1) {
+      alert("邮箱必须包含@符号");
+      return;
+    }
+
+    // 密码不能为空且长度必须为8位
+    if (password === "" || password.length !== 8) {
+      alert("密码不能为空，密码长度必须为8位");
+      return;
+    }
+
+    // 确认密码不能为空
+    if (confirmPassword === "") {
+      alert("确认密码不能为空");
+      return;
+    }
+
+    // 密码和确认密码不相同
+    if (password !== confirmPassword) {
+      alert("密码和确认密码不相同");
+      return;
+    }
+
+    // 手机号必须是数字且长度为11位
+    if (phone.length !== 11 || isNaN(phone)) {
+      alert("手机号只能是数字，长度必须为11位");
+      return;
+    }
+
+    // 如果所有验证通过，显示注册成功的消息框
+    alert("注册成功！");
+  }
+</script>
+</body>
+</html>

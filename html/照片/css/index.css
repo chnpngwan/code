@@ -1,0 +1,107 @@
+div {
+    width: 300px;
+    height: 300px;
+}
+
+.box {
+    width: 300px;
+    height: 300px;
+    transform-style: preserve-3d;
+    padding-left: 400px;
+    padding-top: 300px;
+    animation: move 50s linear infinite;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+}
+
+.box:hover {
+    transform: rotateX(360deg) rotateY(360deg);
+}
+
+.qian {
+    background-color: pink;
+    position: absolute;
+    transform: translateZ(150px);
+}
+
+.hou {
+    background-color: blue;
+    position: absolute;
+    transform: translateZ(-150px);
+}
+
+.shang {
+    background-color: bisque;
+    position: absolute;
+    transform: translateY(-150px) rotateX(90deg);
+}
+
+.xia {
+    background-color: aqua;
+    position: absolute;
+    transform: translateY(150px) rotateX(90deg);
+}
+
+.zuo {
+    background-color: rebeccapurple;
+    position: absolute;
+    transform: translateX(-150px) rotateY(90deg);
+}
+
+.you {
+    background-color: orange;
+    position: absolute;
+    transform: translateX(150px) rotateY(90deg);
+}
+
+div div {
+    opacity: 0.9;
+}
+
+@keyframes move {
+    0% {
+        transform: rotateX(0) rotateY(0) rotateZ(0);
+    }
+    100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+    }
+}
+
+.box:hover .qian {
+    width: 300px;
+    height: 300px;
+    transform: translateZ(200px);
+}
+
+.box:hover .hou {
+    width: 300px;
+    height: 300px;
+    transform: translateZ(-200px);
+}
+
+.box:hover .zuo {
+    width: 300px;
+    height: 300px;
+    transform: translateX(-200px) rotateY(90deg);
+}
+
+.box:hover .you {
+    width: 300px;
+    height: 300px;
+    transform: translateX(200px) rotateY(90deg);
+}
+
+.box:hover .shang {
+    width: 300px;
+    height: 300px;
+    transform: translateY(200px) rotateX(90deg);
+}
+
+.box:hover .xia {
+    width: 300px;
+    height: 300px;
+    transform: translateY(-200px) rotateX(90deg);
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>身份证号码验证</title>
+    <script type="text/javascript">
+        function isIdCardNo(idCardNo) {
+            var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+            if (reg.test(idCardNo) === false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+		function checkIdCardNo() {
+              var idCardNo = document.getElementById("idCardNo").value;
+              if (isIdCardNo(idCardNo)) {
+                  alert(idCardNo + "是有效的身份证号码");
+              } else {
+                  alert(idCardNo + "不是有效的身份证号码");
+              }
+          }
+      </script>
+  </head>
+  <body>
+      <label for="idCardNo">身份证号码：</label>
+      <input type="text" id="idCardNo">
+      <button onclick="checkIdCardNo()">验证</button>
+</body>
+</html>
