@@ -1,0 +1,170 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans',sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #000000;
+}
+.square{
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.square i{
+    position: absolute;
+    inset: 0;
+    border: 2px solid #fff;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+}
+.square i:nth-child(1) {
+    border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    -webkit-border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    -moz-border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    -ms-border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    -o-border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+    animation: animate 6s linear infinite;
+    -webkit-animation: animate 6s linear infinite;
+}
+.square i:nth-child(2) {
+    border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+    -webkit-border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+    -moz-border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+    -ms-border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+    -o-border-radius: 41% 44% 56% 59% / 38% 62% 63% 37%;
+    animation: animate 4s linear infinite;
+    -webkit-animation: animate 4s linear infinite;
+}
+.square i:nth-child(3) {
+    border-radius: 41% 44% 56% 59% / 48% 65% 73% 47%;
+    -webkit-border-radius: 41% 44% 56% 59% / 48% 65% 73% 47%;
+    -moz-border-radius: 41% 44% 56% 59% / 48% 65% 73% 47%;
+    -ms-border-radius: 41% 44% 56% 59% / 48% 65% 73% 47%;
+    -o-border-radius: 41% 44% 56% 59% / 48% 65% 73% 47%;
+    animation: animate2 10s linear infinite;
+    -webkit-animation: animate2 10s linear infinite;
+}
+.square:hover i:nth-child(1) {
+    border: none;
+    background: -webkit-linear-gradient(90deg,#6f316f,#0078ff,#8ab2ed);
+}
+.square:hover i:nth-child(2) {
+    border: none;
+    background: -webkit-linear-gradient(90deg,#5203f1,#184475,#07d9f5);
+}
+.square:hover i:nth-child(3) {
+    border: none;
+    background: -webkit-linear-gradient(90deg,#41a8bf,#a044c1,#6f1fbf);
+}
+/* 外圈运动动画*/
+@keyframes animate{
+    0%{
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+}
+100%{
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+}
+}
+@keyframes animate2{
+    0%{
+        transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+}
+100%{
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+}
+}
+.login{
+    position: absolute;
+    width: 250px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.login h2{
+    font-size: 1.6em;
+    color: #fff;
+    letter-spacing: 15px;
+    font-weight: 300;
+}
+.login .inputbox{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.login .inputbox input{
+    position: relative;
+    width: 100%;
+    padding: 12px 20px;
+    background: transparent;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    font-size: 1.2em;
+    color: #fff;
+    box-shadow: none;
+    outline: none;
+}
+.login .inputbox input[type="submit"]{
+    width: 80%;
+    background: rgba(255,255,255,0);
+    border: 2px solid white;
+    cursor: pointer;
+    border-radius: 45%;
+    -webkit-border-radius: 45%;
+    -moz-border-radius: 45%;
+    -ms-border-radius: 45%;
+    -o-border-radius: 45%;
+}
+.login .inputbox input[type="submit"]:hover{
+    background: linear-gradient(45deg,#ff357a,#fff172);
+}
+.login .inputbox input::placeholder{
+    color: rgba(255, 255, 255, 0.75);
+}
+.login .links{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.login .links a{
+    color: #fff;
+    text-decoration: none;
+}
