@@ -1,0 +1,11 @@
+{
+	"name": "zion-mdapi",
+	"version": "0.0.1",
+	"scripts": {
+		"start": "cd node_modules/zion-mdapi && npm start",
+		"test": "cd node_modules/zion-mdapi && npm test"
+	},
+	"dependencies": {
+		"zion-mdapi": "^2.0.5"
+	}
+}
