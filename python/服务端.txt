@@ -1,0 +1,115 @@
+
+#重庆样题——1，图表1根据年、月查询国家对应的订单金额数据
+@app.route('/getNationTotalPrice',methods=['POST'])
+def getNationTotalPrice():
+    year = request.form.get('year')
+    month = request.form.get('month')
+    conn = pymysql.connect(host='127.0.0.1', user='root', passwd='123456', db='shtd_store', charset='utf8')
+    cur = conn.cursor()
+    cont = cur.execute("select NATION.name,totalprice from ORDERS inner join CUSTOMER on ORDERS.custkey=CUSTOMER.custkey inner join NATION on CUSTOMER.nationkey = NATION.nationkey where year(orderdate)={} and month(orderdate)={}".format(year,month))
+    res = cur.fetchall()
+    cur.close()
+    conn.commit()
+    conn.close()
+
+    arrayResult = []  # 定义一个数组
+    # 遍历元组数据将数据装到指定元组
+    for row in res:
+        result = {}
+        result['name'] = row[0]
+        result['totalprice'] = row[1]
+        arrayResult.append(result)
+
+    result = {
+        'code':200,
+        'msg':'查询成功',
+        'results':arrayResult
+    }
+    Jsonstr = json.dumps(result)
+    return Jsonstr.encode('utf-8').decode('unicode_escape')
+
+#重庆样题——1，图表2统计各大洲的总额占比
+@app.route('/getRegionTotalPrice',methods=['POST'])
+def getRegionTotalPrice():
+    year = request.form.get('year')
+    conn = pymysql.connect(host='127.0.0.1', user='root', passwd='123456', db='shtd_store', charset='utf8')
+    cur = conn.cursor()
+    cont = cur.execute("select REGION.name,orderdate,totalprice from ORDERS inner join CUSTOMER on ORDERS.custkey=CUSTOMER.custkey inner join NATION on CUSTOMER.nationkey = NATION.nationkey inner join REGION on REGION.regionkey = NATION.regionkey where year(orderdate) = {}".format(year))
+    res = cur.fetchall()
+    cur.close()
+    conn.commit()
+    conn.close()
+
+    arrayResult = []  # 定义一个数组
+    # 遍历元组数据将数据装到指定元组
+    for row in res:
+        result = {}
+        result['name'] = row[0]
+        result['orderdate'] = row[1]
+        result['totalprice'] = row[2]
+        arrayResult.append(result)
+
+    result = {
+        'code':200,
+        'msg':'查询成功',
+        'results':arrayResult
+    }
+    Jsonstr = json.dumps(result)
+    return Jsonstr.encode('utf-8').decode('unicode_escape')
+
+#重庆样题——1，图表3统计上半年各个月份变化折线图
+@app.route('/getTotalPriceByYear',methods=['POST'])
+def getTotalPriceByYear():
+    year = request.form.get('year')
+    conn = pymysql.connect(host='127.0.0.1', user='root', passwd='123456', db='shtd_store', charset='utf8')
+    cur = conn.cursor()
+    cont = cur.execute("select orderdate,totalprice from ORDERS where year(orderdate) = {}".format(year))
+    res = cur.fetchall()
+    cur.close()
+    conn.commit()
+    conn.close()
+
+    arrayResult = []  # 定义一个数组
+    # 遍历元组数据将数据装到指定元组
+    for row in res:
+        result = {}
+        result['orderdate'] = row[0]
+        result['totalprice'] = row[1]
+        arrayResult.append(result)
+
+    result = {
+        'code':200,
+        'msg':'查询成功',
+        'results':arrayResult
+    }
+    Jsonstr = json.dumps(result)
+    return Jsonstr.encode('utf-8').decode('unicode_escape')
+
+#重庆样题——4，图表1每个地区拥有的国家数量
+@app.route('/getNationByRegion',methods=['POST'])
+def getNationByRegion():
+    conn = pymysql.connect(host='127.0.0.1', user='root', passwd='123456', db='shtd_store', charset='utf8')
+    cur = conn.cursor()
+    cont = cur.execute("select nationkey,nation.name as n_name,region.regionkey,region.name as r_name from nation inner join region on nation.regionkey = region.regionkey")
+    res = cur.fetchall()
+    cur.close()
+    conn.commit()
+    conn.close()
+
+    arrayResult = []  # 定义一个数组
+    # 遍历元组数据将数据装到指定元组
+    for row in res:
+        result = {}
+        result['nationkey'] = row[0]
+        result['n_name'] = row[1]
+        result['regionkey'] = row[2]
+        result['r_name'] = row[3]
+        arrayResult.append(result)
+
+    result = {
+        'code':200,
+        'msg':'查询成功',
+        'results':arrayResult
+    }
+    Jsonstr = json.dumps(result)
+    return Jsonstr.encode('utf-8').decode('unicode_escape')

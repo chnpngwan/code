@@ -1,0 +1,1 @@
+{"model": "3.5", "pandora": "http://127.0.0.1:8088/", "port": 8088, "ip": "127.0.0.1", "pandora_command": "pandora -s 127.0.0.1:8088 --tokens_file token.json"}
