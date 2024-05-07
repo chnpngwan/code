@@ -1,0 +1,50 @@
+gateway:
+[
+    {
+        "predicates":[
+            {
+                "args":{
+                    "pattern":"/mdx-shop-order/**"
+                },
+                "name":"Path"
+            }
+        ],
+        "id":"mdx-shop-order",
+        "filters":[
+            {
+                "args":{
+                    "parts":1
+                },
+                "name":"StripPrefix"
+            }
+        ],
+        "uri":"lb://mdx-shop-order",
+        "order":1
+    },
+    {
+        "predicates":[
+            {
+                "args":{
+                    "pattern":"/mdx-shop-user/**"
+                },
+                "name":"Path"
+            }
+        ],
+        "id":"mdx-shop-user",
+        "filters":[
+            {
+                "args":{
+                    "parts":1
+                },
+                "name":"StripPrefix"
+            }
+        ],
+        "uri":"lb://mdx-shop-user",
+        "order":2
+    }
+]
+
+user:
+mdx-shop-user:
+  test:
+    userId: mdx123456-new
