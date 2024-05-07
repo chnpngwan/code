@@ -1,0 +1,82 @@
+{% extends 'admin/admin.html' %}
+
+{% block content %}
+        <!--内容-->
+        <section class="content-header">
+            <h1>e起去旅行管理系统</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">控制面板</li>
+            </ol>
+        </section>
+        <section class="content" id="showcontent">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">网站简介</h3>
+                        </div>
+                        <div class="box-body">
+                            <p>
+                                <b>e起去旅行</b>是一个致力于为用户提供优质服务的网站。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">特色版块</h3>
+                        </div>
+                        <div class="box-body" >
+                            <p><b>景区推荐</b></p>
+                            <p><b>游记推送</b></p>
+                            <p><b>旅游社区</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--内容-->
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static',filename='js/echarts.min.js') }}"></script>
+    <script>
+    var myChart = echarts.init(document.getElementById('meminfo'));
+    option = {
+		backgroundColor: "white",
+		tooltip: {
+			formatter: "{a} <br/>{b} : {c}%"
+		},
+		toolbox: {
+			feature: {
+				restore: {},
+				saveAsImage: {}
+			}
+		},
+		series: [{
+			name: '内存使用率',
+			type: 'gauge',
+			detail: {
+				formatter: '{value}%'
+			},
+			data: [{
+				value: 50,
+				name: '内存使用率'
+			}]
+		}]
+	};
+    setInterval(function () {
+        option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+        myChart.setOption(option, true);
+    },2000);
+
+</script>
+    <script>
+    $(document).ready(function(){
+        $("#g-1").addClass("active");
+        $("#g-1-1").addClass("active");
+    });
+</script>
+{% endblock %}
