@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bjsxt.mapper.MenusMapper">
+    <select id="selectMore" resultType="menus">
+        select * from sys_menus
+         <where>
+             <if test="pid!=-1">
+                pid = #{pid}
+             </if>
+         </where>
+    </select>
+
+    <select id="selectMore2" resultType="menus">
+        select * from sys_menus where id in (select mid from sys_role_menu where rid=#{0}) and pid=#{1}
+    </select>
+
+    <insert id="insertMenus">
+        insert into  sys_menus(id,pid,name,url,open)  values (DEFAULT ,#{pid},#{name},#{url},#{open})
+    </insert>
+
+    <update id="updateMenus">
+        update sys_menus set open = 1 where id = #{0}
+    </update>
+
+    <update id="updateMenus2">
+        update sys_menus set pid=#{pid},name=#{name},url=#{url},open=#{open} where id = #{id}
+    </update>
+
+    <delete id="deleteMenu">
+        delete from sys_menus where id = #{0}
+    </delete>
+
+    <select id="selectAll" resultMap="rm1">
+        select * from sys_menus where pid = #{0}
+    </select>
+    <resultMap id="rm1" type="tree">
+        <id column="id" property="id"></id>
+        <result column="name" property="text"></result>
+        <result column="url" property="url"></result>
+    </resultMap>
+</mapper>

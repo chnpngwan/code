@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjsxt.mapper.SysRolesMapper">
+    <select id="selectAll" resultType="sysRoles">
+        select * from sys_roles
+    </select>
+
+    <insert id="insertRole" useGeneratedKeys="true" keyProperty="roleid">
+        insert into sys_roles values (default ,#{rolename},#{roledesc})
+    </insert>
+
+    <update id="update">
+        update sys_roles set rolename=#{rolename},roledesc=#{roledesc} where roleid=#{roleid}
+    </update>
+
+    <delete id="delete">
+        delete from sys_roles where roleid = #{0}
+    </delete>
+</mapper>
