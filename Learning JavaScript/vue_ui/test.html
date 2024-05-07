@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .training-institute {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .navbar ul {
+            list-style: none;
+        }
+
+        .navbar ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .header {
+/*            background-image: url('header-bg.jpg');*/
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .header h1 {
+            font-size: 36px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #41b9a6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #328b7d;
+        }
+
+        .courses, .teachers, .schedule, .contact {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .courses h2, .teachers h2, .schedule h2, .contact h2 {
+            font-size: 28px;
+        }
+
+        .course, .teacher {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .course h3, .teacher h3 {
+            font-size: 24px;
+        }
+
+        .schedule table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .schedule th, .schedule td {
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .schedule th {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+
+</head>
+<body>
+<div class="training-institute">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="#home">首页</a></li>
+            <li><a href="#courses">课程</a></li>
+            <li><a href="#teachers">教师</a></li>
+            <li><a href="#schedule">课程安排</a></li>
+            <li><a href="#about">关于我们</a></li>
+            <li><a href="#contact">联系我们</a></li>
+        </ul>
+    </nav>
+
+    <!-- 顶部介绍部分 -->
+    <header class="header">
+        <h1>欢迎来到 XYZ 培训学院</h1>
+        <p>提供卓越的教育和培训</p>
+        <a href="#courses" class="btn">查看课程</a>
+    </header>
+
+    <!-- 课程信息 -->
+    <section id="courses" class="courses">
+        <h2>我们的课程</h2>
+        <div class="course">
+            <h3>Web 开发课程</h3>
+            <p>学习构建现代网站的技能。包括前端和后端开发。</p>
+            <a href="#web-development-course" class="btn">了解更多</a>
+        </div>
+        <div class="course">
+            <h3>数据分析课程</h3>
+            <p>掌握数据分析、数据可视化和机器学习的技能。</p>
+            <a href="#data-analysis-course" class="btn">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 教师信息 -->
+    <section id="teachers" class="teachers">
+        <h2>我们的教师</h2>
+        <div class="teacher">
+            <img src="teacher1.jpg" alt="教师1">
+            <h3>玛丽老师</h3>
+            <p>拥有丰富的教育经验，致力于学生成功。</p>
+        </div>
+        <div class="teacher">
+            <img src="teacher2.jpg" alt="教师2">
+            <h3>杰克老师</h3>
+            <p>专注于技术领域，多年的行业经验。</p>
+        </div>
+    </section>
+
+    <!-- 课程详细信息 -->
+    <section id="web-development-course" class="course-details">
+        <h2>Web 开发课程</h2>
+        <p>学习如何创建现代网站，包括HTML、CSS、JavaScript、Node.js等内容。</p>
+        <p>课程持续时间：12周</p>
+        <p>开始日期：2023-09-01</p>
+        <a href="#courses" class="btn">返回课程</a>
+    </section>
+
+    <section id="data-analysis-course" class="course-details">
+        <h2>数据分析课程</h2>
+        <p>掌握数据分析、数据可视化和机器学习的技能。</p>
+        <p>课程持续时间：16周</p>
+        <p>开始日期：2023-08-15</p>
+        <a href="#courses" class="btn">返回课程</a>
+    </section>
+
+    <!-- 课程安排 -->
+    <section id="schedule" class="schedule">
+        <h2>课程安排</h2>
+        <table>
+            <tr>
+                <th>日期</th>
+                <th>课程</th>
+                <th>时间</th>
+            </tr>
+            <tr>
+                <td>2023-06-01</td>
+                <td>Web 开发课程</td>
+                <td>09:00 AM - 12:00 PM</td>
+            </tr>
+            <tr>
+                <td>2023-06-05</td>
+                <td>数据分析课程</td>
+                <td>02:00 PM - 05:00 PM</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="about">
+        <h2>关于我们</h2>
+        <p>XYZ 培训学院致力于提供高质量的教育和培训，帮助学生取得成功。</p>
+    </section>
+
+    <!-- 联系信息 -->
+    <section id="contact" class="contact">
+        <h2>联系我们</h2>
+        <p>有任何问题或需要帮助？请随时与我们联系。</p>
+        <p>Email: contact@xyzinstitute.com</p>
+        <p>电话: +123-456-7890</p>
+    </section>
+</div>
+</body>
+</html>
