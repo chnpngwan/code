@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.mapper.TagMapper">
+    <insert id="addTag">
+        insert into tag_t(`name`)
+        values(#{name})
+    </insert>
+
+    <update id="deleteTag">
+        update tag_t
+        set `delete` = 1
+        where id = #{tid}
+    </update>
+
+    <select id="recommendTag" resultType="TagPO">
+        select id,name
+        from tag_t
+        where `delete` = 0 and name like concat("%",#{keyword},"%")
+    </select>
+
+    <select id="findOne" resultType="TagPO">
+        select id,name
+        from tag_t
+        where `delete` = 0 and id = #{tid}
+    </select>
+
+    <select id="findByName" resultType="TagPO">
+        select id,name
+        from tag_t
+        where name = #{name}
+    </select>
+
+    <select id="get" resultType="TagPO">
+        select id,name
+        from tag_t
+        limit #{offset},#{limit}
+    </select>
+</mapper>

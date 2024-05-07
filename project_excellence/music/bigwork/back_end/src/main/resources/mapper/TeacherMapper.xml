@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.mapper.TeacherMapper">
+    <sql id="authTeacherFields">
+id,
+UNIX_TIMESTAMP(create_time) createTime,
+uid,
+admin_id adminId,
+status,
+imgs,
+description
+    </sql>
+    <insert id="send2Check" parameterType="AuthTeacherPO">
+        insert into auth_teacher_t(uid,imgs,description)
+        values(#{teacher.uid},#{teacher.imgs},#{teacher.description})
+    </insert>
+
+    <select id="getStatus" resultType="Integer">
+        select status
+        from auth_teacher_v
+        where uid = #{uid}
+    </select>
+
+    <select id="getByUid" resultType="AuthTeacherPO">
+        select <include refid="authTeacherFields"></include>
+        from auth_teacher_v
+        where uid = #{uid}
+    </select>
+
+    <select id="getById" resultType="AuthTeacherPO">
+        select <include refid="authTeacherFields"></include>
+        from auth_teacher_v
+        where id = #{id}
+    </select>
+
+    <update id="dropAuth">
+        update auth_teacher_v
+        set `delete` = 1
+        where uid = #{uid}
+    </update>
+
+    <update id="dropTeacherRole">
+        update user_t
+        set `teacher` = 0
+        where id = #{uid}
+    </update>
+    <update id="modifyAuth" parameterType="AuthTeacherPO">
+        update auth_teacher_v
+        set description = #{teacher.description},
+            imgs = #{teacher.imgs},
+            status = 0
+        where uid = #{teacher.uid}
+    </update>
+
+
+</mapper>

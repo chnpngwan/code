@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.mapper.SecurityQuestionMapper">
+
+    <select id="getSecurityQuestionByUsername" resultType="SecurityQuestion">
+        SELECT user_id userId,username, question,answer  FROM security_questions WHERE username = #{username}
+    </select>
+
+    <select id="getSecurityQuestionByUserid" resultType="SecurityQuestion">
+        SELECT user_id userId,username, question FROM security_questions WHERE user_id = #{id}
+    </select>
+
+    <insert id="insertSecurityQuestion" parameterType="SecurityQuestion">
+        INSERT INTO security_questions (user_id,username, question, answer)
+        values (#{sq.userId},#{sq.username}, #{sq.question}, #{sq.answer})
+    </insert>
+
+</mapper>

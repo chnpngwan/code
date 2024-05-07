@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.admin.mapper.UserAdminMapper">
+    <sql id="UserPOFields">
+        id
+        ,
+               UNIX_TIMESTAMP(create_time) createTime,
+               username,
+            password,
+               salt,
+               nickname,
+               description,
+                gender,
+                UNIX_TIMESTAMP(birthday) birthday,
+               avatar,
+               works,
+               collections,
+               baned,
+               teacher,
+               `delete`
+    </sql>
+    <select id="getUsers" resultType="UserPO">
+        select
+        <include refid="UserPOFields"></include>
+        from user_t
+        limit #{offset},#{limit}
+    </select>
+    <select id="getUserBySeletor" resultType="UserPO">
+        select
+        <include refid="UserPOFields"></include>
+        from user_t
+        <where>
+            <if test="selector.id != null">id = #{selector.id}</if>
+            <if test="selector.id == null">
+                <if test="selector.username != null">username like concat("%",#{selector.username},"%")</if>
+                <if test="selector.gender != null"> and `gender` = #{selector.gender}</if>
+                <if test="selector.teacher != null"> and `teacher` = #{selector.teacher}</if>
+                <if test="selector.baned != null"> and `baned` = #{selector.baned}</if>
+                <if test="selector.delete != null"> and `delete` = #{selector.delete}</if>
+            </if>
+        </where>
+        limit #{offset},#{limit}
+    </select>
+
+    <update id="delete">
+        update user_t
+        set `delete` = 1
+        where id = #{id}
+    </update>
+
+    <update id="undelete">
+        update user_t
+        set `delete` = 0
+        where id = #{id}
+    </update>
+
+    <update id="ban">
+        update user_t
+        set `baned` = 1
+        where id = #{id}
+    </update>
+
+
+    <update id="unban">
+        update user_t
+        set `baned` = 0
+        where id = #{id}
+    </update>
+</mapper>

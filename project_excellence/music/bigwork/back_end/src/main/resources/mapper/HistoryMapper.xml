@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.mapper.HistoryMapper">
+    <insert id="createHisttoryLog">
+    insert into histroy_t(id,uid,vid,time)
+    values(#{history.id},#{history.uid},#{history.vid},#{history.time})
+    </insert>
+    <update id="updateHistoryTime">
+        update histroy_t
+        set time = #{time}
+        where id = #{id}
+    </update>
+    <update id="deleteHistoryLog">
+        update histroy_t
+        set `delete` = 1
+        where id = #{id}
+    </update>
+
+    <sql id="histroyPOFields">
+        id,vid,uid,`time`,UNIX_TIMESTAMP(create_time) createTime
+    </sql>
+
+    <select id="getByUid" resultType="HistroyPO">
+        select <include refid="histroyPOFields"></include>
+        from histroy_v
+        where uid = #{uid}
+        order by createTime desc
+        limit #{offset},#{limit}
+    </select>
+    <select id="getByVid" resultType="HistroyPO">
+        select <include refid="histroyPOFields"></include>
+        from histroy_v
+        where vid = #{vid}
+        limit #{offset},#{limit}
+    </select>
+    <select id="findOneByUidVid" resultType="HistroyPO">
+        select <include refid="histroyPOFields"></include>
+        from histroy_v
+        where uid = #{uid} and vid = #{vid}
+    </select>
+    <select id="findOneById" resultType="HistroyPO">
+        select <include refid="histroyPOFields"></include>
+        from histroy_v
+        where id = #{id}
+    </select>
+</mapper>

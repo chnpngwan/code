@@ -1,0 +1,31 @@
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*xml
+    - classpath:mapper/admin/*xml
+  type-aliases-package: xyz.hjzyhh.back_end.pojo
+#  config-location: classpath:mybatis-conf.xml
+server:
+  port: 13795
+  servlet:
+    context-path: /videoapi
+spring:
+  datasource:
+    username: music_video
+    password: 123456
+    url: jdbc:mysql://localhost:3306/music_video
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      min-idle: 2
+      initial-size: 3
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    database: 2
+  servlet:
+    multipart:
+      max-request-size: 400MB
+      max-file-size: 400MB
+external:
+  folder:
+    path: E:/project/javaweb_bigwork/files/

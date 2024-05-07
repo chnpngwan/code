@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.mapper.UserMapper">
+    <sql id="UserPOFields">
+        id
+        ,
+               UNIX_TIMESTAMP(create_time) createTime,
+               username,
+            password,
+               salt,
+               nickname,
+               description,
+                gender,
+                UNIX_TIMESTAMP(birthday) birthday,
+               avatar,
+               works,
+               collections,
+               baned,
+               teacher,
+               `delete`
+    </sql>
+    <insert id="registUser">
+        insert into user_t(id,
+                           username,
+                           password,
+                           salt,
+                           nickname,
+                           description,
+                           avatar)
+        values (#{user.id},
+                #{user.username},
+                #{password},
+                #{user.salt},
+                #{user.nickname},
+                #{user.description},
+                #{user.avatar});
+    </insert>
+    <update id="deleteUser" parameterType="Long">
+        update user_t
+        set `delete` = 1
+        where id = #{id}
+    </update>
+
+    <update id="modifyUser">
+        update user_t
+        <set>
+            <if test="user.nickname != null">nickname = #{user.nickname} ,</if>
+            <if test="user.description != null">description = #{user.description} ,</if>
+            <if test="user.gender != null">gender = #{user.gender} ,</if>
+            <if test="user.birthday != null">birthday = FROM_UNIXTIME(#{user.birthday}) ,</if>
+        </set>
+        where id = #{user.id}
+    </update>
+
+    <update id="modifyPassword">
+        update user_t
+        <set>
+            password = #{password},
+            salt = #{salt}
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="login" parameterType="String" resultType="UserPO">
+        select
+        <include refid="UserPOFields"></include>
+        from user_v
+        where username = #{username} and password = #{password}
+    </select>
+
+    <select id="findOne" parameterType="Long" resultType="UserPO">
+        select
+        <include refid="UserPOFields"></include>
+        from user_v
+        where id = #{id}
+    </select>
+
+    <select id="findByUsername" parameterType="String" resultType="UserPO">
+        select
+        <include refid="UserPOFields"></include>
+        from user_v
+        where username = #{username}
+    </select>
+
+    <update id="uploadAvatar">
+        update user_t
+        set avatar = #{avatar}
+        where id = #{id}
+    </update>
+
+    <update id="updateWorks">
+        update user_t
+        set works =#{works}
+        where id = #{uid}
+    </update>
+
+    <update id="updateCollections">
+        update user_t
+        set collections =#{collections}
+        where id = #{uid}
+    </update>
+
+</mapper>

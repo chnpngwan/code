@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.mapper.SearchMapper">
+    <select id="searchVideoByKeyword" resultType="VideoPO">
+        select <include refid="xyz.hjzyhh.back_end.mapper.VideoMapper.VideoPOFields"></include>
+        from video_v
+        where title like 
+              <foreach collection="keyword" item="key" separator=",'%'," open="CONCAT('%'," close=",'%')">
+              #{key}
+              </foreach>
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="searchUserByKeyword" resultType="UserPO">
+        select <include refid="xyz.hjzyhh.back_end.mapper.UserMapper.UserPOFields"></include>
+        from user_v
+        where nickname like
+        <foreach collection="keyword" item="key" separator=",'%'," open="CONCAT('%'," close=",'%')">
+            #{key}
+        </foreach>
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="searchClassByKeyword" resultType="ClassPO">
+        select <include refid="xyz.hjzyhh.back_end.mapper.ClassMapper.classPOField"></include>
+        from class_v
+        where name like
+        <foreach collection="keyword" item="key" separator=",'%'," open="CONCAT('%'," close=",'%')">
+            #{key}
+        </foreach>
+        limit #{offset},#{limit}
+    </select>
+</mapper>

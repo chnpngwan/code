@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.admin.mapper.AdminMapper">
+    <sql id="adminFeilds">
+        id,
+        UNIX_TIMESTAMP(create_time)  createTime,
+        username
+    </sql>
+    <select id="login" resultType="xyz.hjzyhh.back_end.admin.PO.AdminPO">
+        select <include refid="adminFeilds"></include>
+        from admin_v
+        where username = #{username} and password=#{password}
+    </select>
+
+    <select id="getById" resultType="xyz.hjzyhh.back_end.admin.PO.AdminPO">
+        select <include refid="adminFeilds"></include>
+        from admin_v
+        where id=#{id}
+    </select>
+</mapper>

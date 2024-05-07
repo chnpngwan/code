@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.admin.mapper.VideoCheckAdminMapper">
+    <sql id="VideoCheckFields">
+        id
+        ,
+        UNIX_TIMESTAMP(create_time) createTime,
+        vid,
+        admin_id aid,
+        status
+    </sql>
+
+    <sql id="VideoPOFields">
+        id
+        ,
+        UNIX_TIMESTAMP(create_time) createTime,
+        creator,
+        title,
+        description,
+        cover,
+        duration,
+        video,
+        play_count playCount ,
+        collect_count collectCount,
+        UNIX_TIMESTAMP(publish_time) publishTime
+    </sql>
+
+    <select id="getVideoChecks" resultType="xyz.hjzyhh.back_end.admin.PO.VideoCheckPO">
+        select
+        <include refid="VideoCheckFields"></include>
+        from check_video_v
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="getChecking"  resultType="xyz.hjzyhh.back_end.admin.PO.VideoCheckPO">
+        select
+        <include refid="VideoCheckFields"></include>
+        from check_video_t
+        where admin_id = #{aid} and status = 1
+    </select>
+
+    <select id="getCheck" resultType="xyz.hjzyhh.back_end.admin.PO.VideoCheckPO">
+        select
+        <include refid="VideoCheckFields"></include>
+        from check_video_t
+        where id = #{id}
+    </select>
+
+    <update id="changeStatus">
+        update check_video_t
+        set status  = #{status},
+            admin_id=#{aid}
+        where id = #{id}
+    </update>
+
+    <update id="publishVideo">
+        update video_t
+        set publish_time = timestamp (now()),
+            `show` = 1
+        where id = #{vid}
+    </update>
+    <select id="findById" parameterType="Long" resultType="VideoPO">
+        select  <include refid="VideoPOFields"></include>
+        from video_t
+        where id = #{vid}
+    </select>
+</mapper>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.admin.mapper.TeacherAdminMapper">
+    <sql id="authTeacherFields">
+        id,
+UNIX_TIMESTAMP(create_time) createTime,
+uid,
+admin_id adminId,
+status,
+imgs,
+description
+    </sql>
+    <select id="get" resultType="AuthTeacherPO">
+        select <include refid="authTeacherFields"></include>
+        from auth_teacher_v
+        where status = 0
+limit #{limit}
+    </select>
+
+    <select id="getById" resultType="AuthTeacherPO">
+        select <include refid="authTeacherFields"></include>
+        from auth_teacher_t
+        where id = #{id}
+    </select>
+
+    <select id="getChecking" resultType="AuthTeacherPO">
+        select <include refid="authTeacherFields"></include>
+        from auth_teacher_v
+        where status = 1 and admin_id = #{aid}
+    </select>
+
+    <update id="changeChecking">
+        update auth_teacher_t
+        set status = 1, admin_id = #{aid}
+        where id=#{id}
+    </update>
+    <update id="changeUnchecking">
+        update auth_teacher_t
+        set status = 0
+        where admin_id=#{aid} and status = 1
+    </update>
+    <update id="pass">
+        update auth_teacher_t
+        set status = 2
+        where id=#{id}
+    </update>
+    <update id="unpass">
+        update auth_teacher_t
+        set status = -1
+        where id=#{id}
+    </update>
+    <update id="changeUserRole2Teacher">
+        update user_t
+        set teacher = 1
+        where id = #{uid}
+    </update>
+
+
+</mapper>

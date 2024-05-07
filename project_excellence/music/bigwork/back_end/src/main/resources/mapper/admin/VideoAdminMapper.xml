@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.admin.mapper.VideoAdminMapper">
+    <sql id="VideoPOFields">
+        id
+        ,
+UNIX_TIMESTAMP(create_time) createTime,
+creator,
+title,
+description,
+cover,
+duration,
+video,
+play_count playCount ,
+collect_count collectCount,
+UNIX_TIMESTAMP(publish_time) publishTime,
+`open`,
+`show`,
+baned,
+cid,
+comment_num commentNum
+    </sql>
+    <select id="getUserBySeletor" resultType="VideoPO">
+        select
+        <include refid="VideoPOFields"></include>
+        from video_t
+        <where>
+            <if test="selector.id != null">id = #{selector.id}</if>
+            <if test="selector.id == null">
+                <if test="selector.show != null"> `show` = #{selector.show}</if>
+                <if test="selector.baned != null"> and `baned` = #{selector.baned}</if>
+            </if>
+        </where>
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="getVideoPOById" resultType="VideoPO">
+        select
+        <include refid="VideoPOFields"></include>
+        from video_t
+        where id = #{vid}
+    </select>
+
+    <update id="delete">
+        update video_t
+        set `show` = 0
+        where id = #{id}
+    </update>
+
+    <update id="undelete">
+        update video_t
+        set `show` = 1
+        where id = #{id}
+    </update>
+
+    <update id="ban">
+        update video_t
+        set `baned` = 1
+        where id = #{id}
+    </update>
+
+
+    <update id="unban">
+        update video_t
+        set `baned` = 0
+        where id = #{id}
+    </update>
+</mapper>

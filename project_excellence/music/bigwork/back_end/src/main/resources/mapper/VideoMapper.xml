@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.mapper.VideoMapper">
+    <sql id="VideoPOFields">
+id
+,
+UNIX_TIMESTAMP(create_time) createTime,
+creator,
+title,
+description,
+cover,
+duration,
+video,
+play_count playCount ,
+collect_count collectCount,
+UNIX_TIMESTAMP(publish_time) publishTime,
+`open`,
+`show`,
+cid,
+comment_num commentNum
+    </sql>
+
+    <insert id="insert" parameterType="VideoPO">
+        insert into video_t(id,
+                            creator,
+                            title,
+                            description,
+                            cover,
+                            duration,
+                            video,
+                            `open`,
+                            cid)
+        values (#{video.id},
+                #{video.creator},
+                #{video.title},
+                #{video.description},
+                #{video.cover},
+                #{video.duration},
+                #{video.video},
+                #{video.open},
+                #{video.cid})
+    </insert>
+
+    <delete id="delete" parameterType="Long">
+        delete from video_t
+        where id=#{vid}
+    </delete>
+
+    <update id="update">
+        update video_t
+        <set>
+            <if test="video.title != null">title = #{video.title},</if>
+            <if test="video.description != null">description = #{video.description},</if>
+            <if test="video.cover != null">cover = #{video.cover},</if>
+        </set>
+        where id=#{vid}
+    </update>
+
+    <select id="findById" parameterType="Long" resultType="VideoPO">
+        select  <include refid="VideoPOFields"></include>
+        from video_t
+        where id = #{vid} and `show` = 1
+    </select>
+
+    <select id="findMine" resultType="VideoPO">
+        select <include refid="VideoPOFields"></include>
+        from video_t
+        where creator = #{uid}
+            limit #{offset},#{limit}
+    </select>
+    
+    <select id="findByCreator" resultType="VideoPO">
+        select <include refid="VideoPOFields"></include>
+        from video_v
+        where creator = #{uid}
+        limit #{offset},#{limit}
+    </select>
+    
+    <select id="findRange" resultType="VideoPO">
+        select <include refid="VideoPOFields"></include>
+        from video_v
+        limit #{offset},#{limit}
+    </select>
+
+    <insert id="submitReview">
+        insert into check_video_t(vid)
+        values(#{vid})
+    </insert>
+
+    <select id="getVideoTags" resultType="Integer">
+        select tid
+        from tag_video_t
+        where vid = #{vid}
+    </select>
+
+    <select id="getTagVideos" resultType="Long">
+        select vid
+        from tag_video_t
+        where tid = #{tid}
+    </select>
+
+    <insert id="addVideoTag">
+        insert into tag_video_t(tid,vid)
+        values (#{tid},#{vid})
+    </insert>
+
+    <select id="getVideoByClass" resultType="VideoPO">
+        select <include refid="VideoPOFields"></include>
+        from video_t
+        where cid = #{cid} and `show` = 1
+    </select>
+    <update id="updateVideoUrl">
+        update video_t
+        set video = #{video}
+        where id = #{vid}
+    </update>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.mapper.CommentMapper">
+    <sql id="CommentPOFields">
+        id,uid,vid,content,UNIX_TIMESTAMP(create_time) createTime
+    </sql>
+    <insert id="insertComment">
+        insert into comment_t(id,uid,vid,content)
+        values(#{comment.id},#{comment.uid},#{comment.vid},#{comment.content})
+    </insert>
+
+    <select id="getVideoComments" resultType="CommentPO">
+        select <include refid="CommentPOFields"></include>
+        from comment_v
+        where vid = #{vid}
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="getMyComments" resultType="CommentPO">
+        select <include refid="CommentPOFields"></include>
+        from comment_v
+        where uid = #{uid}
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="getCommentById" resultType="CommentPO">
+        select <include refid="CommentPOFields"></include>
+        from comment_t
+        where id = #{id}
+    </select>
+
+    <update id="updateContent">
+        update comment_t
+        set content = #{content}
+        where id = #{id}
+    </update>
+    
+    <update id="deleteComment">
+        update comment_t
+        set `delete` = 1
+        where id = #{id}
+    </update>
+
+</mapper>

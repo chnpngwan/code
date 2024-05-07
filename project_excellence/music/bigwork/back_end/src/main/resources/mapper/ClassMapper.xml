@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.hjzyhh.back_end.mapper.ClassMapper">
+    <insert id="createClass">
+        insert into class_t(id, name, description, avatar, creator)
+        values (#{class.id}, #{class.name}, #{class.description}, #{class.avatar}, #{class.creator})
+    </insert>
+
+    <update id="modifyClassInfo">
+        update class_t
+        set name        = #{class.name},
+            description = #{class.description}
+        where id = #{class.id}
+    </update>
+
+    <update id="modifyClassAvatar">
+        update class_t
+        set avatar = #{avatar}
+        where id = #{cid}
+    </update>
+
+    <update id="deleteClass">
+        update class_t
+        set `delete` = 1
+        where id = #{cid}
+    </update>
+
+    <sql id="classPOField">
+        id
+        ,name,description,avatar,creator,
+        student_num studentNum,
+        UNIX_TIMESTAMP(create_time) createTime
+    </sql>
+
+    <select id="findOne" resultType="ClassPO" parameterType="int">
+        select
+        <include refid="classPOField"></include>
+        from class_t
+        where id = #{cid} and `delete` = 0
+    </select>
+
+    <select id="getAddedClass" resultType="ClassPO" parameterType="Long">
+        select id,
+               name,
+               description,
+               avatar,
+               creator,
+               student_num                             studentNum,
+               UNIX_TIMESTAMP(stu_class_t.create_time) createTime
+        from stu_class_t
+                 join class_t on stu_class_t.cid = class_t.id
+        where stu_class_t.uid = #{uid}
+    </select>
+
+    <update id="modifyCreator">
+        update class_t
+        set creator = #{uid}
+        where id = #{cid}
+    </update>
+
+    <select id="getMyClass" resultType="ClassPO">
+        select
+        <include refid="classPOField"></include>
+        from class_t
+        where creator = #{uid}
+    </select>
+
+    <select id="getByCreator" resultType="ClassPO">
+        select
+        <include refid="classPOField"></include>
+        from class_t
+        where creator = #{uid} and `delete` = 0
+    </select>
+
+
+    <insert id="add2Class">
+        insert into stu_class_t(cid, uid)
+        values (#{cid}, #{uid})
+    </insert>
+
+    <delete id="remove2Class">
+        delete
+        from stu_class_t
+        where cid = #{cid}
+          and #{uid} = uid
+    </delete>
+
+    <update id="changeStuNum">
+        update class_t
+        set student_num = #{stuNum}
+        where id = #{cid}
+    </update>
+
+    <update id="changeRole">
+        update stu_class_t
+        set role = #{role}
+        where uid = #{uid}
+          and cid = #{cid}
+    </update>
+
+    <select id="getStuList" resultType="StuClassPO">
+        select uid, cid, role, UNIX_TIMESTAMP(create_time) createTime
+        from stu_class_t
+        where cid = #{cid} limit #{offset}
+            , #{limit}
+    </select>
+
+    <select id="getStu" resultType="StuClassPO">
+        select uid, cid, role, UNIX_TIMESTAMP(create_time) createTime
+        from stu_class_t
+        where cid = #{cid}
+          and uid = #{uid}
+    </select>
+
+    <select id="checkInClass" resultType="Integer">
+        select `role`
+        from stu_class_t
+        where cid = #{cid} and uid = #{uid}
+    </select>
+</mapper>
