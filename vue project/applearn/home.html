@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>移动端APP</title>
+		<!-- 移动端条件 -->
+		<meta name="viewport" content="width=device-width"/>
+		<!-- 移动端样式 -->
+		<link rel="stylesheet" href="css/vant.css">
+		<!-- vue引入 -->
+		<script src="js/vue.min.js"></script>
+		<!-- vant引入 -->
+		<script src="js/vant.min.js"></script>
+		<!-- juqery引入 -->
+		<script src="js/juqery-3.4.1.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				<van-search
+				  v-model="value"
+				  shape="round"
+				  background="#4fc08d"
+				  placeholder="请输入农产品"
+				/>
+			</div>
+			<div>
+				<van-swipe :autoplay="3000">
+					<van-swipe-item v-for="(image, index) in images" :key="index">
+						<img v-lazy="image" :src="image" style="height: 30%;width:100vw;"/>
+					</van-swipe-item>
+				</van-swipe>
+			</div>
+			<div>
+				<van-grid :column-num="3">
+				  <van-grid-item v-for="(item,index) in middleMenu" :key="index"
+								 :icon="item.iconName" :text="item.menuName" style="color: #4fc08d;font-weight: 600;"/>
+				</van-grid>
+			</div>
+			<div style="min-height: 550px;overflow-y: auto">
+				<div v-for="(item,index) in hotGoods">
+					<van-card
+							num="2"
+							tag="hot"
+							:price="item.price"
+							:desc="item.ms"
+							:title="item.goodName"
+							:thumb="item.src"
+							origin-price="100.00"
+					/>
+				</div>
+			</div>
+			<div>
+				<van-tabbar v-model="active">
+				  <van-tabbar-item icon="home-o">标签</van-tabbar-item>
+				  <van-tabbar-item icon="apps-o" @click="goto('catorgray.html')">分类</van-tabbar-item>
+				  <van-tabbar-item icon="bag-o">订单中心</van-tabbar-item>
+				  <van-tabbar-item icon="setting-o" @click="goto('login.html')">个人中心</van-tabbar-item>
+				</van-tabbar>
+			</div>
+		</div>
+		<script>
+			//vue实例
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					value:"",
+					images: [
+					        /*'img/bg-img/1.jpg',
+					        'img/bg-img/2.jpg',
+							'img/bg-img/3.jpg',*/
+					      ],
+					active:0,
+					middleMenu:[
+						{
+							menuName:"衣服",
+							iconName:"gift"
+						},
+						{
+							menuName:"箱包",
+							iconName:"shop-collect"
+						},
+						{
+							menuName:"帽子",
+							iconName:"gift-card"
+						},
+						{
+							menuName:"皮具",
+							iconName:"goods-collect"
+						},
+						{
+							menuName:"靴子",
+							iconName:"vip-card"
+						},
+						{
+							menuName:"化妆品",
+							iconName:"invitation"
+						}
+					],
+					hotGoods:[
+					/*	{
+							"goodName":"台灯",
+							"price":"120",
+							"ms":"好看好看好看",
+							"src":"img/product/1.png",
+						},
+						{
+							"goodName":"沙发",
+							"price":"120",
+							"ms":"好看好看好看",
+							"src":"img/product/2.png",
+						},
+						{
+							"goodName":"凳子",
+							"price":"120",
+							"ms":"好看好看好看",
+							"src":"img/product/3.png",
+						},
+						{
+							"goodName":"衣服",
+							"price":"120",
+							"ms":"好看好看好看",
+							"src":"img/product/4.png",
+						}*/
+					],
+				},
+				//钩子函数页面加载时渲染数据
+				created() {
+					var _this=this;
+					$.ajax({
+						url: "http://120.48.33.87:8088/handdle/goodHd.ashx",
+						//传入数据
+						data: '',
+						dataType:'json',
+						success:function (result) {
+							if (result!=null){
+								for (var i=0;result.length;i++){
+									if(result[i].isBanner==1){
+										//轮播
+										var url="http://120.48.33.87:8088/"+result[i].imgUrl
+										_this.images.push(url);
+									}
+								}
+							}
+						},
+						error(){
+							vant.Toast('网络连接错误');
+						}
+					});
+					//hot
+					$.ajax({
+						url: "http://120.48.33.87:8088/handdle/goodHd.ashx",
+						//传入数据
+						data: '',
+						dataType:'json',
+						success:function (result) {
+							if (result!=null){
+								for (var i=0;result.length;i++){
+										var good={
+											"goodName":result[i].goodName,
+											"price":result[i].price,
+											"ms":result[i].ms,
+											"src":"http://120.48.33.87:8088/"+result[i].imgUrl,
+										}
+										_this.hotGoods.push(good)
+									}
+								}
+							},
+							error(){
+								vant.Toast('网络连接错误');
+							}
+						});
+					},
+				methods:{
+					goto(url){
+						window.location.href=url;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

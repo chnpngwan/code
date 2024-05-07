@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <!-- 移动端条件 -->
+    <meta name="viewport" content="width=device-width"/>
+    <!-- 移动端样式 -->
+    <link rel="stylesheet" href="css/vant.css">
+    <!-- vue引入 -->
+    <script src="js/vue.min.js"></script>
+    <!-- vant引入 -->
+    <script src="js/vant.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <van-nav-bar
+                    title="惠农帮一战式服务平台APP"
+                    left-text="返回"
+                    right-text=""
+                    left-arrow
+                    @click-left="onClickLeft"
+                    @click-right="onClickRight"
+            />
+        </div>
+        <div>
+            <div style="display: flex;justify-content: space-around;">
+                <div>
+                    <van-image
+                            round
+                            width="5rem"
+                            height="5rem"
+                            src="img/bg-img/9.jpg"
+                    />
+                </div>
+                <div style="margin: 10px 10px 0 0;"><span>张万三</span></div>
+                <div style="margin: 10px 10px 0 0;">
+                    <van-icon name="qr-invalid" size="30" color="#2196f3"/></div>
+                <div style="margin: 10px 10px 0 0;">
+                    <van-icon name="setting-o" size="30" color="#2196f3"/></div>
+            </div>
+            <div>
+                <van-tabs v-model="active">
+                    <van-tab title="待付款">
+                        <!-- 通用错误 -->
+                        <van-empty image="error" description="没有待付款的订单" />
+                    </van-tab>
+                    <van-tab title="待收货">
+                        <!-- 网络错误 -->
+                        <van-empty image="network" description="没有收货订单" />
+                    </van-tab>
+                    <van-tab title="待评价">
+                        <!-- 搜索提示 -->
+                        <van-empty image="search" description="没有评价的商品" />
+                    </van-tab>
+                </van-tabs>
+            </div>
+        </div>
+        <div>
+            <van-tabbar v-model="actives">
+                <van-tabbar-item icon="home-o">标签</van-tabbar-item>
+                <van-tabbar-item icon="apps-o">分类</van-tabbar-item>
+                <van-tabbar-item icon="bag-o">订单中心</van-tabbar-item>
+                <van-tabbar-item icon="setting-o" @click="goto('login.html')">个人中心</van-tabbar-item>
+            </van-tabbar>
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                active:0,
+                actives:3,
+            },
+            methods:{
+                onClickLeft(){
+                    /*alert(1)*/
+                    window.location.href="home.html";
+                },
+                onClickRight(){
+                    alert(2)
+                },
+                goto(url){
+                    window.location.href=url;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

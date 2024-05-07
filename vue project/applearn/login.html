@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <!-- 移动端条件 -->
+    <meta name="viewport" content="width=device-width"/>
+    <!-- 移动端样式 -->
+    <link rel="stylesheet" href="css/vant.css">
+    <!-- vue引入 -->
+    <script src="js/vue.min.js"></script>
+    <!-- vant引入 -->
+    <script src="js/vant.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <van-nav-bar
+                    title="惠农帮一战式服务平台APP"
+                    left-text="返回"
+                    right-text=""
+                    left-arrow
+                    @click-left="onClickLeft"
+                    @click-right="onClickRight"
+            />
+        </div>
+        <div class="van-doc-demo-block">
+            <h2 class="van-doc-demo-block__title"></h2>
+            <form class="van-form">
+                <div class="van-cell van-field">
+                    <div class="van-cell__title van-field__label"><span>用户名</span></div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="text" name="username" placeholder="用户名" class="van-field__control">
+                            <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
+                        </div></div>
+                </div>
+                <div class="van-cell van-field">
+                    <div class="van-cell__title van-field__label"><span>密码</span></div>
+                    <div class="van-cell__value van-field__value">
+                        <div class="van-field__body">
+                            <input type="password" name="password" placeholder="密码" class="van-field__control">
+                            <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin: 16px 16px 0px;">
+                    <button type="submit" class="van-button van-button--info van-button--normal van-button--block van-button--round">
+                        <div class="van-button__content">
+                        <span class="van-button__text">提交</span>
+                        </div>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!--<van-form @submit="onSubmit">
+            <van-field
+                    v-model="username"
+                    name="用户名"
+                    label="用户名"
+                    placeholder="用户名"
+                    :rules="[{ required: true, message: '请填写用户名' }]"
+            />
+            <van-field
+                    v-model="password"
+                    type="password"
+                    name="密码"
+                    label="密码"
+                    placeholder="密码"
+                    :rules="[{ required: true, message: '请填写密码' }]"
+            />
+            <div style="margin: 16px;">
+                <van-button round block type="info" native-type="submit">提交</van-button>
+            </div>
+        </van-form>-->
+    </div>
+    <script>
+        var vm= new Vue({
+            el:"#app",
+            data:{
+                username:'',
+                password:''
+            },
+            methods:{
+                onSubmit(){
+
+                },
+                onClickLeft(){
+                    /*alert(1)*/
+                    window.location.href="home.html";
+                },
+                onClickRight(){
+                    alert(2)
+                }
+            }
+        });
+    </script>
+</body>
+</html>
