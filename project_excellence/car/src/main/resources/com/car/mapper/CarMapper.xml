@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.car.mapper.CarMapper">
+    <select id="selectAllCar" resultType="car">
+        select * from car
+    </select>
+
+    <select id="selectAllCar1" resultType="Car1">
+        select * from car1
+    </select>
+
+    <select id="selectAllCar3" resultType="Car3">
+        select * from car3
+    </select>
+
+    <select id="selectAllCar4" resultType="Car4">
+        select * from car4
+    </select>
+
+    <select id="selectAllCar5" resultType="Car5">
+        select * from car5
+    </select>
+
+    <!-- 用户登录 -->
+    <select id="selectByNameAndPwd" resultType="Admin">
+        select * from admin where username=#{username} and password=#{password}
+    </select>
+
+    <!-- 查找客户案例 -->
+    <select id="selectSllClient" resultType="Client">
+        select * from client
+    </select>
+
+    <!-- 专车司机 -->
+    <select id="selectSAllDriver" resultType="Driver">
+        select * from driver
+    </select>
+
+    <!-- 在线留言 -->
+    <insert id="insertINtoCont">
+        insert into
+            cont(id,name,phone,eamli,car,message)
+        values
+            (#{id},#{name},#{phone},#{eamli},#{car},#{message})
+    </insert>
+
+    <!-- 管理员登录验证 -->
+    <select id="selectByNameAndPwd1" resultType="Admin">
+        select * from admin where username=#{username} and password=#{password}
+    </select>
+
+    <!-- 管理员查询所有车型 -->
+    <select id="selectSAllCarAll" resultType="CarAll">
+        select * from carall
+    </select>
+
+    <!-- 管理员专车司机 -->
+    <select id="selectAllDriverAdmin" resultType="Driver">
+        select * from driver
+    </select>
+
+    <!-- 管理员查找客户案例 -->
+    <select id="selectAllAdminClient" resultType="Client">
+        select * from client
+    </select>
+
+    <!-- 管理员查找客户在线留言 -->
+    <select id="selectAllCont" resultType="Cont">
+        select * from cont
+    </select>
+
+    <!-- 管理员删除 -->
+    <delete id="deleteByid">
+        delete from carall where id =#{id}
+    </delete>
+
+    <!-- 管理员模糊查询 使用的是if -->
+    <select id="selectCarAllByName" resultType="CarAll">
+        select * from carall
+        <where>
+            <if test="type != null and type != '' ">
+                and type like concat('%',#{type},'%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 管理员车型根据id查询 -->
+    <select id="selectByIdCarall" resultType="CarAll">
+        select * from carall where id =#{id}
+    </select>
+    <select id="selectByName" resultType="com.car.model.Car">
+        select * from car
+        <where>
+            <if test="name != null and name != '' ">
+                and name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 管理员修改 -->
+    <update id="updateByIDCarAll">
+        update carall
+        <set>
+            <if test="img!=null and img!=''">
+                img = #{img},
+            </if>
+            <if test="carName != null and carName != ''">
+                carName = #{carName},
+            </if>
+            <if test="price != null and price != ''">
+                price = #{price},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type}
+            </if>
+        </set>
+        <where>
+            id= #{id}
+        </where>
+    </update>
+</mapper>

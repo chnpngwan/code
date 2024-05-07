@@ -1,0 +1,125 @@
+#logheader_div{
+	width: 100%;
+}
+#logheader_div--div1{
+	margin: 0 auto;
+	width: 1180px;
+	height: 100px;
+	line-height: 100px;
+}
+#logheader_div--div1 img{
+    overflow: hidden;
+	margin-top: 25px;
+    width: 130px;
+    height: 47px;
+}
+#logheader_div--div1--p span{
+	margin-left: 600px;
+	font-size:15px;
+	color: #666;
+}
+#logheader_div--div1--p input{
+    background-color: blue ;
+    text-decoration: none;
+	font-size:15px;
+	border: 0px;
+	width: 60px;
+	height: 30px;
+	color: white;
+	border-radius: 5px;
+}
+/* 以上是头部 */
+/* 表单验证 */
+#logheader_div--div2{
+	margin: 0 auto;
+	width: 1180px;
+	height: 550px;
+	line-height: 100px;	
+}
+#logheader_div--div2 form{
+	margin-top: 100px;
+    line-height: 60px;
+	margin-left: 80px;
+}
+#logheader_div--div2 .input{
+    width: 273px;
+    height: 28px;
+    margin: -1px auto;
+    padding: 5px;
+    border: 1px solid #aaa;
+    line-height: 28px;
+}
+/* 验证码 */
+#inputCode{
+	width: 273px;
+	height: 28px;
+	margin: -1px auto;
+	padding: 5px;
+	border: 1px solid #aaa;
+	line-height: 28px;
+	margin-left: -23px;
+	margin-top: 10px;
+}
+#checkCode{
+	text-align: center;
+	line-height: 45px;
+	margin-top: 10px;
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: -100px;
+	background-color: #F8F8F8;
+}
+/* 完成并登录 */
+#button1{
+     border-radius: 2px;  
+     width: 285px;
+	 height: 40px;
+	 background-color: blue;
+	 border: 0px;
+	 color: white;
+	 font-weight: 700;
+	 font-size: 18px;
+}
+/* 文字段落 */
+.text{
+    height: 30px;
+	line-height:30px;
+	color: #999;
+	font-size: 14px;
+}
+/* table里面的标签 */
+table a{
+	color: blue;
+	font-size: 14px;
+}
+/* 表单下面的div */
+#logheader_div--div3{
+	text-align: center;
+	margin: 0 auto;
+	width: 1180px;
+	height:100px;
+	line-height: 100px;	
+}
+#logheader_div--div3 span{
+	text-align: center;
+	margin: 0 auto;
+	width: 1180px;
+	height:100px;
+	line-height: 100px;	
+}
+#logheader_div--div3 a{
+	color: #999;
+}
+#bj{
+	background: url(../img/home1.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	height:810px;
+}
+#form1{
+	box-shadow: 5px 5px 10px #000000;
+	width:400px;
+	border-radius: 20px;
+	border: #000000 solid 1px;
+	margin-left:-150px;
+}
