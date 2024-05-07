@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/v2.6.10/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				<emp-list :emps="empList">
+					<template slot="emp" slot-scope="props">
+						<li>{{ props.empname }}</li>
+					</template>
+				</emp-list>
+			</div>
+		</div>
+		<template id="empCom">
+			<div>
+				<h1>员工姓名列表</h1>
+				<ul>
+					<solt name="emp" v-for="emp in emps" :empname="emp.name"></solt>
+				</ul>
+			</div>
+		</template>
+		<script>
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					empList: [{
+						name: "李四"
+					}, {
+						name: "张三"
+					}, {
+						name: "王五"
+					}]
+				},
+				components: {
+					"emp-list": {
+						props: ["emps"],
+						template: "#empCom"
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

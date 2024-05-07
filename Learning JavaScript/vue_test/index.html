@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/v2.6.10/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+
+			#app {
+				width: 600px;
+				text-align: center;
+				margin: 50px auto;
+			}
+
+			.box {
+				width: 600px;
+				height: 400px;
+				text-align: center;
+				border-radius: 20px;
+				box-shadow: 5px 5px 20px #888888;
+				background: orange;
+				border-bottom: 1px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="box">
+				<test></test>
+			</div>
+		</div>
+		<template id="test">
+			<div>
+				<table>
+					<tr>
+						<td>商品编号</td>
+						<td>商品名称</td>
+						<td>商品颜色</td>
+						<td>商品价格</td>
+						<td>备注</td>
+					</tr>
+					<tr v-for="(test,index) in tests" :key="test.id">
+						<td>{{index+1}}</td>
+						<td>{{test.name}}</td>
+						<td>{{test.color}}</td>
+						<td>{{test.price}}</td>
+						<td>{{test.dec}}</td>
+					</tr>
+				</table>
+				<button style="height:30px;width: 80px;border-radius: 5px;float: right;">查询</button>
+				<p>
+					<label for="input">添加表格名称：</label>
+					<input type="text" id="input" />
+				</p>
+			</div>
+		</template>
+		<script>
+			var vm = new Vue({
+				el: "#app",
+				components: {
+					"test": {
+						template: "#test",
+						data: function() {
+							return {
+								tests: [{
+										id: "N2020080501",
+										name: "皮鞋",
+										color: "黑色",
+										price: "998.00元",
+										dec: "网红鞋"
+									},
+									{
+										id: "N2020080501",
+										name: "皮鞋",
+										color: "黑色",
+										price: "998.00元",
+										dec: "网红鞋"
+									},
+									{
+										id: "N2020080502",
+										name: "皮鞋",
+										color: "黑色",
+										price: "998.00元",
+										dec: "网红鞋"
+									},
+									{
+										id: "N2020080503",
+										name: "皮鞋",
+										color: "黑色",
+										price: "998.00元",
+										dec: "网红鞋"
+									},
+									{
+										id: "N2020080504",
+										name: "皮鞋",
+										color: "黑色",
+										price: "998.00元",
+										dec: "网红鞋"
+									}
+								]
+							}
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

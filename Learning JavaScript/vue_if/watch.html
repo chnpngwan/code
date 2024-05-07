@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watch</title>
+  <script src="js/vue.min.js"></script>
+  <style>
+    span{
+      color: grey;
+    }
+    .prod{
+      width: 500px;
+      box-shadow: 0 0 14px #888888;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .prod h1 {
+      background: #42b983;
+      color: #FFFFFF;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" style="margin: 20px auto;width: 600px">
+    <div class="prod">
+      <h1>员工信息</h1>
+      <p>
+        <p>
+          <label for="name">姓名：</label>
+          <input type="text" v-model="name" id="name">
+          <span>{{ nameTip }}</span>
+        </p>
+        <p>
+          <label for="email">邮箱：</label>
+          <input type="text" v-model="email" id="email">
+          <span>{{ emailTip }}</span>
+        </p>
+        <p>
+          <label for="phone">电话：</label>
+          <input type="text" v-model="phone" id="phone">
+          <span>{{ phoneTip }}</span>
+        </p>
+      </p>
+    </div>
+  </div>
+  <script>
+    var vm = new Vue({
+      el:"#app",
+      data:{
+        name:"",
+        email:"",
+        phone:"",
+        nameTip:"",
+        emailTip:"",
+        phoneTip:""
+      },
+      watch:{
+        name:function (newVal){
+          if (newVal!=""){
+            this.nameTip="姓名输入正确";
+          }else {
+            this.nameTip="姓名输入不正确";
+          }
+        },
+        email:function (newVal){
+          if (newVal!=""){
+            this.emailTip="邮箱输入正确";
+          }else {
+            this.emailTip="邮箱不能为空";
+          }
+        },
+        phone:function (newVal){
+          if (newVal!=""){
+            this.phoneTip="电话输入正确";
+          }else {
+            this.phoneTip="电话不能为空";
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

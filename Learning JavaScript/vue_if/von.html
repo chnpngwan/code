@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="js/vue.min.js"></script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #app{
+      width: 400px;
+      padding: 50px;
+    }
+    ul{
+      display: flex;
+      flex-flow: row nowrap;
+      list-style: none;
+    }
+    ul li{
+      width: 100px;
+      text-align: center;
+      color: #FFFFFF;
+      border-radius: 5px 5px 0 0;
+    }
+    .box{
+      box-shadow: 0 15px 10px #888888;
+      height: 200px;
+      color: #1e6abc;
+      border-radius: 0 10px 10px 10px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <ul>
+
+    <li :style="navStyle" @click="doChange(1)">
+      工作技能
+    </li>
+    <li :style="nav1Style" @click="doChange(2)">
+      工作积极性
+    </li>
+  </ul>
+  <div id="panel"  class="box" :style="panelStyle">
+    工作技能是指完成工作所需要具备的知识、技能和经验等，是岗位胜任者
+    和卓越绩效者所需的实际操作技能。
+  </div>
+  <div id="panel2"  class="box" :style="panel2Style">
+    工作积极性是指对工作任务产生的一种能动的自觉地心理状态，
+    它表现为个体或集体对组织目标明确，执行计划和实施目标过程中的
+    克服障碍的意志努力和积极的情感。
+  </div>
+</div>
+<script>
+  var vm = new Vue({
+
+    el:"#app",
+    data:{
+      navStyle: {
+        background :"#f16565"
+      },
+      nav1Style :{
+        background :"#5757fc"
+      },
+      panelStyle:{
+        display :"block",
+        backgroundColor :"#f16565"
+      },
+      panel2Style:{
+        display :"none",
+        backgroundColor :"#5757fc"
+      }
+    },
+    methods: {
+      doChange:function(index) {
+        if (index == 1) {
+          this.panelStyle = {
+            display :"block",
+            backgroundColor :"#f16565"
+          };
+          this.panel2Style = {
+            display :"none"
+
+          };
+        }else {
+          this.panelStyle =  {
+            display :"none"
+          };
+          this.panel2Style =  {
+            display :"block",
+            backgroundColor :"#5757fc"
+          };
+        }
+      }
+    },
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>购物车管理</title>
+		<script src="js/v2.6.10/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			table {
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<h1 style="text-align: center;">购物车管理</h1>
+			<p>
+				<label>物品名称：</label>
+				<input type="text" placeholder="请输入关键字" v-model="key">
+			</p>
+			<table border="1" cellspacing="0">
+				<thead style="background-color: darkgray;">
+					<tr>
+						<td>序号</td>
+						<td>书籍名称</td>
+						<td>专业必学</td>
+						<td>价格</td>
+						<td>数量</td>
+						<td>操作</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(book,index) in searchBook">
+						<td>{{ book.id }}</td>
+						<td>
+							<img :src="book.img" style="width: 200px; height: 150px;">
+							{{ book.name }}
+						</td>
+						<td>
+							<select>
+								<option v-for="type in types">{{type}}</option>
+								<!-- <option value="计算机网络">计算机网络</option>
+								<option value="计算机应用">计算机应用</option>
+								<option value="大数据">大数据</option>
+								<option value="云计算">云计算</option>
+								<option value="人工智能">人工智能</option>
+								<option value="物联网">物联网</option>
+								<option value="区块链">区块链</option> -->
+							</select>
+						</td>
+						<td>{{ book.price | peiceFormat }}</td>
+						<td>
+							<button :disabled="book.numbers<=1" @click="jian(index)">-</button>{{ book.numbers }}
+							<button @click="add(index)">+</button>
+						</td>
+						<td>
+							<button @click="deleteBook(index)">移除</button>
+						</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="6" style="text-align: center;">总价格：{{ totalPrice | peiceFormat }}</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					key: "",
+					books: [{
+						id: 1,
+						name: "数据库",
+						img: "img/book1.jpg",
+						price: 58,
+						numbers: 1
+					}, {
+						id: 2,
+						name: "图形设计",
+						img: "img/book2.jpg",
+						price: 65,
+						numbers: 1
+					}, {
+						id: 3,
+						name: "计算机系统",
+						img: "img/book3.jpg",
+						price: 44,
+						numbers: 1
+					}, {
+						id: 4,
+						name: "数据结构",
+						img: "img/book4.jpg",
+						price: 69,
+						numbers: 1
+					}],
+					types: [
+						"计算机网络",
+						"计算机应用",
+						"大数据",
+						"云计算",
+						"人工智能",
+						"物联网",
+						"区块链"
+					]
+				},
+				filters: {
+					peiceFormat: function(price) {
+						return "￥" + price.toFixed(2)
+					}
+				},
+				computed: {
+					totalPrice: function() {
+						var total = 0;
+						for (var i = 0; i < this.books.length; i++) {
+							total += this.books[i].price * this.books[i].numbers
+						}
+						return total;
+					},
+					searchBook: function() {
+						var _this = this;
+						return _this.books.filter(function(val) {
+							return val.name.indexOf(_this.key) != -1
+						})
+					}
+				},
+				methods: {
+					jian: function(index) {
+						return this.books[index].numbers--
+					},
+					add: function(index) {
+						return this.books[index].numbers++
+					},
+					deleteBook: function(index) {
+						return this.books.splice(index, 1);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

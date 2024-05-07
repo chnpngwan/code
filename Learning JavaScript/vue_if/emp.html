@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <fieldset>
+        <legend>
+            创建新员工
+        </legend>
+        <div class="form-group">
+            <label>姓名：</label>
+            <input type="text" v-model="newPerson.name"/>
+        </div>
+        <div class="form-group">
+            <label>年龄：</label>
+            <input type="text" v-model="newPerson.age"/>
+        </div>
+        <div class="form-group">
+            <label>性别：</label>
+            <select v-model="newPerson.sex">
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label></label>
+            <button @click="createPerson">添加</button>
+        </div>
+    </fieldset>
+    <table border="1px">
+        <thead>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(person,index) in people">
+            <td>{{person.name}}</td>
+            <td>{{person.age}}</td>
+            <td>{{person.sex}}</td>
+            <td class="text-center"><button @click="deletePerson(index)">删除</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            newPerson:{
+                name:"",
+                age:0,
+                sex:"男"
+            },
+            people:[{
+                name:"张三",
+                age:30,
+                sex:"男"
+            },
+                {
+                    name:"利好",
+                    age:30,
+                    sex:"女"
+                },
+                {
+                    name:"李四",
+                    age:20,
+                    sex:"男"
+                },
+                {
+                    name:"武汉",
+                    age:45,
+                    sex:"男"
+                }
+            ]
+        },
+        methods:{
+
+            createPerson:function(){
+                this.people.push(this.newPerson);
+                this.newPerson={
+                    name:"",
+                    age:0,
+                    sex:"男"
+                }
+            },
+            deletePerson:function(index){
+                if(confirm("删除当前员工吗")){
+                    this.people.splice(index,1);
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

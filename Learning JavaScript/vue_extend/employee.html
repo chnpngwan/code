@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>后台管理</title>
+  <script src="js/vue.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    #app {
+      width: 600px;
+      text-align: center;
+      margin: 50px auto;
+    }
+
+    table,
+    td,
+    th {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    table {
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #bcbcbc;
+      padding: 5px 10px;
+    }
+
+    th {
+      background: #42b983;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    tr:nth-of-type(odd) {
+      background: #fff;
+    }
+
+    tr:nth-of-type(even) {
+      background: #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1>员工信息表</h1>
+    <emplist-component></emplist-component>
+  </div>
+  <!-- 使用template组件 -->
+  <template id="empList"><!-- 或<script type="text/x-template" id="empList"> -->
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>地址</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(emp,index) in emps" :key="emp.id">
+            <td>{{index+1}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.age}}</td>
+            <td>{{emp.address}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </template><!-- </script> -->
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      components: {
+
+      <!--组件名称-->"emplist-component" :{
+          //使用template或script组件
+          template: "#empList",
+          // 组件data选项 （必须是函数）
+          data: function () {
+            return {
+              emps: [
+                { id: 1, name: "张一", age: 20, address: "湖北" },
+                { id: 2, name: "李二", age: 24, address: "河北" },
+                { id: 3, name: "王山", age: 22, address: "湖南" },
+                { id: 4, name: "陆吾", age: 21, address: "江西" }
+              ]
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

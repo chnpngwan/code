@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<!-- <script src="https://unpkg.com/vue@next"></script> -->
+	<script src="js/v2.6.10/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+
+		html {
+			font-size: 12px;
+			font-family: Ubuntu, simHei, sans-serif;
+			font-weight: 400;
+		}
+
+		body {
+			font-size: 1rem;
+		}
+
+		#app {
+			width: 60rem;
+			text-align: center;
+			margin: 50px auto;
+		}
+
+		.header {
+			text-align: left;
+			border: 1px solid #ccc;
+			padding: 0 0 1.5rem 0;
+		}
+
+		.header h2 {
+			background: #42b983;
+			padding: 1.5rem 0 1.5rem 0;
+			text-align: center;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		input {
+			outline: none;
+		}
+
+		input[type=text] {
+			border: 1px solid #ccc;
+			padding: .5rem .3rem;
+		}
+
+		input[type=text]:focus {
+			border-color: #42b983;
+		}
+
+		table,
+		td,
+		th {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		table {
+			width: 100%;
+		}
+
+		td,
+		th {
+			border: 1px solid #bcbcbc;
+			padding: 5px 10px;
+		}
+
+		th {
+			background: #42b983;
+			font-size: 1.2rem;
+			font-weight: 400;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		tr:nth-of-type(odd) {
+			background: #fff;
+		}
+
+		tr:nth-of-type(even) {
+			background: #eee;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<search-panel :emps="emps"></search-panel>
+	</div>
+	<template id="parentCom">
+		<div>
+			<div class="header">
+				<h2>员工管理系统</h2>
+				<label>姓名：</label>
+				<input type="text" v-model="key" placeholder="请输入关键字..." />
+			</div>
+			<emp-table :emp-list="filterEmps"></emp-table>
+		</div>
+	</template>
+	<template id="childCom">
+		<div>
+			<table>
+				<thead>
+					<th>编号</th>
+					<th>姓名</th>
+					<th>地址</th>
+				</thead>
+				<tbody>
+					<tr v-for="emp in empList" :key="emp.id">
+						<td>{{ emp.id }}</td>
+						<td>{{ emp.name }}</td>
+						<td>{{ emp.address }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</template>
+	<script>
+		var vm = new Vue({
+			el: "#app",
+			data: {
+				emps: [{
+					id: 1,
+					name: "张三",
+					address: "湖北"
+				},
+				{
+					id: 2,
+					name: "李四",
+					address: "湖南"
+				},
+				{
+					id: 3,
+					name: "胡三",
+					address: "河北"
+				},
+				{
+					id: 4,
+					name: "赵三",
+					address: "河西"
+				},
+				{
+					id: 5,
+					name: "李三",
+					address: "北京"
+				}
+				]
+			},
+			components: {
+				"search-panel": {
+					props: ["emps"],
+					data: function () {
+						return {
+							key: ""
+						};
+					},
+					template: "#parentCom",
+					components: {
+						"emp-table": {
+							props: ["empList"],
+							template: "#childCom"
+						}
+					},
+					computed: {
+						filterEmps: function () {
+							var _this = this;
+							return _this.emps.filter(function (emp) {
+								return emp.name.indexOf(_this.key) != -1;
+							})
+						}
+					},
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>

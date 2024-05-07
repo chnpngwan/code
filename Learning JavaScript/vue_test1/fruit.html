@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>水果信息展示列表</title>
+		<script src="js/v2.6.10/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<fieldset>
+				<legend>添加水果</legend>
+				<p>
+					<label>水果名称</label>
+					<input type="text" v-model="newFruit.name">
+				</p>
+				<p>
+					<label>水果颜色</label>
+					<input type="text" v-model="newFruit.color">
+				</p>
+				<p>
+					<label>水果价格</label>
+					<input type="text" v-model="newFruit.price">
+				</p>
+				<p>
+					<label></label>
+					<button @click="createFruit">添加</button>
+				</p>
+			</fieldset>
+			<div>
+				<h1 style="text-align: center;">水果信息展示列表</h1>
+				<div>
+					<label>水果名称</label>
+					<input type="text" v-model="key">
+				</div>
+				<table border="1" cellspacing="0" style="width: 100%;">
+					<thead>
+						<tr style="background-color: darkcyan;">
+							<td>{{ fruitName }}</td>
+							<td>{{ fruitColor }}</td>
+							<td>{{ fruitPrice }}</td>
+							<td>操作</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(fruit,index) in searchFruit">
+							<td>{{ fruit.name }}</td>
+							<td>{{ fruit.color }}</td>
+							<td>{{ fruit.price }}</td>
+							<td>
+								<button @click="deleteFruit(index)">移除</button>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="4" style="text-align: center;">
+								<button @click="findFruit">查询</button>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<br>
+			<br>
+			<br>
+			<fieldset>
+				<legend>动态修改表头内容</legend>
+				<p>
+					<label>水果名称</label>
+					<input type="text" v-model="fruitName">
+				</p>
+				<p>
+					<label>水果颜色</label>
+					<input type="text" v-model="fruitColor">
+				</p>
+				<p>
+					<label>水果价格</label>
+					<input type="text" v-model="fruitPrice">
+				</p>
+			</fieldset>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: "#app",
+				data: {
+					newFruit: {
+						name: "",
+						color: "",
+						price: 0
+					},
+					key: "",
+					fruitList: [],
+					fruitName: "水果名称",
+					fruitColor: "水果颜色",
+					fruitPrice: "水果价格"
+				},
+				methods: {
+					deleteFruit: function(index) {
+						if (confirm("确定删除此数据吗？")) {
+							this.fruitList.splice(index, 1)
+						}
+					},
+					createFruit: function() {
+						this.fruitList.push(this.newFruit);
+						this.newFruit = {
+							name: "",
+							color: "",
+							price: 0
+						}
+					},
+					findFruit: function() {
+						this.fruitList = [{
+							name: "黄桃",
+							color: "黄色",
+							price: 25
+						}, {
+							name: "黄桃",
+							color: "黄色",
+							price: 25
+						}, {
+							name: "黄桃",
+							color: "黄色",
+							price: 25
+						}, {
+							name: "黄桃",
+							color: "黄色",
+							price: 25
+						}, {
+							name: "梨子",
+							color: "黄色",
+							price: 25
+						}]
+					}
+				},
+				computed: {
+					searchFruit: function() {
+						var _this = this;
+						return _this.fruitList.filter(function(val) {
+							return val.name.indexOf(_this.key) != -1;
+						});
+					}
+				},
+			});
+		</script>
+	</body>
+</html>

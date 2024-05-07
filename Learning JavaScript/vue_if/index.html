@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+  <style>
+    #app{
+      width: 600px;
+      margin: 50px auto;
+    }
+    img{
+      width: 400px;
+      height: 350px;
+    }
+    .msg{
+      width: 400px;
+      text-align: center;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <fieldset>
+    <legend>大学生成绩录入</legend>
+    <p>
+      <label for="txtName">学生姓名：</label>
+      <input type="text" v-model="name" id="txtName" placeholder="请输入姓名..."/>
+    </p>
+    <p>
+      <label for="txtScore">学生姓名：</label>
+      <input type="text" v-model="score" id="txtScore" placeholder="请输入成绩..."/>
+    </p>
+    <hr />
+    <div class="msg">
+      <div v-if="score>70">
+        <h4 :style="{color:'green'}" > {{name}} 成功晋级，旅游去了！></h4>
+        <img src="img/true.jpg" alt=""/>
+      </div>
+      <div v-else>
+        <h4 :style="{color:'red'}" > {{name}} 你还需努力，加油学习！></h4>
+        <img src="img/false.jpg" alt=""/>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<script>
+  var vm = new Vue({
+    el:"#app",
+    data:{
+      name:"王五",
+      score:70
+    }
+  });
+</script>
+</body>
+</html>
