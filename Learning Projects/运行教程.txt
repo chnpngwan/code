@@ -1,0 +1,12 @@
+---------------------------------------------------------
+	FeastCoding 工作室
+	网站：www.yidaima.cn
+	公众号：FeastCoding
+	淘宝店：FeastCoding & FeastCode
+---------------------------------------------------------
+
+项目运行教程：http://www.yidaima.cn/course/#/
+
+相关软件下载：http://www.yidaima.cn/course/#/env
+
+jdk1.8,tomcat8，根据运行教程导入sql脚本，配置好项目的jdk和tomcat即可成功运行。
