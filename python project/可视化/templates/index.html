@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧农耕大数据驾驶舱</title>
+    <!-- 引入 echarts.min.js -->
+    <script src="static/echarts.min.js"></script>
+    <script src="static/openlayers/ol.js"></script>
+
+    <link rel="stylesheet" href="static/openlayers/ol.css">
+    <style>
+        body, html {
+            padding: 0;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #141A28;
+            letter-spacing: 1px;
+            font-family: "Microsoft Sans Serif";
+        }
+
+        .chartimg {
+            max-width: 100%;
+            height: 100%;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        .header {
+            width: 100%;
+            height: 69px;
+            float: left;
+            border-bottom: 1px solid darkgray;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            padding: 2px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .header_title {
+            width: 50%;
+            color: #e2e2e2;
+            box-sizing: border-box;
+            padding-left: 15px;
+        }
+
+        .header_title > h1 {
+            margin: 0;
+        }
+
+        .header_title > p {
+            margin: 0;
+        }
+
+        .header_time {
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+        }
+
+        .header_time > p {
+            margin: 0;
+            color: #e2e2e2;
+        }
+
+        .main {
+            width: 100%;
+            height: calc(100% - 80px);
+            float: left;
+        }
+
+        .main_t1 {
+            width: 100%;
+            height: 70%;
+            float: left;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .main_t2 {
+            width: calc(100% - 18px);
+            height: calc(30% - 13px);
+            float: left;
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 9px 3px 9px;
+        }
+
+        .main_t2_1 {
+            width: 23%;
+        }
+
+        .main_t2_2 {
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nzsub_div {
+            width: 95%;
+            height: 29%;
+            background-color: rgba(59, 82, 116, 0.5);
+            border-radius: 8px;
+            border: 2px solid #3B5274;
+            color: #EBECEF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .nzsub_div > p {
+            margin: 0px;
+        }
+
+        .main_t2_3 {
+            width: 30%;
+        }
+
+        .main_t2_4 {
+            width: 25%;
+        }
+
+        .main_t1_1 {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .main_t1_1_1 {
+            height: 49%;
+        }
+
+        .main_t1_1_2 {
+            height: 49%;
+        }
+
+        .main_t1_2 {
+            flex-grow: 0.95;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .main_t1_2_1 {
+            height: 13%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .maptitle_div {
+            width: 40%;
+            height: 95%;
+            background-color: rgba(59, 82, 116, 0.5);
+            border-radius: 8px;
+            border: 2px solid #3B5274;
+            color: #EBECEF;
+            text-align: center;
+        }
+
+        .maptitle_div > p {
+            margin: 9px 0px 0px 0px;
+        }
+
+        .main_t1_2_2 {
+            height: 85%;
+        }
+
+        .main_t1_3 {
+            width: 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .main_t1_3_1 {
+            height: 50%;
+        }
+
+        .main_t1_3_2 {
+            height: 33%;
+        }
+
+        .main_t1_3_3 {
+            height: 14%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .yc_div {
+            width: 30%;
+            height: 80%;
+            background-color: rgba(59, 82, 116, 0.5);
+            border-radius: 8px;
+            border: 2px solid #3B5274;
+            color: #EBECEF;
+            text-align: center;
+        }
+
+        .yc_div > p {
+            margin: 9px 0px 0px 0px;
+        }
+
+        .chartsDiv {
+            width: 100%;
+            height: 100%;
+        }
+
+        .chartsDiv_title {
+            width: calc(100% - 10px);
+            height: 40px;
+            margin: 0px 5px 0px 5px;
+            border-bottom: 1px solid darkgray;
+            display: flex;
+            align-items: center;
+        }
+
+        .chartsDiv_title > img {
+            width: 25px;
+        }
+
+        .chartsDiv_title > p {
+            margin: 0px 0px 0px 10px;
+            color: #EBECEF;
+            font-weight: bolder;
+        }
+
+        .chartsDiv_main {
+            width: 100%;
+            height: calc(100% - 42px - 5px);
+            margin-top: 5px;
+        }
+
+        .kjdiv {
+            border-radius: 5px;
+            background: linear-gradient(to left, #4655A2, #4655A2) left top no-repeat,
+            linear-gradient(to bottom, #4655A2, #4655A2) left top no-repeat,
+            linear-gradient(to left, #4655A2, #4655A2) right top no-repeat,
+            linear-gradient(to bottom, #4655A2, #4655A2) right top no-repeat,
+            linear-gradient(to left, #4655A2, #4655A2) left bottom no-repeat,
+            linear-gradient(to bottom, #4655A2, #4655A2) left bottom no-repeat,
+            linear-gradient(to left, #4655A2, #4655A2) right bottom no-repeat,
+            linear-gradient(to left, #4655A2, #4655A2) right bottom no-repeat;
+            background-size: 3px 10px, 10px 3px, 3px 10px, 10px 3px;
+        }
+
+        #popup {
+            width: 300px;
+            background-color: rgba(14, 28, 11, 0.8);
+            padding: 10px;
+            box-sizing: border-box;
+            color: white;
+            height: 390px;
+        }
+
+        #popup img {
+            max-width: 100%;
+        }
+
+        .pop_title {
+            width: 100%;
+            height: 40px;
+            box-sizing: border-box;
+            border-left: 3px solid #77DAF8;
+            background: linear-gradient(90deg, #365D58, #1A2927);
+            float: left;
+            display: flex;
+            align-items: center;
+        }
+
+        .pop_main {
+            width: 100%;
+            height: calc(100% - 40px);
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<!-- 顶部导航栏 -->
+<div class="header">
+    <div class="header_title">
+        <h1>智慧农耕大数据可视化监控中心</h1>
+        <p>Smart Farming Big Data Visualization Monitoring Center</p>
+    </div>
+    <div class="header_time">
+        <p id="systime">2024年4月25日 11:11:12</p>
+    </div>
+</div>
+<!-- 下半部分主页内容 -->
+<div class="main">
+    <!-- 中上部分 -->
+    <div class="main_t1">
+        <div class="main_t1_1">
+            <!-- 农作物类型占比 -->
+            <div class="main_t1_1_1">
+                <!-- 图表显示区域 -->
+                <div class="chartsDiv">
+                    <div class="chartsDiv_title">
+                        <img src="static/icons/zhongzhiquyu.png"/>
+                        <p>农作物产收占比</p>
+                    </div>
+                    <div class="chartsDiv_main kjdiv">
+                        <img class="chartimg" src="data:image/png;base64,{{ main_t1_1_1_img }}" alt="农作物产收占比">
+                    </div>
+                </div>
+            </div>
+            <!-- 农作物产量排序 -->
+            <div class="main_t1_1_2">
+                <!-- 图表显示区域 -->
+                <div class="chartsDiv">
+                    <div class="chartsDiv_title">
+                        <img src="static/icons/shujutongji.png"/>
+                        <p>农作物产量排序</p>
+                    </div>
+                    <div class="chartsDiv_main kjdiv">
+                        <img class="chartimg" src="data:image/png;base64,{{ main_t1_1_2_img }}" alt="农作物产量排序">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main_t1_2">
+            <!-- 农作物产收+智慧大棚统计 -->
+            <div class="main_t1_2_1">
+                <!-- 农作物总产收 -->
+                <div class="maptitle_div">
+                    <p>农作物累计产收(吨)</p>
+                    <p><strong>{{ text_charts1_data[0] }}</strong></p>
+                </div>
+                <!-- 智慧大棚总计 -->
+                <div class="maptitle_div">
+                    <p>农作物种植总面积(亩)</p>
+                    <p><strong>{{ text_charts1_data[1] }}</strong></p>
+                </div>
+            </div>
+            <!-- 大棚分布地图 -->
+            <div class="main_t1_2_2 kjdiv">
+                <!-- openlayers地图 -->
+                <div id="map"></div>
+            </div>
+        </div>
+        <div class="main_t1_3">
+            <!-- 农作物生长阶段占比 -->
+            <div class="main_t1_3_1">
+                <!-- 图表显示区域 -->
+                <div class="chartsDiv">
+                    <div class="chartsDiv_title">
+                        <img src="static/icons/nongyeqihouqu.png"/>
+                        <p>A001地块当月微气象监测平均值</p>
+                    </div>
+                    <div class="chartsDiv_main kjdiv">
+                        <img class="chartimg" src="data:image/png;base64,{{ main_t1_3_1_img }}"
+                             alt="A001地块当月微气象监测平均值">
+                    </div>
+                </div>
+            </div>
+            <!-- 大棚运营状态 -->
+            <div class="main_t1_3_2">
+                <!-- 图表显示区域 -->
+                <div class="chartsDiv">
+                    <div class="chartsDiv_title">
+                        <img src="static/icons/zhinengdapeng.png"/>
+                        <p>A001地块月度病虫害更替趋势</p>
+                    </div>
+                    <div class="chartsDiv_main kjdiv">
+                        <img class="chartimg" src="data:image/png;base64,{{ main_t1_3_2_img }}"
+                             alt="A001地块月度病虫害更替趋势">
+                    </div>
+                </div>
+            </div>
+            <!-- 异常信息监控 -->
+            <div class="main_t1_3_3">
+                <div class="yc_div">
+                    <p>一级虫害告警次数</p>
+                    <p><strong>{{ text_charts3_data[0] }}</strong></p>
+                </div>
+                <div class="yc_div">
+                    <p>二级虫害告警次数</p>
+                    <p><strong>{{ text_charts3_data[1] }}</strong></p>
+                </div>
+                <div class="yc_div">
+                    <p>三级虫害告警次数</p>
+                    <p><strong>{{ text_charts3_data[2] }}</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 中下部分 -->
+    <div class="main_t2">
+        <!-- 大棚作物种植量 -->
+        <div class="main_t2_1">
+            <!-- 图表显示区域 -->
+            <div class="chartsDiv">
+                <div class="chartsDiv_title">
+                    <img src="static/icons/wuzicangchu.png"/>
+                    <p>地方产量总计</p>
+                </div>
+                <div class="chartsDiv_main kjdiv">
+                    <img class="chartimg" src="data:image/png;base64,{{ main_t2_1 }}" alt="农作物产量排序">
+                </div>
+            </div>
+        </div>
+        <!-- 三个指标文字 -->
+        <div class="main_t2_2">
+            <!-- 农作物种植总面积 -->
+            <div class="nzsub_div">
+                <p>农作物种植种类</p>
+                <p><strong>{{ text_charts2_data[0] }}</strong></p>
+            </div>
+            <!-- 今年预计产收 -->
+            <div class="nzsub_div">
+                <p>种植基地总数</p>
+                <p><strong>{{ text_charts2_data[1] }}</strong></p>
+            </div>
+            <!-- 月度预计产收 -->
+            <div class="nzsub_div">
+                <p>去年总产收(吨)</p>
+                <p><strong>{{ text_charts2_data[2] }}</strong></p>
+            </div>
+        </div>
+        <!-- 1号大棚监测数据变化柱状  -->
+        <div class="main_t2_3">
+            <!-- 图表显示区域 -->
+            <div class="chartsDiv">
+                <div class="chartsDiv_title">
+                    <img src="static/icons/zhinengyujing.png"/>
+                    <p>1号大棚土壤采样数据趋势图</p>
+                </div>
+                <div class="chartsDiv_main kjdiv">
+                    <img class="chartimg" src="data:image/png;base64,{{ main_t2_3_img }}"
+                         alt="1号大棚土壤采样数据趋势图">
+                </div>
+            </div>
+        </div>
+        <!-- 监测正常异常占比图 -->
+        <div class="main_t2_4">
+            <!-- 图表显示区域 -->
+            <div class="chartsDiv">
+                <div class="chartsDiv_title">
+                    <img src="static/icons/zhinengdapeng.png"/>
+                    <p>虫害类型占比</p>
+                </div>
+                <div class="chartsDiv_main kjdiv">
+                    <img class="chartimg" src="data:image/png;base64,{{ main_t2_4_img }}" alt="虫害类型占比">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 气泡框内容 -->
+<div id="popup">
+    <div class="pop_title">
+        <p id="tname"></p>
+    </div>
+    <div class="pop_main">
+        <table>
+            <tr>
+                <td>种植类型</td>
+                <td><p id="type"></p></td>
+            </tr>
+            <tr>
+                <td>大棚面积(亩)</td>
+                <td><p id="much"></p></td>
+            </tr>
+            <tr>
+                <td>异常次数</td>
+                <td><p id="waring"></p></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <img id="image" src="" alt="">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+<!-- 时钟效果 -->
+<script>
+    function updateSystemTime() {
+        // 获取当前时间
+        var currentDate = new Date();
+
+        // 格式化为所需的字符串形式
+        var formattedDate = currentDate.getFullYear() + "年" + (currentDate.getMonth() + 1) + "月" + currentDate.getDate() + "日 " + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
+
+        // 将时间设置为<p>元素的文本内容
+        document.getElementById("systime").textContent = formattedDate;
+    }
+
+    // 每秒调用一次updateSystemTime函数
+    setInterval(updateSystemTime, 1000);
+</script>
+<script src="static/openlayers/maps.js"></script>
+</body>
+
+
+</html>
