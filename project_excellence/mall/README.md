@@ -1,11 +1,6 @@
 #  小象电商 智慧农庄电商小程序
 
-### 体验环境
-1.微信小程序
-
-- ![输入图片说明](mall-admin-server/image.png)
-
-2.后台地址
+后台地址
 
 http://mall.weixinai.cn/
 账户：admin
@@ -17,9 +12,6 @@ http://mall.weixinai.cn/
 
  **如果对您有帮助，您可以点右上角 “Star” 收藏一下 ，获取第一时间更新，谢谢！** 
 
-#### 小象智慧微信： yubang1010 
-- ![输入图片说明](mall-admin-server/200.png)
-
 
 #### 官网
 
@@ -29,7 +21,7 @@ http://mall.weixinai.cn/
 
 1、SpringBoot2+Jpa+MybatisPlus+SpringSecurity+jwt+redis+Vue
 
- 
+
 #### 商城功能
 
 1. 商品管理：商品分类、管理商品、浏览记录、图片素材、美食厨房分类、美食厨房、预售商品分类；
