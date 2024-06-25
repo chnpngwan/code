@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.AssetClassifyMapper">
+    
+    <resultMap type="AssetClassify" id="AssetClassifyResult">
+        <result property="id"    column="id"    />
+        <result property="code"    column="code"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="name"    column="name"    />
+        <result property="number"    column="number"    />
+        <result property="amount"    column="amount"    />
+    </resultMap>
+
+    <sql id="selectAssetClassifyVo">
+        select id, code, parent_id, name, number, amount from asset_classify
+    </sql>
+
+    <select id="selectAssetClassifyList" parameterType="AssetClassify" resultMap="AssetClassifyResult">
+        <include refid="selectAssetClassifyVo"/>
+        <where>  
+            <if test="code != null  and code != ''"> and code like concat('%', #{code}, '%')</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectAssetClassifyById" parameterType="Long" resultMap="AssetClassifyResult">
+        <include refid="selectAssetClassifyVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertAssetClassify" parameterType="AssetClassify" useGeneratedKeys="true" keyProperty="id">
+        insert into asset_classify
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">code,</if>
+            <if test="parentId != null">parent_id,</if>
+            <if test="name != null">name,</if>
+            <if test="number != null">number,</if>
+            <if test="amount != null">amount,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">#{code},</if>
+            <if test="parentId != null">#{parentId},</if>
+            <if test="name != null">#{name},</if>
+            <if test="number != null">#{number},</if>
+            <if test="amount != null">#{amount},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAssetClassify" parameterType="AssetClassify">
+        update asset_classify
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null">code = #{code},</if>
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="number != null">number = #{number},</if>
+            <if test="amount != null">amount = #{amount},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAssetClassifyById" parameterType="Long">
+        delete from asset_classify where id = #{id}
+    </delete>
+
+    <delete id="deleteAssetClassifyByIds" parameterType="String">
+        delete from asset_classify where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
