@@ -1,0 +1,56 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  # 数据源
+  datasource:
+    username: root
+    password: tLo1d5mR5nDURjSs
+    url: jdbc:mysql://124.222.97.161:3351/help_medical?serverTimezone=Hongkong&useAffectedRows=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  # 配置邮件任务
+  mail:
+    username: 373675032@qq.com
+    password: faiekxetzeqobhei
+    host: smtp.qq.com
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+    valid: 5
+    title: "寻药就医系统 - 用户认证"
+    template: "您的动态验证码为：<strong style='color: red'>%s</strong>，%d分钟内有效，若非本人操作，请勿泄露。"
+
+
+
+# 打印Mysql查询日志
+logging:
+  level:
+    com.baijia.umetric.dao.mapper: debug
+
+# mybatis插件打印日志，打印查询结果
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+oss:
+  bucket-name: su-share
+  end-point: oss-cn-beijing.aliyuncs.com
+  key-id: LTAI4FkQxKLrtRkjeVy8PJbn
+  key-secret: hnxR5AhnplgXYb6dzHWz9UNZVq1wLJ

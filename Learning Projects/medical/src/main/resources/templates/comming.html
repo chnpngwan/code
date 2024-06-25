@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>关于我们~~~~</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/plugin.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/fonts/flaticon.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="stylesheet" href="assets/fonts/line-icons.css" type="text/css"/>
+    <link rel="stylesheet" href="common/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="status"></div>
+</div>
+
+<div th:replace="common/common-bar::#header"></div>
+
+<section class="comming-soon">
+    <div class="container">
+        <div class="comming__soon_text text-center">
+            <div class="mb-10" style="padding-top: 50px">
+                <img src="images/logo-w.png" alt=""/>
+                <svg  t="1651562724106" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1352" width="50" height="50"><path d="M333.5 411.4a35.4 67.6 0 1 0 70.8 0 35.4 67.6 0 1 0-70.8 0Z" fill="#ffffff" p-id="1353" data-spm-anchor-id="a313x.7781069.0.i2" class="selected"></path><path d="M620.8 411.4a35.4 67.6 0 1 0 70.8 0 35.4 67.6 0 1 0-70.8 0Z" fill="#ffffff" p-id="1354" data-spm-anchor-id="a313x.7781069.0.i3" class="selected"></path><path d="M512.6 807.2c-141.8 0-257.3-103.8-257.3-231.4 0-20.7 16.8-37.5 37.5-37.5h439.5c20.7 0 37.5 16.8 37.5 37.5 0 127.6-115.4 231.4-257.2 231.4z m-177-193.9c19.6 68.2 91.5 118.9 176.9 118.9s157.3-50.7 176.9-118.9H335.6z" fill="#ffffff" p-id="1355" data-spm-anchor-id="a313x.7781069.0.i1" class="selected"></path><path d="M512.6 960.2c-247.2 0-448.3-201.1-448.3-448.3 0-48.8 7.8-96.9 23.2-142.8 6.6-19.6 27.8-30.1 47.5-23.6 19.6 6.6 30.2 27.9 23.6 47.5-12.8 38.2-19.3 78.2-19.3 118.9 0 205.9 167.5 373.3 373.3 373.3s373.3-167.5 373.3-373.3-167.5-373.3-373.3-373.3c-116.8 0-224.7 53.1-296 145.8-12.7 16.4-36.2 19.4-52.6 6.9-16.4-12.6-19.5-36.2-6.9-52.6C242.7 127.3 372.3 63.5 512.6 63.5c247.2 0 448.3 201.1 448.3 448.3S759.8 960.2 512.6 960.2z" fill="#ffffff" p-id="1356" data-spm-anchor-id="a313x.7781069.0.i0" class="selected"></path></svg>
+                <h3 class="cl-white mt-3">拥有健康，促进健康，享受健康，希望您永远健康 ~ ~ </h3>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12 text-center">
+                    <div class="sc-title-two sc-title-two-white w-100 mb-7 text-center mb-3">
+                        <img src="assets/images/Thank-You-Paramedic-Graphic-01-01.png" class="w-75" alt=""/>
+                        <h2 class="cl-white">我们即将推出</h2>
+                    </div>
+                    <p class="cl-lgreen">未来，寻医问药将继续携手政府、医疗机构、医生、医疗健康企业等合作伙伴，共同推动中国医疗健康服务体系智能化、数字化进程，为亿万用户的健康福祉奋力前行。</p>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div id="countdown"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sl-overlay darkclr"></div>
+</section>
+
+
+<div th:replace="common/common-bar::#back"></div>
+
+<div th:replace="common/common-bar::#footer"></div>
+
+<div th:replace="common/common-bar::#search"></div>
+
+<div th:replace="common/common-bar::#back-to-top"></div>
+
+<script src="assets/js/jquery-3.5.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/plugin.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/custom-swiper.js"></script>
+<script src="assets/js/custom-nav.js"></script>
+<script src="common/utils/reg.js"></script>
+<script src="common/layer/layer.js"></script>
+<script src="common/custom.js"></script>
+<script>
+    //Countdown
+    // Set the date we're counting down to
+    var countDownDate = new Date("Mar 5, 2022 15:37:25").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="countdown"
+        document.getElementById("countdown").innerHTML =
+            days + "<span>Days </span>" + hours + "<span>Hours </span>" + minutes + "<span>Minutes </span>" + seconds + "<span>Seconds </span>";
+
+        // If the count down is over, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "期待我们吧";
+        }
+    }, 1000);
+</script>
+<script type="text/javascript">(function () {
+    window['__CF$cv$params'] = {
+        r: '6e45db494b487ed7',
+        m: 'E2iLSGfi5vEdFOYKT4tR4XXusSWe8RO4rV1PmczNEtw-1646011501-0-AQCdGpS1p2hBYS5z37HlCfljz3qA49/ALxoZFL53XS9QHNwVZTe/YffiqZGSbRNy78EHrd+DHIPfy2IVFO6ce9ghq6yIaiUN+4SCiHasgkvHWrUWiGWCTVIym1Bf41dnlgzcBOse9X2H9wmvMqBfb98=',
+        s: [0x13a5b46153, 0x35a3a256fb],
+        u: '/cdn-cgi/challenge-platform/h/g'
+    }
+})();</script>
+</body>
+</html>
