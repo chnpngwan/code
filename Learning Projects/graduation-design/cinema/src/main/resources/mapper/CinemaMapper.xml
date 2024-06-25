@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.mapper.CinemaMapper">
+    <resultMap id="cinemaVOMap" type="com.example.cinema.vo.CinemaVO">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="telephone" property="telephone"/>
+        <result column="address" property="address"/>
+        <result column="image" property="image"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <association property="brand" javaType="com.example.cinema.vo.BrandVO">
+            <result column="brandId" property="id"/>
+            <result column="brandName" property="name"/>
+        </association>
+        <association property="district" javaType="com.example.cinema.vo.DistrictVO">
+            <result column="districtId" property="id"/>
+            <result column="districtName" property="name"/>
+        </association>
+    </resultMap>
+
+    <select id="getCinemaPage" resultMap="cinemaVOMap">
+        SELECT
+            c.`id`,
+            b.`id` AS brandId,
+            b.`name` AS brandName,
+            d.`id` AS districtId,
+            d.`name` AS districtName,
+            c.`name`,
+            c.`telephone`,
+            c.`address`,
+            c.`image`,
+            c.`create_time`,
+            c.`update_time`
+        FROM
+            tb_cinema c
+                LEFT JOIN tb_brand b ON c.brand_id = b.id
+                LEFT JOIN tb_district d ON c.district_id = d.id
+        <if test="keywords != null">
+            WHERE
+                    c.`name` LIKE concat('%',#{keywords},'%')
+                OR
+                    b.`name` LIKE concat('%',#{keywords},'%')
+                OR
+                    d.`name` LIKE concat('%',#{keywords},'%')
+        </if>
+        LIMIT #{start}, #{size}
+    </select>
+
+    <select id="getCinemaPageTotal" resultType="java.lang.Long">
+        SELECT
+            count(*)
+        FROM
+            tb_cinema c
+                LEFT JOIN tb_brand b ON c.brand_id = b.id
+                LEFT JOIN tb_district d ON c.district_id = d.id
+        <if test="keywords != null">
+        WHERE
+            c.`name` LIKE concat('%',#{keywords},'%')
+            OR
+            b.`name` LIKE concat('%',#{keywords},'%')
+            OR
+            d.`name` LIKE concat('%',#{keywords},'%')
+        </if>
+    </select>
+
+    <select id="getCinemaIdByCondition" resultType="java.lang.Integer">
+        SELECT
+            DISTINCT c.id
+        FROM
+            tb_cinema c
+                LEFT JOIN tb_cinema_serve cs ON c.id = cs.cinema_id
+                LEFT JOIN tb_hall h ON c.id = h.cinema_id
+        WHERE
+            1 = 1
+            <if test="brandId != 0">
+                AND c.brand_id = #{brandId}
+            </if>
+            <if test="districtId != 0">
+                AND c.district_id = #{districtId}
+            </if>
+            <if test="typeId != 0">
+                AND h.type_id = #{typeId}
+            </if>
+            <if test="serveId != 0">
+                AND cs.serve_id = #{serveId}
+            </if>
+        LIMIT #{start}, #{size}
+    </select>
+
+    <select id="getCinemaIdTotalByCondition" resultType="java.lang.Long">
+        SELECT
+            COUNT(DISTINCT c.id)
+        FROM
+            tb_cinema c
+            LEFT JOIN tb_cinema_serve cs ON c.id = cs.cinema_id
+            LEFT JOIN tb_hall h ON c.id = h.cinema_id
+        WHERE
+            1 = 1
+            <if test="brandId != 0">
+                AND c.brand_id = #{brandId}
+            </if>
+            <if test="districtId != 0">
+                AND c.district_id = #{districtId}
+            </if>
+            <if test="typeId != 0">
+                AND h.type_id = #{typeId}
+            </if>
+            <if test="brandId != 0">
+                AND cs.serve_id = #{serveId}
+            </if>
+    </select>
+</mapper>
+

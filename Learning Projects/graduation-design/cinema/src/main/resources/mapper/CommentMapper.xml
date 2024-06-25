@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.mapper.CommentMapper">
+    <resultMap id="commentVOMap" type="com.example.cinema.vo.CommentVO">
+        <result column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="score" property="score"/>
+        <result column="review_flag" property="reviewFlag"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <association property="user" javaType="com.example.cinema.entity.User">
+            <result column="userId" property="id"/>
+            <result column="nickname" property="nickname"/>
+            <result column="avatar" property="avatar"/>
+        </association>
+    </resultMap>
+
+    <select id="getCommentPage" resultMap="commentVOMap">
+        SELECT
+            c.`id`,
+            u.`id` AS userId,
+            u.`nickname`,
+            u.`avatar`,
+            c.`content`,
+            c.`score`,
+            c.`review_flag`,
+            c.`create_time`,
+            c.`update_time`
+        FROM
+            tb_comment c
+                LEFT JOIN tb_user u ON c.user_id = u.id
+        WHERE
+            c.movie_id = #{movieId}
+        <if test="keywords != null">
+            and
+            (
+            c.`content` LIKE concat('%',#{keywords},'%')
+            OR
+            u.`nickname` LIKE concat('%',#{keywords},'%')
+            )
+        </if>
+        LIMIT #{start}, #{size}
+    </select>
+
+    <select id="getCommentPageTotal" resultType="java.lang.Long">
+        SELECT
+            count(*)
+        FROM
+            tb_comment c
+                LEFT JOIN tb_user u ON c.user_id = u.id
+        WHERE
+            c.movie_id = #{movieId}
+        <if test="keywords != null">
+            and
+            (
+            c.`content` LIKE concat('%',#{keywords},'%')
+            OR
+            u.`nickname` LIKE concat('%',#{keywords},'%')
+            )
+        </if>
+    </select>
+</mapper>
+

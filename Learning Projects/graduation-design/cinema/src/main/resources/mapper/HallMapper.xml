@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.mapper.HallMapper">
+    <resultMap id="hallVOMap" type="com.example.cinema.vo.HallVO">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="seat_row" property="seatRow"/>
+        <result column="seat_col" property="seatCol"/>
+        <result column="state" property="state"/>
+        <result column="seat_json" property="seatJson"/>
+        <association property="cinema" javaType="com.example.cinema.vo.CinemaSimpleVO">
+            <result column="cinemaId" property="id"/>
+            <result column="cinemaName" property="name"/>
+        </association>
+        <association property="type" javaType="com.example.cinema.vo.TypeVO">
+            <result column="typeId" property="id"/>
+            <result column="typeName" property="name"/>
+        </association>
+    </resultMap>
+
+    <select id="getHallVOPage" resultMap="hallVOMap">
+        SELECT
+            h.`id`,
+            c.`id` AS cinemaId,
+            c.`name` AS cinemaName,
+            t.`id` AS typeId,
+            t.`name` AS typeName,
+            h.`name`,
+            h.`seat_col`,
+            h.`seat_row`,
+            h.`state`,
+            h.seat_json
+        FROM
+            tb_hall h
+                LEFT JOIN tb_cinema c ON h.cinema_id = c.id
+                LEFT JOIN tb_type t ON h.type_id = t.id
+        <if test="keywords != null">
+            WHERE
+                c.`name` LIKE concat('%',#{keywords},'%')
+            OR
+                t.`name` LIKE concat('%',#{keywords},'%')
+            OR
+                h.`name` LIKE concat('%',#{keywords},'%')
+        </if>
+        LIMIT #{start}, #{size}
+    </select>
+
+    <select id="getHallVOPageTotal" resultType="java.lang.Integer">
+        SELECT
+            count(*)
+        FROM
+            tb_hall h
+                LEFT JOIN tb_cinema c ON h.cinema_id = c.id
+                LEFT JOIN tb_type t ON h.type_id = t.id
+        <if test="keywords != null">
+            WHERE
+            c.`name` LIKE concat('%',#{keywords},'%')
+            OR
+            t.`name` LIKE concat('%',#{keywords},'%')
+            OR
+            h.`name` LIKE concat('%',#{keywords},'%')
+        </if>
+    </select>
+</mapper>
+

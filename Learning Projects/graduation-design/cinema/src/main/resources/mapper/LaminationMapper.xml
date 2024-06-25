@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.mapper.LaminationMapper">
+
+    <resultMap id="laminationVOMap" type="com.example.cinema.vo.LaminationVO">
+        <result column="id" property="id"/>
+        <result column="lang_version" property="langVersion"/>
+        <result column="start_date" property="startDate"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="price" property="price"/>
+        <result column="seat_json" property="seatJson"/>
+        <result column="tips" property="tips"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <association property="cinema" javaType="com.example.cinema.vo.CinemaSimpleVO">
+            <result column="cinemaId" property="id"/>
+            <result column="cinemaName" property="name"/>
+        </association>
+        <association property="hall" javaType="com.example.cinema.vo.HallSimpleVO">
+            <result column="hallId" property="id"/>
+            <result column="hallName" property="name"/>
+        </association>
+        <association property="movie" javaType="com.example.cinema.vo.MovieSimpleVO">
+            <result column="movieId" property="id"/>
+            <result column="movieName" property="name"/>
+        </association>
+    </resultMap>
+
+    <select id="getLaminationPage" resultMap="laminationVOMap">
+        SELECT
+            l.`id`,
+            c.`id` AS cinemaId,
+            c.`name` AS cinemaName,
+            h.`id` AS hallId,
+            h.`name` AS hallName,
+            m.`id` AS movieId,
+            m.`name_cn` AS movieName,
+            l.`lang_version`,
+            l.`start_date`,
+            l.`start_time`,
+            l.`end_time`,
+            l.`price`,
+            l.`seat_json`,
+            l.`tips`,
+            l.`create_time`,
+            l.`update_time`
+        FROM
+            tb_lamination l
+            LEFT JOIN tb_cinema c ON l.cinema_id = c.id
+            LEFT JOIN tb_hall h ON l.hall_id = h.id
+            left JOIN tb_movie m ON l.movie_id = m.id
+        <if test="keywords != null">
+            WHERE
+                l.`name` LIKE concat('%',#{keywords},'%')
+                    OR
+                c.`name` LIKE concat('%',#{keywords},'%')
+                    OR
+                h.`name` LIKE concat('%',#{keywords},'%')
+                    OR
+                m.`name_cn` LIKE concat('%',#{keywords},'%')
+        </if>
+        LIMIT #{start}, #{size}
+    </select>
+
+    <select id="getLaminationPageTotal" resultType="java.lang.Long">
+        SELECT
+            count(*)
+        FROM
+            tb_lamination l
+            LEFT JOIN tb_cinema c ON l.cinema_id = c.id
+            LEFT JOIN tb_hall h ON l.hall_id = h.id
+            left JOIN tb_movie m ON l.movie_id = m.id
+        <if test="keywords != null">
+            WHERE
+            l.`name` LIKE concat('%',#{keywords},'%')
+            OR
+            c.`name` LIKE concat('%',#{keywords},'%')
+            OR
+            h.`name` LIKE concat('%',#{keywords},'%')
+            OR
+            m.`name_cn` LIKE concat('%',#{keywords},'%')
+        </if>
+    </select>
+</mapper>
+

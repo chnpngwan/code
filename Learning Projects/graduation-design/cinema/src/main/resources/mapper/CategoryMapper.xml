@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.mapper.CategoryMapper">
+    <select id="getMovieCategoryVOList" resultType="com.example.cinema.vo.MovieCategoryVO">
+        SELECT
+            c.id,
+            c.name,
+            COUNT(mc.movie_id) as movie_count
+        FROM
+            tb_category c
+                LEFT JOIN tb_movie_category mc ON c.id = mc.category_id
+        GROUP BY
+            c.id
+        ORDER BY
+            movie_count desc
+        LIMIT 6
+    </select>
+</mapper>
+
