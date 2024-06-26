@@ -7,10 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.ArrayList;
 
-
-/**
- * @author Newway
- */
 public interface BorrowBookDao extends JpaRepository<BorrowBook, Integer> {
 
     @Query(value = "select a.*,b.book_name,b.author,b.publisher,b.img_url from borrow_book a,book b where a.isbn=b.isbn and a.reader_id=:readerId and a.status=1", nativeQuery = true)

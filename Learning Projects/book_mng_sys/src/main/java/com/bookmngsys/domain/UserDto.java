@@ -5,9 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
 
-/**
- * @author Newway
- */
 @Getter
 @Setter
 public class UserDto {

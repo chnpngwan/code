@@ -18,9 +18,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author Newway
- */
 @Service
 public class BookServiceImpl implements BookService {
     @Autowired

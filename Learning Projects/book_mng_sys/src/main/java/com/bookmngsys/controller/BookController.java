@@ -23,9 +23,6 @@ import java.util.List;
 
 import static org.springframework.util.ClassUtils.getDefaultClassLoader;
 
-/**
- * @author Newway
- */
 @Api("书籍管理")
 @Controller
 @RequestMapping("/api/book")

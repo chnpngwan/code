@@ -8,9 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author Newway
- */
 @Service
 public class ReaderServiceImpl implements ReaderService {
     @Autowired

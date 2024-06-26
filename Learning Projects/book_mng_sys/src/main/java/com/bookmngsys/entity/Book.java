@@ -10,9 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
-/**
- * @author Newway
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

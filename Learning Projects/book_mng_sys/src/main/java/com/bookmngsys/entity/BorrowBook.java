@@ -5,9 +5,6 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * @author Newway
- */
 @Data
 @Entity
 @Table(name = "borrow_book")

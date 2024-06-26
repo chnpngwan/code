@@ -2,9 +2,6 @@ package com.bookmngsys.service;
 
 import com.bookmngsys.entity.User;
 
-/**
- * @author Newway
- */
 public interface UserService {
     /**
      * 检查用户名是否存在

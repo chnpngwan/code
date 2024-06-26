@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author Newway
- */
 @Getter
 @Setter
 @AllArgsConstructor

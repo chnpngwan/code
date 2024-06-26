@@ -8,9 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 
-/**
- * @author Newway
- */
 public interface BookDao extends JpaRepository<Book, String> {
     @Query(value = "select * from book where status=1 LIMIT :curPage,:pageSize", nativeQuery = true)
     ArrayList<Book> findEnabledBooks(int curPage, int pageSize);

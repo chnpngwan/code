@@ -6,9 +6,6 @@ import com.bookmngsys.entity.Category;
 
 import java.util.List;
 
-/**
- * @author Newway
- */
 public interface BookService {
     List<Book> getBooks(int curPage, int pageSize, boolean isAdmin);
 

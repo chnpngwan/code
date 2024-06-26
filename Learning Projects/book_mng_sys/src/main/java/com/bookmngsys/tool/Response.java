@@ -3,9 +3,6 @@ package com.bookmngsys.tool;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author Newway
- */
 @Getter
 @Setter
 public class Response {

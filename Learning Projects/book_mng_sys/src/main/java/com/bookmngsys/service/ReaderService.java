@@ -4,9 +4,6 @@ import com.bookmngsys.entity.Reader;
 
 import java.util.List;
 
-/**
- * @author Newway
- */
 public interface ReaderService {
     /**
      * 根据id查找读者

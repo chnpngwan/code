@@ -6,9 +6,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * @author Newway
- */
 public interface UserDao extends JpaRepository<User, Integer> {
     @Transactional
     @Modifying

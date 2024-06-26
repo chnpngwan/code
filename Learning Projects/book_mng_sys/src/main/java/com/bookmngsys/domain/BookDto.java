@@ -8,9 +8,6 @@ import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
 
-/**
- * @author Newway
- */
 @Getter
 @Setter
 public class BookDto {

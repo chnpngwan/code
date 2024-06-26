@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
-/**
- * @author Newway
- */
 @Api("用户管理")
 @RequestMapping("/api/user")
 @Controller
